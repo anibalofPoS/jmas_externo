@@ -1976,8 +1976,8 @@
 				"text": {
 					"type": "text",
 					"label": {
-						"text": "Medidores disponibles para limpieza",
-						"type": 0
+						"type": 0,
+						"text": "Medidores disponibles para limpieza******"
 					},
 					"editedByRte": false,
 					"bold": true,
