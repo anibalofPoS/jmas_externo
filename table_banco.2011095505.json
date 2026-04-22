@@ -1,0 +1,2193 @@
+{
+	"orderInfo": [
+		{
+			"index": 7,
+			"field": "nombre",
+			"expr": "localizacion",
+			"asc": true
+		}
+	],
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tnombre,\r\n\tdireccion,\r\n\tcolonia,\r\n\tlocalizacion,\r\n\tstatus,\r\n\tlimpiador,\r\n\tlat,\r\n\tlon\r\nFROM\r\n\tbanco\r\nWHERE\r\n    status='DCR'\r\nORDER BY\r\n    localizacion",
+	"connId": "conn",
+	"originalTable": "banco",
+	"name": "banco",
+	"shortTableName": "banco",
+	"dbType": 0,
+	"pageSizeRecords": 15,
+	"keyFields": [
+		"cuenta"
+	],
+	"detailsBadgeColor": "cfae83",
+	"fields": [
+		{
+			"name": "fecha",
+			"sqlExpression": "fecha",
+			"index": 1,
+			"strField": "fecha",
+			"googleLikeSearch": false,
+			"type": 7,
+			"viewFormats": [
+				{
+					"format": "Short Date"
+				}
+			],
+			"editFormats": [
+				{
+					"format": "Date",
+					"dateEditType": 11
+				}
+			],
+			"label": {
+				"English": "Fecha"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "cuenta",
+			"sqlExpression": "cuenta",
+			"index": 2,
+			"strField": "cuenta",
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"English": "Cuenta"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "status",
+			"sqlExpression": "status",
+			"index": 8,
+			"strField": "status",
+			"googleLikeSearch": false,
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"English": "Status"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "limpiador",
+			"sqlExpression": "limpiador",
+			"index": 9,
+			"strField": "limpiador",
+			"googleLikeSearch": false,
+			"type": 2,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{
+					"format": "Lookup wizard",
+					"lookupTable": "limpiadores",
+					"lookupTableConnection": "conn",
+					"lookupLinkField": "id",
+					"lookupDisplayField": "nombre",
+					"lookupOrderBy": "nombre"
+				}
+			],
+			"label": {
+				"English": "Limpiador"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "lat",
+			"sqlExpression": "lat",
+			"index": 10,
+			"strField": "lat",
+			"googleLikeSearch": false,
+			"type": 14,
+			"viewFormats": [
+				{
+					"format": "Number",
+					"numberFractionalDigits": 8
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Lat"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "lon",
+			"sqlExpression": "lon",
+			"index": 11,
+			"strField": "lon",
+			"googleLikeSearch": false,
+			"type": 14,
+			"viewFormats": [
+				{
+					"format": "Number",
+					"numberFractionalDigits": 8
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Lon"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "nombre",
+			"sqlExpression": "nombre",
+			"index": 4,
+			"strField": "nombre",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Nombre de la cuenta"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "colonia",
+			"sqlExpression": "colonia",
+			"index": 6,
+			"strField": "colonia",
+			"googleLikeSearch": false,
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Colonia"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "localizacion",
+			"sqlExpression": "localizacion",
+			"index": 7,
+			"strField": "localizacion",
+			"googleLikeSearch": false,
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Localizacion"
+			},
+			"tableName": "banco"
+		},
+		{
+			"name": "id_medidor",
+			"sqlExpression": "id_medidor",
+			"index": 3,
+			"strField": "id_medidor",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Id Medidor"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "direccion",
+			"sqlExpression": "direccion",
+			"index": 5,
+			"strField": "direccion",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Direccion"
+			},
+			"tableName": ""
+		}
+	],
+	"afterEditAction": 0,
+	"eventHandlers": [
+		{
+			"eventId": "EVENT_BEFOREMOVENEXT_LIST",
+			"pageType": "list",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$pageObject->hideItem(\"simple_grid_field3\"); //lat\n$pageObject->hideItem(\"simple_grid_field5\"); //lon\n$pageObject->hideItem(\"simple_grid_field12\"); //lat\n$pageObject->hideItem(\"simple_grid_field13\"); //lon\n"
+		},
+		{
+			"eventId": "EVENT_PROCESSVALUES_EDIT",
+			"pageType": "edit",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$pageObject->hideItem(\"integrated_edit_field1\"); // status\n\n"
+		},
+		{
+			"eventId": "EVENT_BEFOREEDIT",
+			"pageType": "edit",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$values['status']='En proceso';\nreturn true;"
+		},
+		{
+			"eventId": "EVENT_AFTEREDIT",
+			"pageType": "edit",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$datos=array();\n$datos['fecha']=date('Y-m-d H:i:s');\n$datos['cuenta']=$values['cuenta'];\n$datos['limpiador']=$values['limpiador'];\n$datos['status']=$values['status'];\n$datos['id_medidor']=$values['id_medidor'];\n$datos['lat']=$values['lat'];\n$datos['lon']=$values['lon'];\n$datos['direccion']=$values['direccion'];\n$datos['colonia']=$values['colonia'];\n$datos['localizacion']=$values['localizacion'];\nDB::Insert(\"en_proceso\",$datos);"
+		},
+		{
+			"eventId": "EVENT_BEFOREPROCESS_EDIT",
+			"pageType": "edit",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n\ndate_default_timezone_set('America/Denver');"
+		},
+		{
+			"eventId": "EVENT_AFTERDELETE",
+			"pageType": "list",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n"
+		}
+	],
+	"strOrderBy": "ORDER BY\r\n    localizacion",
+	"dbTableInfo": {
+		"type": 0,
+		"foreignKeys": [],
+		"fields": [
+			{
+				"name": "fecha",
+				"type": 7,
+				"size": 0,
+				"scale": 0,
+				"typeName": "date",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "cuenta",
+				"type": 3,
+				"size": 7,
+				"scale": 0,
+				"typeName": "int(7)",
+				"nullable": false,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "nombre",
+				"type": 200,
+				"size": 50,
+				"scale": 0,
+				"typeName": "varchar(50)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "colonia",
+				"type": 200,
+				"size": 60,
+				"scale": 0,
+				"typeName": "varchar(60)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "localizacion",
+				"type": 200,
+				"size": 20,
+				"scale": 0,
+				"typeName": "varchar(20)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "lat",
+				"type": 14,
+				"size": 11,
+				"scale": 8,
+				"typeName": "decimal(11,8)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "lon",
+				"type": 14,
+				"size": 11,
+				"scale": 8,
+				"typeName": "decimal(11,8)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "limpiador",
+				"type": 16,
+				"size": 3,
+				"scale": 0,
+				"typeName": "tinyint(3)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "status",
+				"type": 200,
+				"size": 10,
+				"scale": 0,
+				"typeName": "varchar(10)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			}
+		],
+		"primaryKeys": [
+			"cuenta"
+		],
+		"uniqueFields": [],
+		"name": "banco"
+	},
+	"pages": [
+		{
+			"id": "add",
+			"type": "add",
+			"layoutId": "nomenu",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "add-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"add_message"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "add-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"add_save",
+								"add_reset",
+								"add_back_list",
+								"add_cancel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "add-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"add_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "simple-edit",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c3"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c3": {
+							"model": "c3",
+							"items": [
+								"integrated_edit_field",
+								"integrated_edit_field1"
+							]
+						}
+					},
+					"deferredItems": [],
+					"columnCount": 1,
+					"inlineLabels": false,
+					"separateLabels": false
+				}
+			},
+			"items": {
+				"add_header": {
+					"type": "add_header"
+				},
+				"add_back_list": {
+					"type": "add_back_list"
+				},
+				"add_cancel": {
+					"type": "add_cancel"
+				},
+				"add_message": {
+					"type": "add_message"
+				},
+				"add_save": {
+					"type": "add_save"
+				},
+				"add_reset": {
+					"type": "add_reset"
+				},
+				"integrated_edit_field": {
+					"field": "fecha",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field1": {
+					"field": "status",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "export",
+			"type": "export",
+			"layoutId": "first",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"supertop": {
+					"modelId": "panel-top",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "export-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"export_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "export-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"export_field",
+								"export_field1",
+								"export_field2",
+								"export_field3",
+								"export_field5",
+								"export_field6",
+								"export_field7",
+								"export_field8",
+								"export_field4",
+								"export_field9"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"footer": {
+					"modelId": "export-footer",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"export_export",
+								"export_cancel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"export_header": {
+					"type": "export_header"
+				},
+				"export_export": {
+					"type": "export_export"
+				},
+				"export_cancel": {
+					"type": "export_cancel"
+				},
+				"export_field": {
+					"field": "fecha",
+					"type": "export_field"
+				},
+				"export_field1": {
+					"field": "cuenta",
+					"type": "export_field"
+				},
+				"export_field2": {
+					"field": "status",
+					"type": "export_field"
+				},
+				"export_field3": {
+					"field": "lat",
+					"type": "export_field"
+				},
+				"export_field5": {
+					"field": "lon",
+					"type": "export_field"
+				},
+				"export_field6": {
+					"field": "nombre",
+					"type": "export_field"
+				},
+				"export_field7": {
+					"field": "colonia",
+					"type": "export_field"
+				},
+				"export_field8": {
+					"field": "localizacion",
+					"type": "export_field"
+				},
+				"export_field4": {
+					"field": "id_medidor",
+					"type": "export_field"
+				},
+				"export_field9": {
+					"field": "direccion",
+					"type": "export_field"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {},
+			"exportFormat": 2,
+			"exportDelimiter": ",",
+			"exportSelectDelimiter": false,
+			"exportSelectFields": false
+		},
+		{
+			"id": "import",
+			"type": "import",
+			"layoutId": "first",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"supertop": {
+					"modelId": "panel-top",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "import-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"import_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "import-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"import_header": {
+					"type": "import_header"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "edit",
+			"type": "edit",
+			"layoutId": "nomenu",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "edit-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"edit_message"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "edit-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"edit_save",
+								"update_records",
+								"edit_back_list",
+								"edit_close"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"prev",
+								"next",
+								"hamburger"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "edit-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"edit_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "simple-edit",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c3"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c3": {
+							"model": "c3",
+							"items": [
+								"integrated_edit_field1",
+								"integrated_edit_field2"
+							]
+						}
+					},
+					"deferredItems": [],
+					"columnCount": 1,
+					"inlineLabels": false,
+					"separateLabels": false
+				}
+			},
+			"items": {
+				"edit_header": {
+					"type": "edit_header"
+				},
+				"hamburger": {
+					"type": "hamburger",
+					"items": [
+						"edit_reset",
+						"edit_view"
+					]
+				},
+				"edit_reset": {
+					"type": "edit_reset"
+				},
+				"edit_message": {
+					"type": "edit_message"
+				},
+				"edit_save": {
+					"type": "edit_save"
+				},
+				"edit_back_list": {
+					"type": "edit_back_list"
+				},
+				"edit_close": {
+					"type": "edit_close"
+				},
+				"integrated_edit_field1": {
+					"field": "status",
+					"type": "integrated_edit_field",
+					"orientation": 0,
+					"updateOnEdit": true
+				},
+				"edit_view": {
+					"type": "edit_view"
+				},
+				"next": {
+					"type": "next"
+				},
+				"prev": {
+					"type": "prev"
+				},
+				"update_records": {
+					"type": "update_records"
+				},
+				"integrated_edit_field2": {
+					"field": "limpiador",
+					"type": "integrated_edit_field",
+					"orientation": 0,
+					"updateOnEdit": true
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "view",
+			"type": "view",
+			"layoutId": "nomenu",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "view-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1",
+									"colspan": 2
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "view-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"view_back_list",
+								"view_close"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"prev",
+								"next",
+								"hamburger"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "view-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"view_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "simple-edit",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c3"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c3": {
+							"model": "c3",
+							"items": [
+								"integrated_edit_field",
+								"integrated_edit_field1",
+								"integrated_edit_field2",
+								"integrated_edit_field3",
+								"integrated_edit_field5",
+								"integrated_edit_field6",
+								"integrated_edit_field7",
+								"integrated_edit_field8",
+								"integrated_edit_field4",
+								"integrated_edit_field9"
+							]
+						}
+					},
+					"deferredItems": [],
+					"columnCount": 1,
+					"inlineLabels": true,
+					"separateLabels": false
+				}
+			},
+			"items": {
+				"view_header": {
+					"type": "view_header"
+				},
+				"view_back_list": {
+					"type": "view_back_list"
+				},
+				"view_close": {
+					"type": "view_close"
+				},
+				"hamburger": {
+					"type": "hamburger",
+					"items": [
+						"view_edit"
+					]
+				},
+				"view_edit": {
+					"type": "view_edit"
+				},
+				"next": {
+					"type": "next"
+				},
+				"prev": {
+					"type": "prev"
+				},
+				"integrated_edit_field": {
+					"field": "fecha",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field1": {
+					"field": "cuenta",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field2": {
+					"field": "status",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field3": {
+					"field": "lat",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field5": {
+					"field": "lon",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field6": {
+					"field": "nombre",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field7": {
+					"field": "colonia",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field8": {
+					"field": "localizacion",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field4": {
+					"field": "id_medidor",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				},
+				"integrated_edit_field9": {
+					"field": "direccion",
+					"type": "integrated_edit_field",
+					"orientation": 1
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "list",
+			"type": "list",
+			"layoutId": "topbar",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "list-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"add",
+								"delete",
+								"update_selected",
+								"text"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"details_found",
+								"page_size",
+								"print_panel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "list-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"pagination"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"supertop": {
+					"modelId": "topbar-menu",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"logo",
+								"menu"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"simple_search",
+								"list_options",
+								"loginform_login",
+								"username_button"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"left": {
+					"modelId": "list-vbar",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"search_panel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "list-top",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "horizontal-grid",
+					"grid": [
+						{
+							"section": "head",
+							"cells": [
+								{
+									"cell": "headcell_icons"
+								},
+								{
+									"cell": "headcell_checkbox"
+								},
+								{
+									"cell": "headcell_field"
+								},
+								{
+									"cell": "headcell_field1"
+								},
+								{
+									"cell": "headcell_field8"
+								},
+								{
+									"cell": "headcell_field2"
+								},
+								{
+									"cell": "headcell_field11"
+								},
+								{
+									"cell": "headcell_field3"
+								},
+								{
+									"cell": "headcell_field4"
+								},
+								{
+									"cell": "headcell_field5"
+								},
+								{
+									"cell": "headcell_field6"
+								}
+							]
+						},
+						{
+							"section": "body",
+							"cells": [
+								{
+									"cell": "cell_icons"
+								},
+								{
+									"cell": "cell_checkbox"
+								},
+								{
+									"cell": "cell_field"
+								},
+								{
+									"cell": "cell_field1"
+								},
+								{
+									"cell": "headcell_field9"
+								},
+								{
+									"cell": "cell_field2"
+								},
+								{
+									"cell": "headcell_field12"
+								},
+								{
+									"cell": "cell_field3"
+								},
+								{
+									"cell": "cell_field4"
+								},
+								{
+									"cell": "cell_field5"
+								},
+								{
+									"cell": "cell_field6"
+								}
+							]
+						},
+						{
+							"section": "foot",
+							"cells": [
+								{
+									"cell": "footcell_icons"
+								},
+								{
+									"cell": "footcell_checkbox"
+								},
+								{
+									"cell": "footcell_field"
+								},
+								{
+									"cell": "footcell_field1"
+								},
+								{
+									"cell": "headcell_field10"
+								},
+								{
+									"cell": "footcell_field2"
+								},
+								{
+									"cell": "headcell_field13"
+								},
+								{
+									"cell": "footcell_field3"
+								},
+								{
+									"cell": "footcell_field4"
+								},
+								{
+									"cell": "footcell_field5"
+								},
+								{
+									"cell": "footcell_field6"
+								}
+							]
+						}
+					],
+					"cells": {
+						"headcell_field": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field2"
+							],
+							"field": "fecha",
+							"columnName": "field"
+						},
+						"cell_field": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field"
+							],
+							"field": "fecha",
+							"columnName": "field"
+						},
+						"footcell_field": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "fecha",
+							"columnName": "field"
+						},
+						"headcell_field1": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field4"
+							],
+							"field": "cuenta",
+							"columnName": "field"
+						},
+						"cell_field1": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field1"
+							],
+							"field": "cuenta",
+							"columnName": "field"
+						},
+						"footcell_field1": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "cuenta",
+							"columnName": "field"
+						},
+						"headcell_field2": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field9"
+							],
+							"field": "nombre",
+							"columnName": "field"
+						},
+						"cell_field2": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field6"
+							],
+							"field": "nombre",
+							"columnName": "field"
+						},
+						"footcell_field2": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "nombre",
+							"columnName": "field"
+						},
+						"headcell_field3": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field10"
+							],
+							"field": "colonia",
+							"columnName": "field"
+						},
+						"cell_field3": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field7"
+							],
+							"field": "colonia",
+							"columnName": "field"
+						},
+						"footcell_field3": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "colonia",
+							"columnName": "field"
+						},
+						"headcell_field4": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field11"
+							],
+							"field": "localizacion",
+							"columnName": "field"
+						},
+						"cell_field4": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field8"
+							],
+							"field": "localizacion",
+							"columnName": "field"
+						},
+						"footcell_field4": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "localizacion",
+							"columnName": "field"
+						},
+						"headcell_field5": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field12"
+							],
+							"field": "lat",
+							"columnName": "field"
+						},
+						"cell_field5": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field3"
+							],
+							"field": "lat",
+							"columnName": "field"
+						},
+						"footcell_field5": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "lat",
+							"columnName": "field"
+						},
+						"headcell_field6": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field13"
+							],
+							"field": "lon",
+							"columnName": "field"
+						},
+						"cell_field6": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field5"
+							],
+							"field": "lon",
+							"columnName": "field"
+						},
+						"footcell_field6": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "lon",
+							"columnName": "field"
+						},
+						"headcell_checkbox": {
+							"model": "headcell_checkbox",
+							"items": [
+								"grid_checkbox_head"
+							],
+							"columnName": "checkbox",
+							"field": ""
+						},
+						"cell_checkbox": {
+							"model": "cell_checkbox",
+							"items": [
+								"grid_checkbox"
+							],
+							"columnName": "checkbox",
+							"field": ""
+						},
+						"footcell_checkbox": {
+							"model": "footcell_checkbox",
+							"items": [],
+							"columnName": "checkbox",
+							"field": ""
+						},
+						"headcell_icons": {
+							"model": "headcell_icons",
+							"items": [],
+							"columnName": "list-icons",
+							"field": ""
+						},
+						"cell_icons": {
+							"model": "cell_icons",
+							"items": [
+								"grid_edit",
+								"grid_view"
+							],
+							"columnName": "list-icons",
+							"field": ""
+						},
+						"footcell_icons": {
+							"model": "footcell_icons",
+							"items": [],
+							"columnName": "list-icons",
+							"field": ""
+						},
+						"headcell_field8": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label"
+							],
+							"columnName": "field",
+							"field": "id_medidor"
+						},
+						"headcell_field9": {
+							"model": "cell_field",
+							"items": [
+								"grid_field"
+							],
+							"columnName": "field",
+							"field": "id_medidor"
+						},
+						"headcell_field10": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "id_medidor"
+						},
+						"headcell_field11": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label1"
+							],
+							"columnName": "field",
+							"field": "direccion"
+						},
+						"headcell_field12": {
+							"model": "cell_field",
+							"items": [
+								"grid_field1"
+							],
+							"columnName": "field",
+							"field": "direccion"
+						},
+						"headcell_field13": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "direccion"
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"add": {
+					"type": "add",
+					"icon": {
+						"glyph": "plus",
+						"style": 0
+					},
+					"label": {
+						"type": 0,
+						"text": "Agregar"
+					}
+				},
+				"delete": {
+					"type": "delete",
+					"icon": {
+						"glyph": "trash",
+						"style": 0
+					},
+					"label": {
+						"type": 0,
+						"text": "Borrar"
+					}
+				},
+				"details_found": {
+					"type": "details_found"
+				},
+				"page_size": {
+					"type": "page_size"
+				},
+				"print_panel": {
+					"type": "print_panel",
+					"items": [
+						"print_scope",
+						"print_records",
+						"print_button"
+					]
+				},
+				"print_scope": {
+					"type": "print_scope"
+				},
+				"print_records": {
+					"type": "print_records"
+				},
+				"print_button": {
+					"type": "print_button"
+				},
+				"pagination": {
+					"type": "pagination"
+				},
+				"search_panel_field": {
+					"field": "fecha",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"search_panel_field1": {
+					"field": "cuenta",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"export_selected": {
+					"type": "export_selected"
+				},
+				"delete_selected": {
+					"type": "delete_selected"
+				},
+				"-1": {
+					"type": "-"
+				},
+				"show_search_panel": {
+					"type": "show_search_panel"
+				},
+				"hide_search_panel": {
+					"type": "hide_search_panel"
+				},
+				"-": {
+					"type": "-"
+				},
+				"export": {
+					"type": "export"
+				},
+				"-2": {
+					"type": "-"
+				},
+				"import": {
+					"type": "import"
+				},
+				"userinfo_link": {
+					"type": "userinfo_link"
+				},
+				"logout_link": {
+					"type": "logout_link"
+				},
+				"logo": {
+					"type": "logo"
+				},
+				"menu": {
+					"type": "menu"
+				},
+				"simple_search": {
+					"type": "simple_search"
+				},
+				"search_panel": {
+					"type": "search_panel",
+					"items": [
+						"search_panel_field",
+						"search_panel_field3",
+						"search_panel_field2",
+						"search_panel_field7",
+						"search_panel_field6",
+						"search_panel_field1"
+					],
+					"_flexiblePanel": true
+				},
+				"list_options": {
+					"type": "list_options",
+					"items": [
+						"export_selected",
+						"delete_selected",
+						"-1",
+						"show_search_panel",
+						"hide_search_panel",
+						"-",
+						"export",
+						"-2",
+						"import"
+					]
+				},
+				"username_button": {
+					"type": "username_button",
+					"items": [
+						"userinfo_link",
+						"logout_link",
+						"changepassword_link"
+					]
+				},
+				"loginform_login": {
+					"type": "loginform_login",
+					"popup": false
+				},
+				"search_panel_field6": {
+					"field": "nombre",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"search_panel_field7": {
+					"field": "colonia",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"changepassword_link": {
+					"type": "changepassword_link"
+				},
+				"simple_grid_field": {
+					"field": "fecha",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field2": {
+					"type": "grid_field_label",
+					"field": "fecha",
+					"showFilter": true
+				},
+				"simple_grid_field1": {
+					"field": "cuenta",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field4": {
+					"type": "grid_field_label",
+					"field": "cuenta",
+					"showFilter": true
+				},
+				"simple_grid_field6": {
+					"field": "nombre",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field9": {
+					"type": "grid_field_label",
+					"field": "nombre",
+					"showFilter": true,
+					"label": {
+						"field": "nombre",
+						"table": "banco",
+						"type": 3
+					}
+				},
+				"simple_grid_field7": {
+					"field": "colonia",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field10": {
+					"type": "grid_field_label",
+					"field": "colonia",
+					"showFilter": true
+				},
+				"simple_grid_field8": {
+					"field": "localizacion",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field11": {
+					"type": "grid_field_label",
+					"field": "localizacion",
+					"showFilter": true
+				},
+				"simple_grid_field3": {
+					"field": "lat",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field12": {
+					"type": "grid_field_label",
+					"field": "lat",
+					"showFilter": true
+				},
+				"simple_grid_field5": {
+					"field": "lon",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field13": {
+					"type": "grid_field_label",
+					"field": "lon",
+					"showFilter": true
+				},
+				"grid_checkbox": {
+					"type": "grid_checkbox"
+				},
+				"grid_checkbox_head": {
+					"type": "grid_checkbox_head"
+				},
+				"grid_edit": {
+					"type": "grid_edit"
+				},
+				"grid_view": {
+					"type": "grid_view"
+				},
+				"update_selected": {
+					"type": "update_selected",
+					"icon": {},
+					"label": {
+						"type": 0,
+						"text": "Asignar Limpiador"
+					}
+				},
+				"grid_field": {
+					"field": "id_medidor",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label": {
+					"type": "grid_field_label",
+					"field": "id_medidor"
+				},
+				"search_panel_field2": {
+					"field": "id_medidor",
+					"type": "search_panel_field"
+				},
+				"text": {
+					"type": "text",
+					"label": {
+						"text": "Medidores disponibles para limpieza",
+						"type": 0
+					},
+					"editedByRte": false,
+					"bold": true,
+					"font-size": "18px"
+				},
+				"grid_field1": {
+					"field": "direccion",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label1": {
+					"type": "grid_field_label",
+					"field": "direccion"
+				},
+				"search_panel_field3": {
+					"field": "direccion",
+					"type": "search_panel_field"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "print",
+			"type": "print",
+			"layoutId": "basic",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "print-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"print_pages"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "print-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "print-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c2": {
+							"model": "c2",
+							"items": [
+								"print_header",
+								"print_subheader"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "simple-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"simple_grid_field",
+								"simple_grid_field1",
+								"simple_grid_field2",
+								"simple_grid_field3",
+								"simple_grid_field5",
+								"simple_grid_field6",
+								"simple_grid_field7",
+								"simple_grid_field8",
+								"simple_grid_field4",
+								"simple_grid_field9"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"print_header": {
+					"type": "print_header"
+				},
+				"print_subheader": {
+					"type": "print_subheader"
+				},
+				"print_pages": {
+					"type": "print_pages"
+				},
+				"simple_grid_field": {
+					"field": "fecha",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field1": {
+					"field": "cuenta",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field2": {
+					"field": "status",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field3": {
+					"field": "lat",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field5": {
+					"field": "lon",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field6": {
+					"field": "nombre",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field7": {
+					"field": "colonia",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field8": {
+					"field": "localizacion",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field4": {
+					"field": "id_medidor",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field9": {
+					"field": "direccion",
+					"type": "simple_grid_field"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		}
+	],
+	"geoCoding": {
+		"enabled": false,
+		"latField": "",
+		"lonField": "",
+		"addressFields": []
+	},
+	"caption": {
+		"English": "Banco",
+		"Spanish": "Oferta medidores"
+	}
+}

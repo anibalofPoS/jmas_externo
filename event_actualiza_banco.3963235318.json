@@ -1,0 +1,7 @@
+{
+	"type": "EVENT_BUTTON",
+	"name": "actualiza_banco",
+	"serverCode": "// Put your code here.\n$cuentas=array();\nwhile($record = $button->getNextSelectedRecord())\n{\n   $cuentas[]=$record['cuenta'];\n}\n$result['cuentas']=$cuentas;\n\n",
+	"beforeJsCode": "// Put your code here.\n\n\n// Uncomment the following line to prevent execution of \"Server\" and \"Client After\" events.\n//return false;",
+	"afterJsCode": "// Put your code here.\nvar cuentas=result['cuentas'];\n//window.open('actualizar_banco.php?cuentas='+cuentas);\n\nif (cuentas.length==0){\n   swal(\"Seleccióne al menos una cuenta\");\n   return;\n}\n\nswal(\"Continuar la actualizacion de datos ?\", {\n    buttons: {\n     cancel: \"No\",\n    proceed: {\n       text: \"Si\",\n      value: \"proceed\",\n    }\n  },\n})\n.then((value) => {\n   switch (value) {\n      case \"proceed\":\n         var popup = Runner.displayPopup( {\n            url: \"actualizar_banco.php?cuentas=\"+cuentas,\n          width: \"50%\",\n         height: \"50%\",\n         header: 'Actualizando datos',\n    beforeClose: function(popup) {\n      location.reload(true)\n      return true; \n    }\n});\n     break;\n \n   default:\n      swal(\"Proceso cancelado!\");\n     break;\n   }\n});\n"
+}

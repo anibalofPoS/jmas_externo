@@ -1,0 +1,1869 @@
+{
+	"orderInfo": [
+		{
+			"index": 1,
+			"field": "fecha",
+			"expr": "fecha",
+			"asc": false
+		}
+	],
+	"sql": "SELECT\r\n\tfecha,\r\n\tdate_format(fecha,'%H:%i') as tiempo,\r\n\tlimpiador,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tfecha_limpio,\r\n\tdate_format(fecha_limpio,'%H:%i') as hr_limpio,\r\n\tstatus,\r\n\tconcat(\"lym/\",fotoa,\".jpeg\") as fotoa,\r\n\tconcat(\"lym/\",fotod,\".jpeg\") as fotod,\r\n\tlat,\r\n\tlon,\r\n\tlatf,\r\n\tlonf,\r\n    '' as mapa,\r\n    '' as mapaf,\r\n    direccion\r\nFROM\r\n\ten_proceso\r\nWHERE\r\n    status='Limpio'\r\nORDER BY\r\n    fecha\r\nDESC",
+	"type": 1,
+	"connId": "conn",
+	"originalTable": "en_proceso",
+	"name": "en limpieza",
+	"shortTableName": "en_proceso1",
+	"dbType": 0,
+	"pageSizeRecords": 3,
+	"keyFields": [
+		"fecha",
+		"cuenta"
+	],
+	"detailsBadgeColor": "e07878",
+	"fields": [
+		{
+			"name": "fecha",
+			"sqlExpression": "fecha",
+			"index": 1,
+			"strField": "fecha",
+			"type": 135,
+			"viewFormats": [
+				{
+					"format": "Custom",
+					"customExpression": "if ($value==null){\r\n   $value='';\r\n}else{ \r\n   $value=utf8_encode(strftime(\"%a %d-%b-%Y\", strtotime($value)));\r\n}"
+				}
+			],
+			"editFormats": [
+				{
+					"format": "Date",
+					"dateEditType": 11
+				}
+			],
+			"label": {
+				"Spanish": "Fecha<br>Asignación"
+			},
+			"tableName": "en_proceso"
+		},
+		{
+			"name": "limpiador",
+			"sqlExpression": "limpiador",
+			"index": 3,
+			"strField": "limpiador",
+			"googleLikeSearch": false,
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{
+					"format": "Lookup wizard",
+					"lookupTable": "limpiadores",
+					"lookupTableConnection": "conn",
+					"lookupLinkField": "id",
+					"lookupDisplayField": "nombre",
+					"lookupOrderBy": "nombre"
+				}
+			],
+			"label": {
+				"Spanish": "Limpiador"
+			},
+			"tableName": "en_proceso"
+		},
+		{
+			"name": "cuenta",
+			"sqlExpression": "cuenta",
+			"index": 4,
+			"strField": "cuenta",
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Cuenta"
+			},
+			"tableName": "en_proceso"
+		},
+		{
+			"name": "status",
+			"sqlExpression": "status",
+			"index": 8,
+			"strField": "status",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Status"
+			},
+			"tableName": "en_proceso"
+		},
+		{
+			"name": "tiempo",
+			"sqlExpression": "date_format(fecha,'%H:%i')",
+			"index": 2,
+			"strField": "tiempo",
+			"googleLikeSearch": false,
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Tiempo"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "fecha_limpio",
+			"sqlExpression": "fecha_limpio",
+			"index": 6,
+			"strField": "fecha_limpio",
+			"type": 135,
+			"viewFormats": [
+				{
+					"format": "Custom",
+					"customExpression": "if ($value==null){\r\n   $value='';\r\n}else{ \r\n   $value=utf8_encode(strftime(\"%a %d-%b-%Y\", strtotime($value)));\r\n}"
+				}
+			],
+			"editFormats": [
+				{
+					"format": "Date",
+					"dateEditType": 11
+				}
+			],
+			"label": {
+				"Spanish": "Fecha de<br>limpieza"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "hr_limpio",
+			"sqlExpression": "date_format(fecha_limpio,'%H:%i')",
+			"index": 7,
+			"strField": "hr_limpio",
+			"googleLikeSearch": false,
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Hora de<br>limpieza"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "id_medidor",
+			"sqlExpression": "id_medidor",
+			"index": 5,
+			"strField": "id_medidor",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Id Medidor"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "fotoa",
+			"sqlExpression": "concat(\"lym/\",fotoa,\".jpeg\")",
+			"index": 9,
+			"strField": "fotoa",
+			"type": 200,
+			"viewFormats": [
+				{
+					"format": "File-based Image",
+					"imageWidth": 75,
+					"imageHeight": 60,
+					"imageUrl": true,
+					"imageBorder": false
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Foto antes<br>limpieza"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "fotod",
+			"sqlExpression": "concat(\"lym/\",fotod,\".jpeg\")",
+			"index": 10,
+			"strField": "fotod",
+			"type": 200,
+			"viewFormats": [
+				{
+					"format": "File-based Image",
+					"imageWidth": 75,
+					"imageHeight": 60,
+					"imageUrl": true,
+					"imageBorder": false
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Foto después<br>limpieza"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "mapa",
+			"sqlExpression": "''",
+			"index": 15,
+			"strField": "mapa",
+			"type": 200,
+			"viewFormats": [
+				{
+					"format": "Map",
+					"mapAddressField": "direccion",
+					"mapLatField": "lat",
+					"mapLonField": "lon",
+					"mapDescriptionField": "direccion",
+					"mapMarkerIcon": "marcador_azul.png"
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Mapa"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "mapaf",
+			"sqlExpression": "''",
+			"index": 16,
+			"strField": "mapaf",
+			"type": 200,
+			"viewFormats": [
+				{
+					"format": "Map",
+					"mapAddressField": "direccion",
+					"mapLatField": "latf",
+					"mapLonField": "lonf",
+					"mapDescriptionField": "direccion",
+					"mapMarkerIcon": "marcador_azul1.png"
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Mapa foto"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "direccion",
+			"sqlExpression": "direccion",
+			"index": 17,
+			"strField": "direccion",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Direccion"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "lat",
+			"sqlExpression": "lat",
+			"index": 11,
+			"strField": "lat",
+			"type": 14,
+			"viewFormats": [
+				{
+					"format": "Number"
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Lat"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "lon",
+			"sqlExpression": "lon",
+			"index": 12,
+			"strField": "lon",
+			"type": 14,
+			"viewFormats": [
+				{
+					"format": "Number"
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Lon"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "latf",
+			"sqlExpression": "latf",
+			"index": 13,
+			"strField": "latf",
+			"type": 14,
+			"viewFormats": [
+				{
+					"format": "Number"
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Latf"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "lonf",
+			"sqlExpression": "lonf",
+			"index": 14,
+			"strField": "lonf",
+			"type": 14,
+			"viewFormats": [
+				{
+					"format": "Number"
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Lonf"
+			},
+			"tableName": ""
+		}
+	],
+	"eventHandlers": [
+		{
+			"eventId": "EVENT_BEFOREPROCESS_LIST",
+			"pageType": "list",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\nsetlocale(LC_ALL, \"es_ES\", 'es_MX.utf8');\ndate_default_timezone_set(\"America/Denver\");\n"
+		},
+		{
+			"eventId": "EVENT_AFTERDELETE",
+			"pageType": "list",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$sql=\"update banco set status='DCR' where cuenta={$deleted_values['cuenta']}\";\nDB::Exec($sql);\n"
+		}
+	],
+	"strOrderBy": "ORDER BY\r\n    fecha\r\nDESC",
+	"dbTableInfo": {
+		"type": 0,
+		"foreignKeys": [],
+		"fields": [
+			{
+				"name": "fecha",
+				"type": 135,
+				"size": 0,
+				"scale": 0,
+				"typeName": "datetime",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "limpiador",
+				"type": 3,
+				"size": 3,
+				"scale": 0,
+				"typeName": "int(3)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "cuenta",
+				"type": 3,
+				"size": 6,
+				"scale": 0,
+				"typeName": "int(6)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "fecha_limpo",
+				"type": 135,
+				"size": 0,
+				"scale": 0,
+				"typeName": "datetime",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "status",
+				"type": 200,
+				"size": 10,
+				"scale": 0,
+				"typeName": "varchar(10)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			}
+		],
+		"primaryKeys": [],
+		"uniqueFields": [],
+		"name": "en_proceso"
+	},
+	"pages": [
+		{
+			"id": "add",
+			"type": "add",
+			"layoutId": "nomenu",
+			"disabled": true,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "add-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"add_message"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "add-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"add_save",
+								"add_reset",
+								"add_back_list",
+								"add_cancel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "add-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"add_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "simple-edit",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c3"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c3": {
+							"model": "c3",
+							"items": [
+								"integrated_edit_field",
+								"integrated_edit_field1",
+								"integrated_edit_field2",
+								"integrated_edit_field4"
+							]
+						}
+					},
+					"deferredItems": [],
+					"columnCount": 1,
+					"inlineLabels": false,
+					"separateLabels": false
+				}
+			},
+			"items": {
+				"add_header": {
+					"type": "add_header"
+				},
+				"add_back_list": {
+					"type": "add_back_list"
+				},
+				"add_cancel": {
+					"type": "add_cancel"
+				},
+				"add_message": {
+					"type": "add_message"
+				},
+				"add_save": {
+					"type": "add_save"
+				},
+				"add_reset": {
+					"type": "add_reset"
+				},
+				"integrated_edit_field": {
+					"field": "fecha",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field1": {
+					"field": "limpiador",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field2": {
+					"field": "cuenta",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field4": {
+					"field": "status",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "export",
+			"type": "export",
+			"layoutId": "first",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"supertop": {
+					"modelId": "panel-top",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "export-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"export_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "export-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"export_field",
+								"export_field5",
+								"export_field1",
+								"export_field2",
+								"export_field4",
+								"export_field3",
+								"export_field6",
+								"export_field7",
+								"export_field8",
+								"export_field9"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"footer": {
+					"modelId": "export-footer",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"export_export",
+								"export_cancel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"export_header": {
+					"type": "export_header"
+				},
+				"export_export": {
+					"type": "export_export"
+				},
+				"export_cancel": {
+					"type": "export_cancel"
+				},
+				"export_field": {
+					"field": "fecha",
+					"type": "export_field"
+				},
+				"export_field1": {
+					"field": "limpiador",
+					"type": "export_field"
+				},
+				"export_field2": {
+					"field": "cuenta",
+					"type": "export_field"
+				},
+				"export_field4": {
+					"field": "status",
+					"type": "export_field"
+				},
+				"export_field5": {
+					"field": "tiempo",
+					"type": "export_field"
+				},
+				"export_field3": {
+					"field": "fecha_limpio",
+					"type": "export_field"
+				},
+				"export_field6": {
+					"field": "hr_limpio",
+					"type": "export_field"
+				},
+				"export_field7": {
+					"field": "id_medidor",
+					"type": "export_field"
+				},
+				"export_field8": {
+					"field": "fotoa",
+					"type": "export_field"
+				},
+				"export_field9": {
+					"field": "fotod",
+					"type": "export_field"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {},
+			"exportFormat": 2,
+			"exportDelimiter": ",",
+			"exportSelectDelimiter": false,
+			"exportSelectFields": false
+		},
+		{
+			"id": "import",
+			"type": "import",
+			"layoutId": "first",
+			"disabled": true,
+			"default": 0,
+			"forms": {
+				"supertop": {
+					"modelId": "panel-top",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "import-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"import_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "import-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"import_field",
+								"import_field1",
+								"import_field2",
+								"import_field4"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"import_header": {
+					"type": "import_header"
+				},
+				"import_field": {
+					"field": "fecha",
+					"type": "import_field"
+				},
+				"import_field1": {
+					"field": "limpiador",
+					"type": "import_field"
+				},
+				"import_field2": {
+					"field": "cuenta",
+					"type": "import_field"
+				},
+				"import_field4": {
+					"field": "status",
+					"type": "import_field"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "list",
+			"type": "list",
+			"layoutId": "topbar",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "list-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"text"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"details_found",
+								"page_size",
+								"print_panel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "list-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"pagination"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"supertop": {
+					"modelId": "topbar-menu",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"logo",
+								"menu"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"simple_search",
+								"list_options",
+								"loginform_login",
+								"username_button"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"left": {
+					"modelId": "list-vbar",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"search_panel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "list-top",
+					"grid": [],
+					"cells": {},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "horizontal-grid",
+					"grid": [
+						{
+							"section": "head",
+							"cells": [
+								{
+									"cell": "headcell_checkbox"
+								},
+								{
+									"cell": "headcell_field"
+								},
+								{
+									"cell": "headcell_field1"
+								},
+								{
+									"cell": "headcell_field2"
+								},
+								{
+									"cell": "headcell_field3"
+								},
+								{
+									"cell": "headcell_field4"
+								},
+								{
+									"cell": "headcell_field5"
+								},
+								{
+									"cell": "headcell_field6"
+								},
+								{
+									"cell": "headcell_field7"
+								},
+								{
+									"cell": "headcell_field8"
+								},
+								{
+									"cell": "headcell_field9"
+								},
+								{
+									"cell": "headcell_field10"
+								}
+							]
+						},
+						{
+							"section": "body",
+							"cells": [
+								{
+									"cell": "cell_checkbox"
+								},
+								{
+									"cell": "cell_field"
+								},
+								{
+									"cell": "cell_field1"
+								},
+								{
+									"cell": "cell_field2"
+								},
+								{
+									"cell": "cell_field3"
+								},
+								{
+									"cell": "cell_field4"
+								},
+								{
+									"cell": "cell_field5"
+								},
+								{
+									"cell": "cell_field6"
+								},
+								{
+									"cell": "cell_field7"
+								},
+								{
+									"cell": "cell_field8"
+								},
+								{
+									"cell": "cell_field9"
+								},
+								{
+									"cell": "cell_field10"
+								}
+							]
+						},
+						{
+							"section": "foot",
+							"cells": [
+								{
+									"cell": "footcell_checkbox"
+								},
+								{
+									"cell": "footcell_field"
+								},
+								{
+									"cell": "footcell_field1"
+								},
+								{
+									"cell": "footcell_field2"
+								},
+								{
+									"cell": "footcell_field3"
+								},
+								{
+									"cell": "footcell_field4"
+								},
+								{
+									"cell": "footcell_field5"
+								},
+								{
+									"cell": "footcell_field6"
+								},
+								{
+									"cell": "footcell_field7"
+								},
+								{
+									"cell": "footcell_field8"
+								},
+								{
+									"cell": "footcell_field9"
+								},
+								{
+									"cell": "footcell_field10"
+								}
+							]
+						}
+					],
+					"cells": {
+						"headcell_field": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field9"
+							],
+							"field": "fecha"
+						},
+						"cell_field": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field"
+							],
+							"field": "fecha"
+						},
+						"footcell_field": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "fecha"
+						},
+						"headcell_field1": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field10"
+							],
+							"field": "tiempo"
+						},
+						"cell_field1": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field4"
+							],
+							"field": "tiempo"
+						},
+						"footcell_field1": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "tiempo"
+						},
+						"headcell_field2": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field11"
+							],
+							"field": "limpiador"
+						},
+						"cell_field2": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field1"
+							],
+							"field": "limpiador"
+						},
+						"footcell_field2": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "limpiador"
+						},
+						"headcell_field3": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field12"
+							],
+							"field": "cuenta"
+						},
+						"cell_field3": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field2"
+							],
+							"field": "cuenta"
+						},
+						"footcell_field3": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "cuenta"
+						},
+						"headcell_field4": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field13"
+							],
+							"field": "id_medidor"
+						},
+						"cell_field4": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field6"
+							],
+							"field": "id_medidor"
+						},
+						"footcell_field4": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "id_medidor"
+						},
+						"headcell_field5": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field14"
+							],
+							"field": "fecha_limpio"
+						},
+						"cell_field5": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field3"
+							],
+							"field": "fecha_limpio"
+						},
+						"footcell_field5": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "fecha_limpio"
+						},
+						"headcell_field6": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field15"
+							],
+							"field": "hr_limpio"
+						},
+						"cell_field6": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field5"
+							],
+							"field": "hr_limpio"
+						},
+						"footcell_field6": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "hr_limpio"
+						},
+						"headcell_field7": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field16"
+							],
+							"field": "fotoa"
+						},
+						"cell_field7": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field7"
+							],
+							"field": "fotoa",
+							"align": "center"
+						},
+						"footcell_field7": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "fotoa"
+						},
+						"headcell_field8": {
+							"model": "headcell_field",
+							"items": [
+								"simple_grid_field17"
+							],
+							"field": "fotod"
+						},
+						"cell_field8": {
+							"model": "cell_field",
+							"items": [
+								"simple_grid_field8"
+							],
+							"field": "fotod",
+							"align": "center"
+						},
+						"footcell_field8": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "fotod"
+						},
+						"headcell_checkbox": {
+							"model": "headcell_checkbox",
+							"items": [
+								"grid_checkbox_head"
+							]
+						},
+						"cell_checkbox": {
+							"model": "cell_checkbox",
+							"items": [
+								"grid_checkbox"
+							]
+						},
+						"footcell_checkbox": {
+							"model": "footcell_checkbox",
+							"items": []
+						},
+						"headcell_field9": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label"
+							],
+							"field": "mapa"
+						},
+						"cell_field9": {
+							"model": "cell_field",
+							"items": [
+								"grid_field"
+							],
+							"field": "mapa"
+						},
+						"footcell_field9": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "mapa"
+						},
+						"headcell_field10": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label1"
+							],
+							"field": "mapaf"
+						},
+						"cell_field10": {
+							"model": "cell_field",
+							"items": [
+								"grid_field1"
+							],
+							"field": "mapaf"
+						},
+						"footcell_field10": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "mapaf"
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"details_found": {
+					"type": "details_found"
+				},
+				"page_size": {
+					"type": "page_size"
+				},
+				"print_panel": {
+					"type": "print_panel",
+					"items": [
+						"print_scope",
+						"print_records",
+						"print_button"
+					]
+				},
+				"print_scope": {
+					"type": "print_scope"
+				},
+				"print_records": {
+					"type": "print_records"
+				},
+				"print_button": {
+					"type": "print_button"
+				},
+				"pagination": {
+					"type": "pagination"
+				},
+				"search_panel_field": {
+					"field": "fecha",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"search_panel_field2": {
+					"field": "cuenta",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"search_panel_field1": {
+					"field": "limpiador",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"show_search_panel": {
+					"type": "show_search_panel"
+				},
+				"hide_search_panel": {
+					"type": "hide_search_panel"
+				},
+				"-": {
+					"type": "-"
+				},
+				"export": {
+					"type": "export"
+				},
+				"-1": {
+					"type": "-"
+				},
+				"userinfo_link": {
+					"type": "userinfo_link"
+				},
+				"logout_link": {
+					"type": "logout_link"
+				},
+				"changepassword_link": {
+					"type": "changepassword_link"
+				},
+				"logo": {
+					"type": "logo"
+				},
+				"menu": {
+					"type": "menu"
+				},
+				"simple_search": {
+					"type": "simple_search"
+				},
+				"search_panel": {
+					"type": "search_panel",
+					"items": [
+						"search_panel_field",
+						"search_panel_field8",
+						"search_panel_field7",
+						"search_panel_field6",
+						"search_panel_field5",
+						"search_panel_field3",
+						"search_panel_field4",
+						"search_panel_field2",
+						"search_panel_field1"
+					],
+					"_flexiblePanel": true
+				},
+				"list_options": {
+					"type": "list_options",
+					"items": [
+						"show_search_panel",
+						"hide_search_panel",
+						"-",
+						"export"
+					]
+				},
+				"username_button": {
+					"type": "username_button",
+					"items": [
+						"userinfo_link",
+						"logout_link",
+						"changepassword_link"
+					]
+				},
+				"loginform_login": {
+					"type": "loginform_login",
+					"popup": false
+				},
+				"search_panel_field4": {
+					"field": "tiempo",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"search_panel_field3": {
+					"field": "fecha_limpio",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"search_panel_field5": {
+					"field": "hr_limpio",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"text": {
+					"type": "text",
+					"label": {
+						"text": "Medidores en proceso de limpieza",
+						"type": 0
+					},
+					"editedByRte": false,
+					"bold": true,
+					"font-size": "18px"
+				},
+				"search_panel_field6": {
+					"field": "id_medidor",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"-2": {
+					"type": "-"
+				},
+				"search_panel_field7": {
+					"field": "fotoa",
+					"type": "search_panel_field"
+				},
+				"search_panel_field8": {
+					"field": "fotod",
+					"type": "search_panel_field"
+				},
+				"simple_grid_field": {
+					"field": "fecha",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field9": {
+					"type": "grid_field_label",
+					"field": "fecha",
+					"showFilter": true
+				},
+				"simple_grid_field4": {
+					"field": "tiempo",
+					"type": "grid_field",
+					"showFilter": true,
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"simple_grid_field10": {
+					"type": "grid_field_label",
+					"field": "tiempo",
+					"showFilter": true
+				},
+				"simple_grid_field1": {
+					"field": "limpiador",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field11": {
+					"type": "grid_field_label",
+					"field": "limpiador",
+					"showFilter": true
+				},
+				"simple_grid_field2": {
+					"field": "cuenta",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field12": {
+					"type": "grid_field_label",
+					"field": "cuenta",
+					"showFilter": true
+				},
+				"simple_grid_field6": {
+					"field": "id_medidor",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field13": {
+					"type": "grid_field_label",
+					"field": "id_medidor",
+					"showFilter": true
+				},
+				"simple_grid_field3": {
+					"field": "fecha_limpio",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field14": {
+					"type": "grid_field_label",
+					"field": "fecha_limpio",
+					"showFilter": true
+				},
+				"simple_grid_field5": {
+					"field": "hr_limpio",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false,
+					"showFilter": true
+				},
+				"simple_grid_field15": {
+					"type": "grid_field_label",
+					"field": "hr_limpio",
+					"showFilter": true
+				},
+				"simple_grid_field7": {
+					"field": "fotoa",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"simple_grid_field16": {
+					"type": "grid_field_label",
+					"field": "fotoa"
+				},
+				"simple_grid_field8": {
+					"field": "fotod",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"simple_grid_field17": {
+					"type": "grid_field_label",
+					"field": "fotod"
+				},
+				"grid_checkbox": {
+					"type": "grid_checkbox"
+				},
+				"grid_checkbox_head": {
+					"type": "grid_checkbox_head"
+				},
+				"grid_field": {
+					"field": "mapa",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label": {
+					"type": "grid_field_label",
+					"field": "mapa"
+				},
+				"grid_field1": {
+					"field": "mapaf",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label1": {
+					"type": "grid_field_label",
+					"field": "mapaf"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "print",
+			"type": "print",
+			"layoutId": "basic",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "print-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"print_pages"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "print-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "print-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c2": {
+							"model": "c2",
+							"items": [
+								"print_header",
+								"print_subheader"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "simple-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"simple_grid_field",
+								"simple_grid_field5",
+								"simple_grid_field1",
+								"simple_grid_field2",
+								"simple_grid_field4",
+								"simple_grid_field3",
+								"simple_grid_field6",
+								"simple_grid_field7",
+								"simple_grid_field8",
+								"simple_grid_field9"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"print_header": {
+					"type": "print_header"
+				},
+				"print_subheader": {
+					"type": "print_subheader"
+				},
+				"print_pages": {
+					"type": "print_pages"
+				},
+				"simple_grid_field": {
+					"field": "fecha",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field1": {
+					"field": "limpiador",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field2": {
+					"field": "cuenta",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field4": {
+					"field": "status",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field5": {
+					"field": "tiempo",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field3": {
+					"field": "fecha_limpio",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field6": {
+					"field": "hr_limpio",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field7": {
+					"field": "id_medidor",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field8": {
+					"field": "fotoa",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field9": {
+					"field": "fotod",
+					"type": "simple_grid_field"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		}
+	],
+	"geoCoding": {
+		"enabled": false,
+		"latField": "",
+		"lonField": "",
+		"addressFields": []
+	},
+	"caption": {
+		"Spanish": "En Limpieza"
+	}
+}

@@ -1,0 +1,1573 @@
+{
+	"programVersion": 3,
+	"versionName": "11.2",
+	"name": "jmas_externo",
+	"mainDiagram": {
+		"tables": [
+			{
+				"gid": 2011095505,
+				"y": 10,
+				"x": 20,
+				"width": 107.15625,
+				"height": 180
+			},
+			{
+				"gid": 878578831,
+				"y": 10,
+				"x": 835,
+				"width": 139.828125,
+				"height": 264
+			},
+			{
+				"gid": 3281225657,
+				"y": 10,
+				"x": 665,
+				"width": 142.171875,
+				"height": 180
+			},
+			{
+				"gid": 1229294977,
+				"y": 10,
+				"x": 305,
+				"width": 140.59375,
+				"height": 152
+			},
+			{
+				"gid": 3903546070,
+				"y": 10,
+				"x": 475,
+				"width": 164.421875,
+				"height": 400
+			},
+			{
+				"gid": 251037682,
+				"y": 10,
+				"x": 155,
+				"width": 121.921875,
+				"height": 152
+			}
+		]
+	},
+	"securitySettings": {
+		"loginDataSource": "usuarios",
+		"loginForm": 0,
+		"providers": [
+			{
+				"type": "%db",
+				"name": "db",
+				"active": true,
+				"label": {
+					"text": "Database",
+					"type": 0
+				},
+				"code": "00",
+				"table": {
+					"connId": "conn",
+					"table": "usuarios"
+				},
+				"usernameField": "correo",
+				"passwordField": "clave",
+				"emailField": null,
+				"extUserIdField": null,
+				"fullnameField": "nombre",
+				"userpicField": "",
+				"activationField": "˂Create new˃",
+				"resetTokenField": "˂Create new˃",
+				"resetDateField": "˂Create new˃",
+				"userGroupField": "perfil"
+			}
+		],
+		"sessionControl": {
+			"lifeTime": 15,
+			"sessionName": "Xr08eu8uEjU90E1PjDaH",
+			"JWTSecret": "sRagw4SOGD7taPVbMqxI"
+		},
+		"registration": {
+			"remindMethod": 0,
+			"hashAlgorithm": 0,
+			"registerPage": false,
+			"remindPage": false,
+			"changePwdPage": false,
+			"changePasswordPage": true,
+			"passwordValidation": {
+				"strong": false,
+				"minimumLength": 8,
+				"uniqueCharacters": 4,
+				"digitsAndSymbols": 2,
+				"upperAndLowerCase": false
+			}
+		},
+		"captchaSettings": {
+			"captchaType": 0,
+			"siteKey": "",
+			"secretKey": "",
+			"passesCount": 5
+		},
+		"emailSettings": {
+			"fromEmail": "",
+			"usePHPDefinedSMTP": false,
+			"useBuiltInMailer": false,
+			"SMTPServer": "localhost",
+			"SMTPPort": 25,
+			"SMTPUser": "",
+			"SMTPPassword": "",
+			"securityProtocol": 0,
+			"provider": 0,
+			"oauthUserEmail": "",
+			"oauthSettingsJson": "",
+			"oauthClientId": "",
+			"oauthClientSecret": "",
+			"oauthTenantId": ""
+		},
+		"advancedSecurity": {
+			"allowGuestLogin": false
+		},
+		"auditAndLocking": {
+			"loggingMode": 0,
+			"loggingTable": {
+				"connId": "",
+				"table": ""
+			},
+			"loggingFile": "audit.log",
+			"logSecurityActions": false,
+			"lockAfterUnsuccessfulLogin": false,
+			"enableLocking": false,
+			"lockingTable": {
+				"connId": "",
+				"table": ""
+			},
+			"tables": {}
+		},
+		"twoFactorSettings": {
+			"available": false,
+			"required": false,
+			"enable": true,
+			"remember": true,
+			"types": {},
+			"twoFactorField": "",
+			"emailField": "",
+			"phoneField": "",
+			"codeField": "",
+			"projectName": ""
+		},
+		"staticPermissions": {
+			"groups": {
+				"2": {
+					"permissions": {
+						"<global>": {
+							"mask": "AEDSPI",
+							"table": "",
+							"restrictedPages": {}
+						},
+						"banco": {
+							"mask": "ESP",
+							"table": "",
+							"restrictedPages": {
+								"import": true,
+								"add": true
+							}
+						},
+						"limpiadores": {
+							"mask": "AEDSP",
+							"table": "",
+							"restrictedPages": {
+								"import": true
+							}
+						},
+						"rezagos": {
+							"mask": "",
+							"table": "",
+							"restrictedPages": {
+								"add": true,
+								"edit": true,
+								"list": true,
+								"view": true,
+								"print": true,
+								"export": true,
+								"import": true
+							}
+						},
+						"usuarios": {
+							"mask": "",
+							"table": "",
+							"restrictedPages": {
+								"add": true,
+								"edit": true,
+								"list": true,
+								"view": true,
+								"print": true,
+								"export": true,
+								"import": true
+							}
+						},
+						"en_proceso": {
+							"mask": "SD",
+							"table": "",
+							"restrictedPages": {
+								"list": false
+							}
+						}
+					}
+				},
+				"<Default>": {
+					"permissions": {
+						"banco": {
+							"mask": "ADESPI",
+							"table": "banco",
+							"restrictedPages": {}
+						},
+						"usuarios": {
+							"mask": "ADESPI",
+							"table": "usuarios",
+							"restrictedPages": {}
+						},
+						"limpiadores": {
+							"mask": "ADESPI",
+							"table": "limpiadores",
+							"restrictedPages": {}
+						},
+						"<global>": {
+							"mask": "ADESPI",
+							"table": "<global>",
+							"restrictedPages": {}
+						},
+						"rezagos": {
+							"mask": "ADESPI",
+							"table": "rezagos",
+							"restrictedPages": {}
+						},
+						"en_proceso": {
+							"mask": "ADESPI",
+							"table": "en_proceso",
+							"restrictedPages": {}
+						},
+						"en limpieza": {
+							"mask": "ADESPI",
+							"table": "en limpieza",
+							"restrictedPages": {}
+						}
+					},
+					"admin": false,
+					"username": "<Default>"
+				}
+			}
+		}
+	},
+	"ftpLocations": [
+		{
+			"id": "ftploc8",
+			"name": "jmas_externo",
+			"ftp": {
+				"username": "pda_usr01",
+				"password": "",
+				"host": "187.141.185.247",
+				"port": 22,
+				"pathname": "var/www/html/jmas_externo",
+				"passive": true,
+				"secureType": 2,
+				"useCCC": false,
+				"pathFromRoot": false
+			},
+			"proxy": {
+				"username": "",
+				"password": "",
+				"host": "localhost",
+				"port": 3128,
+				"pathname": "",
+				"type": 0,
+				"enabled": false
+			},
+			"threads": 4,
+			"serverDbConnections": {
+				"pulsodelagua_at_localhost": "mysql jmas"
+			},
+			"url": "http://187.141.185.247/jmas_externo/menu.php"
+		}
+	],
+	"lastFtpLocation": "ftploc8",
+	"lcid": 2058,
+	"defaultLanguage": "Spanish",
+	"languages": [
+		"Spanish"
+	],
+	"dbConnections": [
+		{
+			"id": "conn",
+			"name": "jmas_externo at localhost",
+			"connString": "mysql;localhost;root;#Jma5Juarez;3306;jmas_externo;http://187.141.185.247/jmas_externo/phprunner.php;0;0"
+		},
+		{
+			"id": "conn1",
+			"name": "pulsodelagua at localhost",
+			"connString": "mysql;localhost;root;#Jma5Juarez;3306;pulsodelagua;http://187.141.185.247/jmas_externo/phprunner.php;0;0"
+		}
+	],
+	"defaultConnID": "conn",
+	"mapSettings": {
+		"provider": "openstreet"
+	},
+	"menus": [
+		{
+			"id": "main",
+			"root": {
+				"children": [
+					{
+						"id": "4",
+						"data": {
+							"name": {
+								"table": "rezagos",
+								"type": 6
+							},
+							"itemType": 2,
+							"linkType": 0,
+							"iconType": 2,
+							"iconName": "glyphicon-transfer",
+							"table": 3903546070,
+							"pageType": "list"
+						}
+					},
+					{
+						"id": "6",
+						"children": [
+							{
+								"id": "1",
+								"parent": "6",
+								"data": {
+									"name": {
+										"text": "En oferta",
+										"type": 0
+									},
+									"itemType": 2,
+									"linkType": 0,
+									"iconType": 3,
+									"iconName": "fa-list-ol",
+									"table": 2011095505,
+									"pageType": "list"
+								}
+							},
+							{
+								"id": "5",
+								"parent": "6",
+								"data": {
+									"name": {
+										"table": "en_proceso",
+										"type": 6
+									},
+									"itemType": 2,
+									"linkType": 0,
+									"iconType": 3,
+									"iconName": "fa-toolbox",
+									"table": 3281225657,
+									"pageType": "list"
+								}
+							}
+						],
+						"data": {
+							"name": {
+								"text": "Asignación de cuentas",
+								"type": 0
+							},
+							"iconType": 3,
+							"iconName": "fa-tools"
+						}
+					},
+					{
+						"id": "7",
+						"data": {
+							"name": {
+								"table": "en limpieza",
+								"type": 6
+							},
+							"itemType": 2,
+							"linkType": 0,
+							"iconType": 3,
+							"iconName": "fa-brush",
+							"table": 878578831,
+							"pageType": "list"
+						}
+					},
+					{
+						"id": "8",
+						"children": [
+							{
+								"id": "3",
+								"parent": "8",
+								"data": {
+									"name": {
+										"table": "limpiadores",
+										"type": 6
+									},
+									"itemType": 2,
+									"linkType": 0,
+									"iconType": 3,
+									"iconName": "fa-broom",
+									"table": 1229294977,
+									"pageType": "list"
+								}
+							},
+							{
+								"id": "2",
+								"parent": "8",
+								"data": {
+									"name": {
+										"table": "usuarios",
+										"type": 6
+									},
+									"itemType": 2,
+									"linkType": 0,
+									"iconType": 3,
+									"iconName": "fa-user-friends",
+									"table": 251037682,
+									"pageType": "list"
+								}
+							}
+						],
+						"data": {
+							"name": {
+								"text": "Otras tablas",
+								"type": 0
+							},
+							"iconType": 3,
+							"iconName": "fa-database"
+						}
+					}
+				]
+			}
+		}
+	],
+	"globalPages": [
+		{
+			"id": "menu",
+			"type": "menu",
+			"layoutId": "topbar",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "empty-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"supertop": {
+					"modelId": "menu-topbar-menu",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"logo",
+								"menu"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"loginform_login",
+								"username_button"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "welcome",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"welcome_item3",
+								"welcome_item",
+								"welcome_item4",
+								"welcome_item2",
+								"welcome_item1",
+								"welcome_item5"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"logo": {
+					"type": "logo"
+				},
+				"menu": {
+					"type": "menu"
+				},
+				"welcome_item": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "banco",
+					"linkPage": "list",
+					"linkText": {
+						"type": 0,
+						"text": "Oferta"
+					},
+					"linkIcon": {
+						"fa": "list-ol",
+						"style": 0
+					},
+					"linkComments": {
+						"type": 0,
+						"text": "Cuentas disponibles para asignar limpiador"
+					},
+					"background": "#cfae83",
+					"linkType": 0
+				},
+				"welcome_item1": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "usuarios",
+					"linkPage": "list",
+					"linkText": {
+						"table": "usuarios",
+						"type": 6
+					},
+					"linkIcon": {
+						"fa": "user-friends",
+						"style": 0
+					},
+					"linkComments": {
+						"type": 0,
+						"text": "Datos de los Administradores"
+					},
+					"background": "#b22222",
+					"linkType": 0
+				},
+				"welcome_item2": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "limpiadores",
+					"linkPage": "list",
+					"linkText": {
+						"table": "limpiadores",
+						"type": 6
+					},
+					"linkIcon": {
+						"fa": "broom",
+						"style": 0
+					},
+					"linkComments": {
+						"type": 0,
+						"text": "Perfil de los limpiadores"
+					},
+					"background": "#3cb371",
+					"linkType": 0
+				},
+				"username_button": {
+					"type": "username_button",
+					"items": [
+						"userinfo_link",
+						"logout_link",
+						"changepassword_link"
+					]
+				},
+				"loginform_login": {
+					"type": "loginform_login",
+					"popup": false
+				},
+				"userinfo_link": {
+					"type": "userinfo_link"
+				},
+				"logout_link": {
+					"type": "logout_link"
+				},
+				"welcome_item3": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "rezagos",
+					"linkPage": "list",
+					"linkText": {
+						"table": "rezagos",
+						"type": 6
+					},
+					"linkIcon": {
+						"glyph": "transfer",
+						"style": 0
+					},
+					"linkComments": {
+						"type": 0,
+						"text": "Cuentas seleccionadas para ser limpiadas."
+					},
+					"background": "#e8926f",
+					"linkType": 0
+				},
+				"changepassword_link": {
+					"type": "changepassword_link"
+				},
+				"welcome_item4": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "en_proceso",
+					"linkPage": "list",
+					"linkText": {
+						"table": "en_proceso",
+						"type": 6
+					},
+					"linkIcon": {
+						"fa": "toolbox",
+						"style": 0
+					},
+					"linkComments": {
+						"type": 0,
+						"text": "Medidores en proceso de limpieza"
+					},
+					"background": "#e07878",
+					"linkType": 0
+				},
+				"welcome_item5": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "en limpieza",
+					"linkPage": "list",
+					"linkText": {
+						"table": "en limpieza",
+						"type": 6
+					},
+					"linkIcon": {
+						"fa": "brush",
+						"style": 0
+					},
+					"background": "#e07878",
+					"linkType": 0,
+					"linkComments": {
+						"type": 0,
+						"text": "Medidores que se han limpiado"
+					}
+				}
+			},
+			"version": 13,
+			"pageWidth": "full",
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"welcomePageStay": true,
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {},
+			"welcomeStyle": 2
+		},
+		{
+			"id": "login",
+			"type": "login",
+			"layoutId": "pretty1",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "login-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c2": {
+							"model": "c2",
+							"items": []
+						},
+						"c1": {
+							"model": "c1",
+							"items": [
+								"login_message"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "plogin-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "c3",
+									"colspan": 2
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"text"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": []
+						},
+						"c3": {
+							"model": "c3",
+							"items": [
+								"login_welcome"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "plogin-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1",
+									"colspan": 2
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "c2",
+									"colspan": 2
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "c4"
+								},
+								{
+									"cell": "c6"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c4": {
+							"model": "c4",
+							"items": [
+								"remember_password"
+							]
+						},
+						"c6": {
+							"model": "c6",
+							"items": [
+								"guest_login"
+							]
+						},
+						"c1": {
+							"model": "c1",
+							"items": [
+								"username_label",
+								"username"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"password_label",
+								"password"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"footer": {
+					"modelId": "plogin-footer",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"login_button"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"superbottom": {
+					"modelId": "plogin-superbottom",
+					"grid": [],
+					"cells": {},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"login_message": {
+					"type": "login_message"
+				},
+				"guest_login": {
+					"type": "guest_login"
+				},
+				"login_welcome": {
+					"type": "login_welcome"
+				},
+				"username_label": {
+					"type": "username_label"
+				},
+				"username": {
+					"type": "username"
+				},
+				"password_label": {
+					"type": "password_label"
+				},
+				"password": {
+					"type": "password"
+				},
+				"remember_password": {
+					"type": "remember_password"
+				},
+				"login_button": {
+					"type": "login_button"
+				},
+				"text": {
+					"type": "text",
+					"label": {
+						"type": 0,
+						"text": "<DIV style=\"height: 150px ;position: relative;top: -9px; vertical-align: middle \">  <IMG height=\"100%\" id=\"navbarlogo\" alt=\"Project logo\" src=\"./images/logo.png\"> </DIV>"
+					},
+					"editedByRte": false
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image",
+				"shadow": true,
+				"image": {
+					"image": "login.png",
+					"source": 2
+				},
+				"width": "",
+				"height": "",
+				"fullSize": true
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "userinfo",
+			"type": "userinfo",
+			"layoutId": "leftbar",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "empty-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "empty-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"supertop": {
+					"modelId": "leftbar-top-edit",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"expand_menu_button",
+								"collapse_button",
+								"breadcrumb"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"loginform_login",
+								"username_button"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"left": {
+					"modelId": "leftbar-menu",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c0"
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c0": {
+							"model": "c0",
+							"items": [
+								"logo"
+							]
+						},
+						"c1": {
+							"model": "c1",
+							"items": [
+								"menu"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "empty-above-grid",
+					"grid": [],
+					"cells": {},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "userinfo-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "fields_message"
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "fields"
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "buttons"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"fields_message": {
+							"model": "fields_message",
+							"items": [
+								"user_fields_title",
+								"fields_message"
+							]
+						},
+						"buttons": {
+							"model": "buttons",
+							"items": [
+								"user_fields_reset",
+								"user_fields_save"
+							]
+						},
+						"fields": {
+							"model": "fields",
+							"items": [
+								"changepassword_link",
+								"integrated_edit_field",
+								"integrated_edit_field1"
+							]
+						}
+					},
+					"deferredItems": [],
+					"columnCount": 1,
+					"inlineLabels": false,
+					"separateLabels": false
+				}
+			},
+			"items": {
+				"fields_message": {
+					"type": "fields_message"
+				},
+				"user_fields_reset": {
+					"type": "user_fields_reset"
+				},
+				"user_fields_save": {
+					"type": "user_fields_save"
+				},
+				"user_fields_title": {
+					"type": "user_fields_title",
+					"font-size": "24px"
+				},
+				"breadcrumb": {
+					"type": "breadcrumb"
+				},
+				"logo": {
+					"type": "logo"
+				},
+				"menu": {
+					"type": "menu"
+				},
+				"username_button": {
+					"type": "username_button",
+					"items": [
+						"userinfo_link",
+						"logout_link"
+					]
+				},
+				"loginform_login": {
+					"type": "loginform_login",
+					"popup": false
+				},
+				"userinfo_link": {
+					"type": "userinfo_link"
+				},
+				"logout_link": {
+					"type": "logout_link"
+				},
+				"expand_menu_button": {
+					"type": "expand_menu_button"
+				},
+				"collapse_button": {
+					"type": "collapse_button"
+				},
+				"integrated_edit_field": {
+					"field": "correo",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field1": {
+					"field": "nombre",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"changepassword_link": {
+					"type": "changepassword_link"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "changepwd",
+			"type": "changepwd",
+			"layoutId": "first",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "changepwd-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"changepwd_message"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"supertop": {
+					"modelId": "panel-top",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "changepwd-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"changepwd_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "changepwd-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								},
+								{
+									"cell": "c2"
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "c3"
+								},
+								{
+									"cell": "c4"
+								}
+							],
+							"section": ""
+						},
+						{
+							"cells": [
+								{
+									"cell": "c5"
+								},
+								{
+									"cell": "c6"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"oldpass_label"
+							]
+						},
+						"c2": {
+							"model": "c2",
+							"items": [
+								"oldpass"
+							]
+						},
+						"c3": {
+							"model": "c3",
+							"items": [
+								"newpass_label"
+							]
+						},
+						"c4": {
+							"model": "c4",
+							"items": [
+								"newpass"
+							]
+						},
+						"c5": {
+							"model": "c5",
+							"items": [
+								"confirm_label"
+							]
+						},
+						"c6": {
+							"model": "c6",
+							"items": [
+								"confirm"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"footer": {
+					"modelId": "changepwd-footer",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"changepwd_button",
+								"changepwd_back"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"oldpass_label": {
+					"type": "oldpass_label"
+				},
+				"newpass_label": {
+					"type": "newpass_label"
+				},
+				"confirm_label": {
+					"type": "confirm_label"
+				},
+				"oldpass": {
+					"type": "oldpass"
+				},
+				"newpass": {
+					"type": "newpass"
+				},
+				"confirm": {
+					"type": "confirm"
+				},
+				"changepwd_message": {
+					"type": "changepwd_message"
+				},
+				"changepwd_button": {
+					"type": "changepwd_button"
+				},
+				"changepwd_back": {
+					"type": "changepwd_back"
+				},
+				"changepwd_header": {
+					"type": "changepwd_header"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "changepwd_success",
+			"type": "changepwd_success",
+			"layoutId": "first",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"supertop": {
+					"modelId": "panel-top",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "changepwd-success-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"changepwd_success_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "changepwd-success-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"changepwd_success_message"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"footer": {
+					"modelId": "changepwd-success-footer",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"changepwd_success_back"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				}
+			},
+			"items": {
+				"changepwd_success_message": {
+					"type": "changepwd_success_message"
+				},
+				"changepwd_success_back": {
+					"type": "changepwd_success_back"
+				},
+				"changepwd_success_header": {
+					"type": "changepwd_success_header"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		}
+	],
+	"projectStyle": {
+		"theme": "sandstone",
+		"sidebarColor": "light",
+		"sidebarTheme": "legacy",
+		"sidebarCompact": true,
+		"topbarTheme": "legacy",
+		"logoTheme": "legacy",
+		"fixedTopbar": true,
+		"topbarGradient": true,
+		"topbarLegacy": true,
+		"sidebarCustomThemeColor": "legacy",
+		"topbarCustomThemeColor": "#e95420",
+		"logoCustomThemeColor": "#F0F0F0",
+		"rolloverHighlight": true,
+		"gpHeaderBg": "#ffb15e",
+		"gpHeaderColor": "legacy",
+		"gpFooterBg": "#dbf3fd",
+		"gpPanelBorder": "1px",
+		"gpBorderColor": "legacy",
+		"gpInnerBorder": "legacy",
+		"gpInnerBorderColor": "legacy",
+		"gcOddBg": "legacy",
+		"gcOddColor": "legacy",
+		"gcEvenBg": "legacy",
+		"gcEvenColor": "legacy",
+		"gcRolloverHighlightBg": "#dcf2fb",
+		"gcRolloverHighlightColor": "legacy"
+	},
+	"settingsTable": {
+		"connId": "",
+		"table": ""
+	},
+	"messages": {},
+	"projectLogo": {
+		"Spanish": "<DIV style=\"height: 40px ;position: relative;top: -9px; vertical-align: middle \">  <IMG height=\"100%\" id=\"navbarlogo\" alt=\"Project logo\" src=\"./images/logo.png\"> </DIV>"
+	},
+	"cookieBannerText": {}
+}
