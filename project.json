@@ -262,7 +262,7 @@
 				"password": "",
 				"host": "187.141.185.247",
 				"port": 22,
-				"pathname": "var/www/html/jmas_externo",
+				"pathname": "/var/www/html/jmas_externo",
 				"passive": true,
 				"secureType": 2,
 				"useCCC": false,
