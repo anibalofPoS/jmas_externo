@@ -45,6 +45,13 @@
 				"x": 155,
 				"width": 121.921875,
 				"height": 152
+			},
+			{
+				"gid": 3052148162,
+				"y": 10,
+				"x": 1000,
+				"width": 112.59375,
+				"height": 152
 			}
 		]
 	},
@@ -212,19 +219,25 @@
 				"<Default>": {
 					"permissions": {
 						"banco": {
-							"mask": "ADESPI",
+							"mask": "ADESP",
 							"table": "banco",
-							"restrictedPages": {}
+							"restrictedPages": {
+								"import": true
+							}
 						},
 						"usuarios": {
-							"mask": "ADESPI",
+							"mask": "ADESP",
 							"table": "usuarios",
-							"restrictedPages": {}
+							"restrictedPages": {
+								"import": true
+							}
 						},
 						"limpiadores": {
-							"mask": "ADESPI",
+							"mask": "ADESP",
 							"table": "limpiadores",
-							"restrictedPages": {}
+							"restrictedPages": {
+								"import": true
+							}
 						},
 						"<global>": {
 							"mask": "ADESPI",
@@ -232,19 +245,32 @@
 							"restrictedPages": {}
 						},
 						"rezagos": {
-							"mask": "ADESPI",
+							"mask": "ADESP",
 							"table": "rezagos",
-							"restrictedPages": {}
+							"restrictedPages": {
+								"import": true
+							}
 						},
 						"en_proceso": {
-							"mask": "ADESPI",
+							"mask": "ADESP",
 							"table": "en_proceso",
-							"restrictedPages": {}
+							"restrictedPages": {
+								"import": true
+							}
 						},
 						"en limpieza": {
-							"mask": "ADESPI",
+							"mask": "ADESP",
 							"table": "en limpieza",
-							"restrictedPages": {}
+							"restrictedPages": {
+								"import": true
+							}
+						},
+						"padron": {
+							"mask": "ADESP",
+							"table": "padron",
+							"restrictedPages": {
+								"import": true
+							}
 						}
 					},
 					"admin": false,
@@ -430,6 +456,22 @@
 							"iconType": 3,
 							"iconName": "fa-database"
 						}
+					},
+					{
+						"id": "9",
+						"data": {
+							"name": {
+								"table": "padron",
+								"type": 6
+							},
+							"itemType": 2,
+							"linkType": 0,
+							"iconType": 2,
+							"iconName": "glyphicon-hand-right",
+							"showIconType": 2,
+							"table": 3052148162,
+							"pageType": "list"
+						}
 					}
 				]
 			}
@@ -519,7 +561,8 @@
 								"welcome_item4",
 								"welcome_item2",
 								"welcome_item1",
-								"welcome_item5"
+								"welcome_item5",
+								"welcome_item6"
 							]
 						}
 					},
@@ -674,6 +717,21 @@
 						"type": 0,
 						"text": "Medidores que se han limpiado"
 					}
+				},
+				"welcome_item6": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "padron",
+					"linkPage": "list",
+					"linkText": {
+						"table": "padron",
+						"type": 6
+					},
+					"linkIcon": {
+						"glyph": "hand-right"
+					},
+					"background": "#7b68ee",
+					"linkType": 0
 				}
 			},
 			"version": 13,
