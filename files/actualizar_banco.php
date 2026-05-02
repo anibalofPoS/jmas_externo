@@ -1,5 +1,7 @@
 <?php
 include('include/dbcommon.php');
+setlocale(LC_ALL, "es_ES", 'es_MX.utf8');
+date_default_timezone_set("America/Denver");
 // Desactivar buffering automático
 ini_set('output_buffering', 'off');
 ini_set('zlib.output_compression', 0);
@@ -15,9 +17,9 @@ flush();
 $acuentas=explode(',',$_GET['cuentas']);
 foreach ($acuentas as $cuenta){
     echo $cuenta.'<br>';
-    $sql="select *,
-         (select SUBSTRING_INDEX(direccion,'Col.',1) from pulsodelagua.padron where pulsodelagua.padron.cuenta=pulsodelagua.rezagos.cuenta limit 1) as direccion
-         from pulsodelagua.rezagos where cuenta={$cuenta} limit 1";
+    $sql="select *,SUBSTRING_INDEX(direccion,'Col.',1) as calle, SUBSTRING_INDEX(direccion,'Col.',-1) as colonia,
+         (select id_medidor from jmas_externo.padron where cuenta={$cuenta} limit 1) as id_medidor 
+         from pulsodelagua.padron where cuenta={$cuenta} limit 1";
     $rs=DB::Query($sql);
     $row=$rs->fetchAssoc();
     $sql="select * from banco where cuenta={$cuenta} limit 1";
@@ -40,18 +42,17 @@ function agregar($agrega,$res){
     $key['cuenta']=$res['cuenta'];
     $datos['cuenta']=$res['cuenta'];
     $datos['id_medidor']=$res['id_medidor'];
-    $datos['fecha']=$res['periodo'];
     $datos['nombre']=$res['nombre'];
     $datos['localizacion']=$res['localizacion'];
     $datos['colonia']=$res['colonia'];
-    $datos['direccion']=$res['direccion'];
-    $datos['lat']=$res['lat'];
-    $datos['lon']=$res['lon'];
+    $datos['direccion']=$res['calle'];
+    $datos['lat']=$res['geolat'];
+    $datos['lon']=$res['geolon'];
     $datos['status']='DCR';
     if ($agrega==1){
+        $datos['fecha']=date('Y-m-d');
         DB::Insert("banco",$datos);
     }else{
-        echo 'funcion<br>';
         DB::Update("banco",$datos,$key);
     }
     

@@ -45,9 +45,9 @@ flush();
 //$flec="2026-04-01";
 //$flec1=date('Y-m-d',strtotime($flec.' - 3 days'));
 $leer_ws= new ws();
-$sql="select count(*) from pulsodelagua.padron limit 50";
+$sql="select count(*) from pulsodelagua.padron limit 100";
 $total=DBLookUp($sql);
-$sql="select cuenta from pulsodelagua.padron limit 50";
+$sql="select cuenta from pulsodelagua.padron limit 100";
 $rs=DB::Query($sql);
 $n=1;
 while ($row=$rs->fetchAssoc()){
@@ -60,7 +60,9 @@ while ($row=$rs->fetchAssoc()){
    $key=array();
    $key['cuenta']=$row['cuenta'];
    $datos['cuenta']=$row['cuenta'];
-   
+   $datos['anomalia']=$leer_ws->anomalia;
+   $datos['anomalia_info']=$leer_ws->anomalia_info;
+   $datos['id_medidor']=$leer_ws->id_medidor;
    $sql="select cuenta from jmas_externo.padron where cuenta={$row['cuenta']} limit 1";
    $existe=DBLookUp($sql);
    if ($existe==$row['cuenta']){
@@ -77,7 +79,7 @@ while ($row=$rs->fetchAssoc()){
 
 
 class ws{
-   public $fecha,$lectura,$mes,$anomalia,$anomalia_info;
+   public $fecha,$lectura,$mes,$anomalia,$anomalia_info,$id_medidor;
    
    public function __construct() {
       $this->mes=array(
@@ -105,8 +107,9 @@ class ws{
           $this->fecha=$response['FECHA_LECTURA'];
           $this->lectura=$response['LECTURA'];
           $anomalia=$response['ANOMALIA'];
-          $this->anomalia=this->anomalia($anomalia);
+          $this->anomalia=$this->anomalia($anomalia);
           $this->anomalia_info=$response['ANOMALIA_INFO'];
+          $this->id_medidor=$response['SERIE_MEDIDOR'];
        }
    }
 
@@ -123,7 +126,7 @@ class ws{
    }
    
    public function anomalia($anomalia){
-       $sql="select id from pulsodelagua.rezagos_cat_anomalia where estatus='ACTIVO' and anomalia='{$anomalia}' limit 1";
+       $sql="select id from pulsodelagua.rezagos_cat_anomalias where estatus='ACTIVO' and anomalia='{$anomalia}' limit 1";
        return DBLookUp($sql);
    }
    

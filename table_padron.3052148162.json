@@ -1,5 +1,5 @@
 {
-	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tanomalia,\r\n\tanomalia_info\r\nFROM\r\n\tpadron",
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff(fecha,(select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1)) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status\t\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
 	"connId": "conn",
 	"originalTable": "padron",
 	"name": "padron",
@@ -13,11 +13,13 @@
 		{
 			"name": "fecha",
 			"sqlExpression": "fecha",
+			"index": 1,
 			"strField": "fecha",
 			"type": 7,
 			"viewFormats": [
 				{
-					"format": "Short Date"
+					"format": "Custom",
+					"customExpression": "if ($value==null){\r\n   $value='';\r\n}else{ \r\n   $value=utf8_encode(strftime(\"%a %d-%b-%Y\", strtotime($value)));\r\n}"
 				}
 			],
 			"editFormats": [
@@ -34,6 +36,7 @@
 		{
 			"name": "cuenta",
 			"sqlExpression": "cuenta",
+			"index": 2,
 			"strField": "cuenta",
 			"type": 3,
 			"viewFormats": [
@@ -50,13 +53,20 @@
 		{
 			"name": "anomalia",
 			"sqlExpression": "anomalia",
+			"index": 4,
 			"strField": "anomalia",
-			"type": 16,
+			"type": 2,
 			"viewFormats": [
 				{}
 			],
 			"editFormats": [
-				{}
+				{
+					"format": "Lookup wizard",
+					"lookupTable": "rezagos_cat_anomalias",
+					"lookupTableConnection": "conn1",
+					"lookupLinkField": "id",
+					"lookupDisplayField": "anomalia"
+				}
 			],
 			"label": {
 				"Spanish": "Anomalia"
@@ -66,6 +76,7 @@
 		{
 			"name": "anomalia_info",
 			"sqlExpression": "anomalia_info",
+			"index": 5,
 			"strField": "anomalia_info",
 			"type": 200,
 			"viewFormats": [
@@ -78,6 +89,64 @@
 				"Spanish": "Anomalia Info"
 			},
 			"tableName": "padron"
+		},
+		{
+			"name": "id_medidor",
+			"sqlExpression": "id_medidor",
+			"index": 3,
+			"strField": "id_medidor",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Id Medidor"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "dias",
+			"sqlExpression": "datediff(fecha,(select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1))",
+			"index": 6,
+			"strField": "dias",
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Dias"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "status",
+			"sqlExpression": "(select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)",
+			"index": 7,
+			"strField": "status",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Status"
+			},
+			"tableName": ""
+		}
+	],
+	"eventHandlers": [
+		{
+			"eventId": "EVENT_BEFOREPROCESS_LIST",
+			"pageType": "list",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\nsetlocale(LC_ALL, \"es_ES\", 'es_MX.utf8');\ndate_default_timezone_set(\"America/Denver\");\n"
 		}
 	],
 	"dbTableInfo": {
@@ -359,7 +428,10 @@
 								"export_field",
 								"export_field1",
 								"export_field2",
-								"export_field3"
+								"export_field3",
+								"export_field4",
+								"export_field5",
+								"export_field6"
 							]
 						}
 					},
@@ -422,6 +494,18 @@
 				},
 				"export_field3": {
 					"field": "anomalia_info",
+					"type": "export_field"
+				},
+				"export_field4": {
+					"field": "id_medidor",
+					"type": "export_field"
+				},
+				"export_field5": {
+					"field": "dias",
+					"type": "export_field"
+				},
+				"export_field6": {
+					"field": "status",
 					"type": "export_field"
 				}
 			},
@@ -825,7 +909,10 @@
 								"integrated_edit_field",
 								"integrated_edit_field1",
 								"integrated_edit_field2",
-								"integrated_edit_field3"
+								"integrated_edit_field3",
+								"integrated_edit_field4",
+								"integrated_edit_field5",
+								"integrated_edit_field6"
 							]
 						}
 					},
@@ -868,6 +955,21 @@
 				"hamburger": {
 					"type": "hamburger",
 					"items": []
+				},
+				"integrated_edit_field4": {
+					"field": "id_medidor",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field5": {
+					"field": "dias",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field6": {
+					"field": "status",
+					"type": "integrated_edit_field",
+					"orientation": 0
 				}
 			},
 			"version": 13,
@@ -884,7 +986,7 @@
 		{
 			"id": "list",
 			"type": "list",
-			"layoutId": "leftbar",
+			"layoutId": "topbar",
 			"disabled": false,
 			"default": 0,
 			"forms": {
@@ -907,6 +1009,7 @@
 						"c1": {
 							"model": "c1",
 							"items": [
+								"custom_button1",
 								"custom_button",
 								"text"
 							]
@@ -946,46 +1049,8 @@
 					"deferredItems": [],
 					"recsPerRow": 1
 				},
-				"left": {
-					"modelId": "leftbar-menu",
-					"grid": [
-						{
-							"cells": [
-								{
-									"cell": "c0"
-								}
-							],
-							"section": ""
-						},
-						{
-							"cells": [
-								{
-									"cell": "c1"
-								}
-							],
-							"section": ""
-						}
-					],
-					"cells": {
-						"c0": {
-							"model": "c0",
-							"items": [
-								"logo"
-							]
-						},
-						"c1": {
-							"model": "c1",
-							"items": [
-								"menu",
-								"search_panel"
-							]
-						}
-					},
-					"deferredItems": [],
-					"recsPerRow": 1
-				},
 				"supertop": {
-					"modelId": "leftbar-top",
+					"modelId": "topbar-menu",
 					"grid": [
 						{
 							"cells": [
@@ -1003,9 +1068,8 @@
 						"c1": {
 							"model": "c1",
 							"items": [
-								"expand_menu_button",
-								"collapse_button",
-								"breadcrumb"
+								"logo",
+								"menu"
 							]
 						},
 						"c2": {
@@ -1021,8 +1085,31 @@
 					"deferredItems": [],
 					"recsPerRow": 1
 				},
+				"left": {
+					"modelId": "list-vbar",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"search_panel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
 				"top": {
-					"modelId": "list-sidebar-top",
+					"modelId": "list-top",
 					"grid": [],
 					"cells": {},
 					"deferredItems": [],
@@ -1047,10 +1134,19 @@
 									"cell": "headcell_field1"
 								},
 								{
+									"cell": "headcell_field5"
+								},
+								{
 									"cell": "headcell_field2"
 								},
 								{
 									"cell": "headcell_field3"
+								},
+								{
+									"cell": "headcell_field4"
+								},
+								{
+									"cell": "headcell_field8"
 								}
 							]
 						},
@@ -1070,10 +1166,19 @@
 									"cell": "cell_field1"
 								},
 								{
+									"cell": "headcell_field6"
+								},
+								{
 									"cell": "cell_field2"
 								},
 								{
 									"cell": "cell_field3"
+								},
+								{
+									"cell": "cell_field4"
+								},
+								{
+									"cell": "cell_field5"
 								}
 							]
 						},
@@ -1093,10 +1198,19 @@
 									"cell": "footcell_field1"
 								},
 								{
+									"cell": "headcell_field7"
+								},
+								{
 									"cell": "footcell_field2"
 								},
 								{
 									"cell": "footcell_field3"
+								},
+								{
+									"cell": "footcell_field4"
+								},
+								{
+									"cell": "footcell_field5"
 								}
 							]
 						}
@@ -1107,106 +1221,190 @@
 							"items": [
 								"simple_grid_field4"
 							],
-							"field": "fecha"
+							"field": "fecha",
+							"columnName": "field"
 						},
 						"cell_field": {
 							"model": "cell_field",
 							"items": [
 								"simple_grid_field"
 							],
-							"field": "fecha"
+							"field": "fecha",
+							"columnName": "field"
 						},
 						"footcell_field": {
 							"model": "footcell_field",
 							"items": [],
-							"field": "fecha"
+							"field": "fecha",
+							"columnName": "field"
 						},
 						"headcell_field1": {
 							"model": "headcell_field",
 							"items": [
 								"simple_grid_field5"
 							],
-							"field": "cuenta"
+							"field": "cuenta",
+							"columnName": "field"
 						},
 						"cell_field1": {
 							"model": "cell_field",
 							"items": [
 								"simple_grid_field1"
 							],
-							"field": "cuenta"
+							"field": "cuenta",
+							"columnName": "field"
 						},
 						"footcell_field1": {
 							"model": "footcell_field",
 							"items": [],
-							"field": "cuenta"
+							"field": "cuenta",
+							"columnName": "field"
 						},
 						"headcell_field2": {
 							"model": "headcell_field",
 							"items": [
 								"simple_grid_field6"
 							],
-							"field": "anomalia"
+							"field": "anomalia",
+							"columnName": "field"
 						},
 						"cell_field2": {
 							"model": "cell_field",
 							"items": [
 								"simple_grid_field2"
 							],
-							"field": "anomalia"
+							"field": "anomalia",
+							"columnName": "field"
 						},
 						"footcell_field2": {
 							"model": "footcell_field",
 							"items": [],
-							"field": "anomalia"
+							"field": "anomalia",
+							"columnName": "field"
 						},
 						"headcell_field3": {
 							"model": "headcell_field",
 							"items": [
 								"simple_grid_field7"
 							],
-							"field": "anomalia_info"
+							"field": "anomalia_info",
+							"columnName": "field"
 						},
 						"cell_field3": {
 							"model": "cell_field",
 							"items": [
 								"simple_grid_field3"
 							],
-							"field": "anomalia_info"
+							"field": "anomalia_info",
+							"columnName": "field"
 						},
 						"footcell_field3": {
 							"model": "footcell_field",
 							"items": [],
-							"field": "anomalia_info"
+							"field": "anomalia_info",
+							"columnName": "field"
 						},
 						"headcell_checkbox": {
 							"model": "headcell_checkbox",
 							"items": [
 								"grid_checkbox_head"
-							]
+							],
+							"columnName": "checkbox",
+							"field": ""
 						},
 						"cell_checkbox": {
 							"model": "cell_checkbox",
 							"items": [
 								"grid_checkbox"
-							]
+							],
+							"columnName": "checkbox",
+							"field": ""
 						},
 						"footcell_checkbox": {
 							"model": "footcell_checkbox",
-							"items": []
+							"items": [],
+							"columnName": "checkbox",
+							"field": ""
 						},
 						"headcell_icons": {
 							"model": "headcell_icons",
-							"items": []
+							"items": [],
+							"columnName": "view",
+							"field": ""
 						},
 						"cell_icons": {
 							"model": "cell_icons",
 							"items": [
 								"grid_view"
-							]
+							],
+							"columnName": "view",
+							"field": ""
 						},
 						"footcell_icons": {
 							"model": "footcell_icons",
-							"items": []
+							"items": [],
+							"columnName": "view",
+							"field": ""
+						},
+						"headcell_field5": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label"
+							],
+							"columnName": "field",
+							"field": "id_medidor"
+						},
+						"headcell_field6": {
+							"model": "cell_field",
+							"items": [
+								"grid_field"
+							],
+							"columnName": "field",
+							"field": "id_medidor"
+						},
+						"headcell_field7": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "id_medidor"
+						},
+						"headcell_field4": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label1"
+							],
+							"field": "dias"
+						},
+						"cell_field4": {
+							"model": "cell_field",
+							"items": [
+								"grid_field1"
+							],
+							"field": "dias"
+						},
+						"footcell_field4": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "dias"
+						},
+						"headcell_field8": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label2"
+							],
+							"field": "status"
+						},
+						"cell_field5": {
+							"model": "cell_field",
+							"items": [
+								"grid_field2"
+							],
+							"field": "status"
+						},
+						"footcell_field5": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "status"
 						}
 					},
 					"deferredItems": [],
@@ -1214,176 +1412,12 @@
 				}
 			},
 			"items": {
-				"page_size": {
-					"type": "page_size"
-				},
-				"breadcrumb": {
-					"type": "breadcrumb"
-				},
-				"logo": {
-					"type": "logo"
-				},
-				"menu": {
-					"type": "menu"
-				},
-				"simple_search": {
-					"type": "simple_search"
-				},
-				"pagination": {
-					"type": "pagination"
-				},
-				"details_found": {
-					"type": "details_found"
-				},
-				"search_panel": {
-					"type": "search_panel",
-					"items": [
-						"search_panel_field",
-						"search_panel_field3",
-						"search_panel_field2",
-						"search_panel_field1"
-					],
-					"_flexiblePanel": true
-				},
-				"list_options": {
-					"type": "list_options",
-					"items": [
-						"export_selected",
-						"-1",
-						"show_search_panel",
-						"hide_search_panel",
-						"-",
-						"export"
-					]
-				},
-				"show_search_panel": {
-					"type": "show_search_panel"
-				},
-				"hide_search_panel": {
-					"type": "hide_search_panel"
-				},
-				"search_panel_field": {
-					"field": "fecha",
-					"type": "search_panel_field"
-				},
-				"search_panel_field1": {
-					"field": "cuenta",
-					"type": "search_panel_field"
-				},
-				"search_panel_field2": {
-					"field": "anomalia",
-					"type": "search_panel_field"
-				},
-				"search_panel_field3": {
-					"field": "anomalia_info",
-					"type": "search_panel_field"
-				},
-				"username_button": {
-					"type": "username_button",
-					"items": [
-						"userinfo_link",
-						"logout_link",
-						"changepassword_link"
-					]
-				},
-				"loginform_login": {
-					"type": "loginform_login",
-					"popup": false
-				},
-				"userinfo_link": {
-					"type": "userinfo_link"
-				},
-				"logout_link": {
-					"type": "logout_link"
-				},
-				"changepassword_link": {
-					"type": "changepassword_link"
-				},
-				"expand_menu_button": {
-					"type": "expand_menu_button"
-				},
-				"collapse_button": {
-					"type": "collapse_button"
-				},
-				"export": {
-					"type": "export"
-				},
-				"-": {
-					"type": "-"
-				},
-				"export_selected": {
-					"type": "export_selected"
-				},
-				"-1": {
-					"type": "-"
-				},
-				"-2": {
-					"type": "-"
-				},
-				"print_panel": {
-					"type": "print_panel",
-					"items": [
-						"print_scope",
-						"print_records",
-						"print_button"
-					]
-				},
-				"print_scope": {
-					"type": "print_scope"
-				},
-				"print_button": {
-					"type": "print_button"
-				},
-				"print_records": {
-					"type": "print_records"
-				},
-				"simple_grid_field": {
-					"field": "fecha",
-					"type": "grid_field"
-				},
-				"simple_grid_field4": {
-					"type": "grid_field_label",
-					"field": "fecha"
-				},
-				"simple_grid_field1": {
-					"field": "cuenta",
-					"type": "grid_field"
-				},
-				"simple_grid_field5": {
-					"type": "grid_field_label",
-					"field": "cuenta"
-				},
-				"simple_grid_field2": {
-					"field": "anomalia",
-					"type": "grid_field"
-				},
-				"simple_grid_field6": {
-					"type": "grid_field_label",
-					"field": "anomalia"
-				},
-				"simple_grid_field3": {
-					"field": "anomalia_info",
-					"type": "grid_field"
-				},
-				"simple_grid_field7": {
-					"type": "grid_field_label",
-					"field": "anomalia_info"
-				},
-				"grid_checkbox": {
-					"type": "grid_checkbox"
-				},
-				"grid_checkbox_head": {
-					"type": "grid_checkbox_head"
-				},
-				"grid_view": {
-					"type": "grid_view"
-				},
 				"custom_button": {
 					"type": "custom_button",
 					"eventGid": 3963235318,
 					"label": {
-						"text": "actualiza_banco",
-						"type": 0
+						"type": 0,
+						"text": " Enviar datos"
 					},
 					"icon": {
 						"fa": "send-o",
@@ -1399,6 +1433,225 @@
 					"editedByRte": false,
 					"bold": true,
 					"font-size": "18px"
+				},
+				"details_found": {
+					"type": "details_found"
+				},
+				"page_size": {
+					"type": "page_size"
+				},
+				"print_panel": {
+					"type": "print_panel",
+					"items": [
+						"print_scope",
+						"print_records",
+						"print_button"
+					]
+				},
+				"print_scope": {
+					"type": "print_scope"
+				},
+				"print_records": {
+					"type": "print_records"
+				},
+				"print_button": {
+					"type": "print_button"
+				},
+				"pagination": {
+					"type": "pagination"
+				},
+				"simple_grid_field4": {
+					"type": "grid_field_label",
+					"field": "fecha",
+					"showFilter": true
+				},
+				"simple_grid_field": {
+					"field": "fecha",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"simple_grid_field5": {
+					"type": "grid_field_label",
+					"field": "cuenta",
+					"showFilter": true
+				},
+				"simple_grid_field1": {
+					"field": "cuenta",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"simple_grid_field6": {
+					"type": "grid_field_label",
+					"field": "anomalia",
+					"showFilter": true
+				},
+				"simple_grid_field2": {
+					"field": "anomalia",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"simple_grid_field7": {
+					"type": "grid_field_label",
+					"field": "anomalia_info",
+					"showFilter": true
+				},
+				"simple_grid_field3": {
+					"field": "anomalia_info",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_checkbox_head": {
+					"type": "grid_checkbox_head"
+				},
+				"grid_checkbox": {
+					"type": "grid_checkbox"
+				},
+				"grid_view": {
+					"type": "grid_view"
+				},
+				"search_panel_field": {
+					"field": "fecha",
+					"type": "search_panel_field"
+				},
+				"search_panel_field3": {
+					"field": "anomalia_info",
+					"type": "search_panel_field"
+				},
+				"search_panel_field2": {
+					"field": "anomalia",
+					"type": "search_panel_field"
+				},
+				"search_panel_field1": {
+					"field": "cuenta",
+					"type": "search_panel_field"
+				},
+				"export_selected": {
+					"type": "export_selected"
+				},
+				"-1": {
+					"type": "-"
+				},
+				"show_search_panel": {
+					"type": "show_search_panel"
+				},
+				"hide_search_panel": {
+					"type": "hide_search_panel"
+				},
+				"-": {
+					"type": "-"
+				},
+				"export": {
+					"type": "export"
+				},
+				"userinfo_link": {
+					"type": "userinfo_link"
+				},
+				"logout_link": {
+					"type": "logout_link"
+				},
+				"changepassword_link": {
+					"type": "changepassword_link"
+				},
+				"logo": {
+					"type": "logo"
+				},
+				"menu": {
+					"type": "menu"
+				},
+				"simple_search": {
+					"type": "simple_search"
+				},
+				"search_panel": {
+					"type": "search_panel",
+					"items": [
+						"search_panel_field",
+						"search_panel_field6",
+						"search_panel_field5",
+						"search_panel_field4",
+						"search_panel_field3",
+						"search_panel_field2",
+						"search_panel_field1"
+					],
+					"_flexiblePanel": true
+				},
+				"list_options": {
+					"type": "list_options",
+					"items": [
+						"export_selected",
+						"-1",
+						"-2",
+						"show_search_panel",
+						"hide_search_panel",
+						"-",
+						"export"
+					]
+				},
+				"username_button": {
+					"type": "username_button",
+					"items": [
+						"userinfo_link",
+						"logout_link",
+						"changepassword_link"
+					]
+				},
+				"loginform_login": {
+					"type": "loginform_login",
+					"popup": false
+				},
+				"-2": {
+					"type": "-"
+				},
+				"custom_button1": {
+					"type": "custom_button",
+					"eventGid": 2413332457,
+					"label": {
+						"type": 0,
+						"text": "actualizar padron"
+					},
+					"icon": {
+						"glyph": "pencil",
+						"style": 0
+					}
+				},
+				"grid_field": {
+					"field": "id_medidor",
+					"type": "grid_field"
+				},
+				"grid_field_label": {
+					"type": "grid_field_label",
+					"field": "id_medidor"
+				},
+				"search_panel_field4": {
+					"field": "id_medidor",
+					"type": "search_panel_field"
+				},
+				"grid_field1": {
+					"field": "dias",
+					"type": "grid_field"
+				},
+				"grid_field_label1": {
+					"type": "grid_field_label",
+					"field": "dias"
+				},
+				"grid_field2": {
+					"field": "status",
+					"type": "grid_field"
+				},
+				"grid_field_label2": {
+					"type": "grid_field_label",
+					"field": "status"
+				},
+				"search_panel_field5": {
+					"field": "dias",
+					"type": "search_panel_field"
+				},
+				"search_panel_field6": {
+					"field": "status",
+					"type": "search_panel_field"
 				}
 			},
 			"version": 13,
@@ -1506,7 +1759,10 @@
 								"simple_grid_field",
 								"simple_grid_field1",
 								"simple_grid_field2",
-								"simple_grid_field3"
+								"simple_grid_field3",
+								"simple_grid_field4",
+								"simple_grid_field5",
+								"simple_grid_field6"
 							]
 						}
 					},
@@ -1538,6 +1794,18 @@
 				},
 				"simple_grid_field3": {
 					"field": "anomalia_info",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field4": {
+					"field": "id_medidor",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field5": {
+					"field": "dias",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field6": {
+					"field": "status",
 					"type": "simple_grid_field"
 				}
 			},

@@ -1,0 +1,7 @@
+{
+	"type": "EVENT_BUTTON",
+	"name": "actualizar_padron",
+	"serverCode": "// Put your code here.\n\n$result[\"txt\"] = $params[\"txt\"].\" world!\";\n",
+	"beforeJsCode": "// Put your code here.\nurl=\"actualizar_padron.php\";\nSwal.fire({\n  title: \"Actualizar padron?\",\n  html: '<p style=\"font-size:14px; color:#34495e; line-height:1.5;\">'+\n        'Actualiza anomalias!</p>',\n  icon: \"warning\",\n  showCancelButton: true,\n  confirmButtonColor: \"#3085d6\",\n  cancelButtonColor: \"#d33\",\n  confirmButtonText: \"Si, actualizar!\",\n  cancelButtonText: \"No, cancelar\"\n}).then((result) => {\n  if (result.isConfirmed) \n     var popup = Runner.displayPopup( {\n        url: url,\n        width: 700,\n        height: 500,\n        header: 'Actualizando',\n        afterClose: function(popup) {\n           window.location.reload();\n        }\n\n     });\n});\n\n // Uncomment the following line to prevent execution of \"Server\" and \"Client After\" events.\nreturn false;",
+	"afterJsCode": "// Put your code here.\n\nvar message = result[\"txt\"] + \" !!!\";\najax.setMessage(message);\n"
+}
