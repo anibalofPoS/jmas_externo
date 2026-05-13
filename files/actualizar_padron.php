@@ -45,9 +45,9 @@ flush();
 //$flec="2026-04-01";
 //$flec1=date('Y-m-d',strtotime($flec.' - 3 days'));
 $leer_ws= new ws();
-$sql="select count(*) from pulsodelagua.padron limit 100";
+$sql="select count(*) from pulsodelagua.padron";
 $total=DBLookUp($sql);
-$sql="select cuenta from pulsodelagua.padron limit 100";
+$sql="select cuenta from pulsodelagua.padron";
 $rs=DB::Query($sql);
 $n=1;
 while ($row=$rs->fetchAssoc()){

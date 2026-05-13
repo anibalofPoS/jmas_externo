@@ -139,7 +139,7 @@
 			"label": {
 				"Spanish": "Fecha de<br>limpieza"
 			},
-			"tableName": ""
+			"tableName": "en_proceso"
 		},
 		{
 			"name": "hr_limpio",
@@ -174,7 +174,7 @@
 			"label": {
 				"Spanish": "Id Medidor"
 			},
-			"tableName": ""
+			"tableName": "en_proceso"
 		}
 	],
 	"eventHandlers": [
@@ -200,7 +200,7 @@
 				"size": 0,
 				"scale": 0,
 				"typeName": "datetime",
-				"nullable": true,
+				"nullable": false,
 				"autoinc": false,
 				"defaultValueSQL": null,
 				"defaultValue": ""
@@ -222,13 +222,13 @@
 				"size": 6,
 				"scale": 0,
 				"typeName": "int(6)",
-				"nullable": true,
+				"nullable": false,
 				"autoinc": false,
 				"defaultValueSQL": null,
 				"defaultValue": ""
 			},
 			{
-				"name": "fecha_limpo",
+				"name": "fecha_limpio",
 				"type": 135,
 				"size": 0,
 				"scale": 0,
@@ -248,9 +248,122 @@
 				"autoinc": false,
 				"defaultValueSQL": null,
 				"defaultValue": ""
+			},
+			{
+				"name": "id_medidor",
+				"type": 200,
+				"size": 12,
+				"scale": 0,
+				"typeName": "varchar(12)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "fotoa",
+				"type": 200,
+				"size": 25,
+				"scale": 0,
+				"typeName": "char(25)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "fotod",
+				"type": 200,
+				"size": 25,
+				"scale": 0,
+				"typeName": "char(25)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "lat",
+				"type": 14,
+				"size": 11,
+				"scale": 8,
+				"typeName": "decimal(11,8)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "lon",
+				"type": 14,
+				"size": 11,
+				"scale": 8,
+				"typeName": "decimal(11,8)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "direccion",
+				"type": 200,
+				"size": 50,
+				"scale": 0,
+				"typeName": "varchar(50)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "colonia",
+				"type": 200,
+				"size": 50,
+				"scale": 0,
+				"typeName": "varchar(50)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "localizacion",
+				"type": 200,
+				"size": 20,
+				"scale": 0,
+				"typeName": "varchar(20)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "latf",
+				"type": 14,
+				"size": 11,
+				"scale": 8,
+				"typeName": "decimal(11,8)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "lonf",
+				"type": 14,
+				"size": 11,
+				"scale": 8,
+				"typeName": "decimal(11,8)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
 			}
 		],
-		"primaryKeys": [],
+		"primaryKeys": [
+			"fecha",
+			"cuenta"
+		],
 		"uniqueFields": [],
 		"name": "en_proceso"
 	},
