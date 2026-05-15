@@ -338,17 +338,17 @@
 			"root": {
 				"children": [
 					{
-						"id": "4",
+						"id": "9",
 						"data": {
 							"name": {
-								"table": "rezagos",
+								"table": "padron",
 								"type": 6
 							},
 							"itemType": 2,
 							"linkType": 0,
-							"iconType": 2,
-							"iconName": "glyphicon-transfer",
-							"table": 3903546070,
+							"iconType": 3,
+							"iconName": "fa-server",
+							"table": 3052148162,
 							"pageType": "list"
 						}
 					},
@@ -456,22 +456,6 @@
 							"iconType": 3,
 							"iconName": "fa-database"
 						}
-					},
-					{
-						"id": "9",
-						"data": {
-							"name": {
-								"table": "padron",
-								"type": 6
-							},
-							"itemType": 2,
-							"linkType": 0,
-							"iconType": 2,
-							"iconName": "glyphicon-hand-right",
-							"showIconType": 2,
-							"table": 3052148162,
-							"pageType": "list"
-						}
 					}
 				]
 			}
@@ -556,13 +540,12 @@
 						"c1": {
 							"model": "c1",
 							"items": [
-								"welcome_item3",
+								"welcome_item6",
 								"welcome_item",
 								"welcome_item4",
 								"welcome_item2",
 								"welcome_item1",
-								"welcome_item5",
-								"welcome_item6"
+								"welcome_item5"
 							]
 						}
 					},
@@ -655,26 +638,6 @@
 				"logout_link": {
 					"type": "logout_link"
 				},
-				"welcome_item3": {
-					"type": "welcome_item",
-					"linkUrl": "",
-					"linkTable": "rezagos",
-					"linkPage": "list",
-					"linkText": {
-						"table": "rezagos",
-						"type": 6
-					},
-					"linkIcon": {
-						"glyph": "transfer",
-						"style": 0
-					},
-					"linkComments": {
-						"type": 0,
-						"text": "Cuentas seleccionadas para ser limpiadas."
-					},
-					"background": "#e8926f",
-					"linkType": 0
-				},
 				"changepassword_link": {
 					"type": "changepassword_link"
 				},
@@ -728,7 +691,8 @@
 						"type": 6
 					},
 					"linkIcon": {
-						"glyph": "hand-right"
+						"fa": "server",
+						"style": 0
 					},
 					"background": "#7b68ee",
 					"linkType": 0

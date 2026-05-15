@@ -1,5 +1,5 @@
 {
-	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff(fecha,(select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1)) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status\t\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tcuenta as nombre,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status\t\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
 	"connId": "conn",
 	"originalTable": "padron",
 	"name": "padron",
@@ -53,7 +53,7 @@
 		{
 			"name": "anomalia",
 			"sqlExpression": "anomalia",
-			"index": 4,
+			"index": 5,
 			"strField": "anomalia",
 			"type": 2,
 			"viewFormats": [
@@ -76,7 +76,7 @@
 		{
 			"name": "anomalia_info",
 			"sqlExpression": "anomalia_info",
-			"index": 5,
+			"index": 6,
 			"strField": "anomalia_info",
 			"type": 200,
 			"viewFormats": [
@@ -93,7 +93,7 @@
 		{
 			"name": "id_medidor",
 			"sqlExpression": "id_medidor",
-			"index": 3,
+			"index": 4,
 			"strField": "id_medidor",
 			"type": 200,
 			"viewFormats": [
@@ -109,8 +109,8 @@
 		},
 		{
 			"name": "dias",
-			"sqlExpression": "datediff(fecha,(select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1))",
-			"index": 6,
+			"sqlExpression": "datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha)",
+			"index": 7,
 			"strField": "dias",
 			"type": 3,
 			"viewFormats": [
@@ -127,7 +127,7 @@
 		{
 			"name": "status",
 			"sqlExpression": "(select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)",
-			"index": 7,
+			"index": 8,
 			"strField": "status",
 			"type": 200,
 			"viewFormats": [
@@ -140,6 +140,29 @@
 				"Spanish": "Status"
 			},
 			"tableName": ""
+		},
+		{
+			"name": "nombre",
+			"sqlExpression": "cuenta",
+			"index": 3,
+			"strField": "cuenta",
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{
+					"format": "Lookup wizard",
+					"lookupTable": "padron",
+					"lookupTableConnection": "conn1",
+					"lookupLinkField": "cuenta",
+					"lookupDisplayField": "nombre"
+				}
+			],
+			"label": {
+				"Spanish": "Nombre"
+			},
+			"tableName": "padron"
 		}
 	],
 	"eventHandlers": [
@@ -431,7 +454,8 @@
 								"export_field3",
 								"export_field4",
 								"export_field5",
-								"export_field6"
+								"export_field6",
+								"export_field7"
 							]
 						}
 					},
@@ -506,6 +530,10 @@
 				},
 				"export_field6": {
 					"field": "status",
+					"type": "export_field"
+				},
+				"export_field7": {
+					"field": "nombre",
 					"type": "export_field"
 				}
 			},
@@ -912,7 +940,8 @@
 								"integrated_edit_field3",
 								"integrated_edit_field4",
 								"integrated_edit_field5",
-								"integrated_edit_field6"
+								"integrated_edit_field6",
+								"integrated_edit_field7"
 							]
 						}
 					},
@@ -968,6 +997,11 @@
 				},
 				"integrated_edit_field6": {
 					"field": "status",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field7": {
+					"field": "nombre",
 					"type": "integrated_edit_field",
 					"orientation": 0
 				}
@@ -1134,6 +1168,9 @@
 									"cell": "headcell_field1"
 								},
 								{
+									"cell": "headcell_field10"
+								},
+								{
 									"cell": "headcell_field5"
 								},
 								{
@@ -1166,6 +1203,9 @@
 									"cell": "cell_field1"
 								},
 								{
+									"cell": "headcell_field11"
+								},
+								{
 									"cell": "headcell_field6"
 								},
 								{
@@ -1196,6 +1236,9 @@
 								},
 								{
 									"cell": "footcell_field1"
+								},
+								{
+									"cell": "headcell_field12"
 								},
 								{
 									"cell": "headcell_field7"
@@ -1405,6 +1448,22 @@
 							"model": "footcell_field",
 							"items": [],
 							"field": "status"
+						},
+						"headcell_field10": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label3"
+							]
+						},
+						"headcell_field11": {
+							"model": "cell_field",
+							"items": [
+								"grid_field3"
+							]
+						},
+						"headcell_field12": {
+							"model": "footcell_field",
+							"items": []
 						}
 					},
 					"deferredItems": [],
@@ -1569,6 +1628,7 @@
 					"type": "search_panel",
 					"items": [
 						"search_panel_field",
+						"search_panel_field7",
 						"search_panel_field6",
 						"search_panel_field5",
 						"search_panel_field4",
@@ -1619,7 +1679,9 @@
 				},
 				"grid_field": {
 					"field": "id_medidor",
-					"type": "grid_field"
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"grid_field_label": {
 					"type": "grid_field_label",
@@ -1631,7 +1693,9 @@
 				},
 				"grid_field1": {
 					"field": "dias",
-					"type": "grid_field"
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"grid_field_label1": {
 					"type": "grid_field_label",
@@ -1639,7 +1703,9 @@
 				},
 				"grid_field2": {
 					"field": "status",
-					"type": "grid_field"
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"grid_field_label2": {
 					"type": "grid_field_label",
@@ -1651,6 +1717,20 @@
 				},
 				"search_panel_field6": {
 					"field": "status",
+					"type": "search_panel_field"
+				},
+				"grid_field3": {
+					"field": "nombre",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label3": {
+					"type": "grid_field_label",
+					"field": "nombre"
+				},
+				"search_panel_field7": {
+					"field": "nombre",
 					"type": "search_panel_field"
 				}
 			},
@@ -1762,7 +1842,8 @@
 								"simple_grid_field3",
 								"simple_grid_field4",
 								"simple_grid_field5",
-								"simple_grid_field6"
+								"simple_grid_field6",
+								"simple_grid_field7"
 							]
 						}
 					},
@@ -1806,6 +1887,10 @@
 				},
 				"simple_grid_field6": {
 					"field": "status",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field7": {
+					"field": "nombre",
 					"type": "simple_grid_field"
 				}
 			},
