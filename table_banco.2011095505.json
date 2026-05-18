@@ -212,7 +212,7 @@
 			"label": {
 				"Spanish": "Id Medidor"
 			},
-			"tableName": ""
+			"tableName": "banco"
 		},
 		{
 			"name": "direccion",
@@ -229,7 +229,7 @@
 			"label": {
 				"Spanish": "Direccion"
 			},
-			"tableName": ""
+			"tableName": "banco"
 		}
 	],
 	"afterEditAction": 0,
@@ -288,6 +288,17 @@
 				"scale": 0,
 				"typeName": "int(7)",
 				"nullable": false,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "id_medidor",
+				"type": 200,
+				"size": 12,
+				"scale": 0,
+				"typeName": "varchar(12)",
+				"nullable": true,
 				"autoinc": false,
 				"defaultValueSQL": null,
 				"defaultValue": ""
@@ -368,6 +379,17 @@
 				"autoinc": false,
 				"defaultValueSQL": null,
 				"defaultValue": ""
+			},
+			{
+				"name": "direccion",
+				"type": 200,
+				"size": 50,
+				"scale": 0,
+				"typeName": "varchar(50)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
 			}
 		],
 		"primaryKeys": [
@@ -381,7 +403,7 @@
 			"id": "add",
 			"type": "add",
 			"layoutId": "nomenu",
-			"disabled": false,
+			"disabled": true,
 			"default": 0,
 			"forms": {
 				"above-grid": {
@@ -709,7 +731,7 @@
 			"id": "import",
 			"type": "import",
 			"layoutId": "first",
-			"disabled": false,
+			"disabled": true,
 			"default": 0,
 			"forms": {
 				"supertop": {
@@ -1208,8 +1230,6 @@
 						"c1": {
 							"model": "c1",
 							"items": [
-								"add",
-								"delete",
 								"update_selected",
 								"text"
 							]
@@ -1695,28 +1715,6 @@
 				}
 			},
 			"items": {
-				"add": {
-					"type": "add",
-					"icon": {
-						"glyph": "plus",
-						"style": 0
-					},
-					"label": {
-						"type": 0,
-						"text": "Agregar"
-					}
-				},
-				"delete": {
-					"type": "delete",
-					"icon": {
-						"glyph": "trash",
-						"style": 0
-					},
-					"label": {
-						"type": 0,
-						"text": "Borrar"
-					}
-				},
 				"details_found": {
 					"type": "details_found"
 				},
@@ -1758,9 +1756,6 @@
 				"export_selected": {
 					"type": "export_selected"
 				},
-				"delete_selected": {
-					"type": "delete_selected"
-				},
 				"-1": {
 					"type": "-"
 				},
@@ -1778,9 +1773,6 @@
 				},
 				"-2": {
 					"type": "-"
-				},
-				"import": {
-					"type": "import"
 				},
 				"userinfo_link": {
 					"type": "userinfo_link"
@@ -1813,14 +1805,11 @@
 					"type": "list_options",
 					"items": [
 						"export_selected",
-						"delete_selected",
 						"-1",
 						"show_search_panel",
 						"hide_search_panel",
 						"-",
-						"export",
-						"-2",
-						"import"
+						"export"
 					]
 				},
 				"username_button": {
@@ -1871,8 +1860,7 @@
 				},
 				"simple_grid_field4": {
 					"type": "grid_field_label",
-					"field": "cuenta",
-					"showFilter": true
+					"field": "cuenta"
 				},
 				"simple_grid_field6": {
 					"field": "nombre",
@@ -1884,7 +1872,6 @@
 				"simple_grid_field9": {
 					"type": "grid_field_label",
 					"field": "nombre",
-					"showFilter": true,
 					"label": {
 						"field": "nombre",
 						"table": "banco",
@@ -1912,8 +1899,7 @@
 				},
 				"simple_grid_field11": {
 					"type": "grid_field_label",
-					"field": "localizacion",
-					"showFilter": true
+					"field": "localizacion"
 				},
 				"simple_grid_field3": {
 					"field": "lat",
@@ -1976,8 +1962,8 @@
 				"text": {
 					"type": "text",
 					"label": {
-						"text": "Medidores para asignar a limpieza",
-						"type": 0
+						"type": 0,
+						"text": "Cuentas con caja de medidor para asignar a limpieza"
 					},
 					"editedByRte": false,
 					"bold": true,

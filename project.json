@@ -353,56 +353,41 @@
 						}
 					},
 					{
-						"id": "6",
-						"children": [
-							{
-								"id": "1",
-								"parent": "6",
-								"data": {
-									"name": {
-										"text": "En oferta",
-										"type": 0
-									},
-									"itemType": 2,
-									"linkType": 0,
-									"iconType": 3,
-									"iconName": "fa-list-ol",
-									"table": 2011095505,
-									"pageType": "list"
-								}
-							},
-							{
-								"id": "5",
-								"parent": "6",
-								"data": {
-									"name": {
-										"table": "en_proceso",
-										"type": 6
-									},
-									"itemType": 2,
-									"linkType": 0,
-									"iconType": 3,
-									"iconName": "fa-toolbox",
-									"table": 3281225657,
-									"pageType": "list"
-								}
-							}
-						],
+						"id": "1",
 						"data": {
 							"name": {
-								"text": "Asignación de cuentas",
+								"text": "Limpieza Cajas p/asignar",
 								"type": 0
 							},
+							"itemType": 2,
+							"linkType": 0,
 							"iconType": 3,
-							"iconName": "fa-tools"
+							"iconName": "fa-list-ol",
+							"table": 2011095505,
+							"pageType": "list"
+						}
+					},
+					{
+						"id": "5",
+						"data": {
+							"name": {
+								"text": "Cajas en proceso de limpieza",
+								"type": 0
+							},
+							"itemType": 2,
+							"linkType": 0,
+							"iconType": 3,
+							"iconName": "fa-toolbox",
+							"table": 3281225657,
+							"pageType": "list"
 						}
 					},
 					{
 						"id": "7",
 						"data": {
 							"name": {
-								"table": "en limpieza",
-								"type": 6
+								"text": "Cajas ya limpias",
+								"type": 0
 							},
 							"itemType": 2,
 							"linkType": 0,
@@ -567,7 +552,7 @@
 					"linkPage": "list",
 					"linkText": {
 						"type": 0,
-						"text": "Oferta"
+						"text": "Limpieza Cajas p/asignar"
 					},
 					"linkIcon": {
 						"fa": "list-ol",
@@ -575,7 +560,7 @@
 					},
 					"linkComments": {
 						"type": 0,
-						"text": "Cuentas disponibles para asignar limpiador"
+						"text": "Cuentas con cajas disponibles para asignar limpiador"
 					},
 					"background": "#cfae83",
 					"linkType": 0
@@ -647,8 +632,8 @@
 					"linkTable": "en_proceso",
 					"linkPage": "list",
 					"linkText": {
-						"table": "en_proceso",
-						"type": 6
+						"type": 0,
+						"text": "Cajas en proceso de limpieza"
 					},
 					"linkIcon": {
 						"fa": "toolbox",
@@ -656,7 +641,7 @@
 					},
 					"linkComments": {
 						"type": 0,
-						"text": "Medidores en proceso de limpieza"
+						"text": "Cajas en proceso de limpieza"
 					},
 					"background": "#e07878",
 					"linkType": 0
@@ -667,8 +652,8 @@
 					"linkTable": "en limpieza",
 					"linkPage": "list",
 					"linkText": {
-						"table": "en limpieza",
-						"type": 6
+						"type": 0,
+						"text": "Cajas ya limpias"
 					},
 					"linkIcon": {
 						"fa": "brush",
@@ -678,7 +663,7 @@
 					"linkType": 0,
 					"linkComments": {
 						"type": 0,
-						"text": "Medidores que se han limpiado"
+						"text": "Cajas de medidores ya limpias"
 					}
 				},
 				"welcome_item6": {

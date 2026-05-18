@@ -105,7 +105,7 @@
 			"label": {
 				"Spanish": "Id Medidor"
 			},
-			"tableName": ""
+			"tableName": "padron"
 		},
 		{
 			"name": "dias",
@@ -170,6 +170,11 @@
 			"eventId": "EVENT_BEFOREPROCESS_LIST",
 			"pageType": "list",
 			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\nsetlocale(LC_ALL, \"es_ES\", 'es_MX.utf8');\ndate_default_timezone_set(\"America/Denver\");\n"
+		},
+		{
+			"eventId": "EVENT_BEFOREMOVENEXT_LIST",
+			"pageType": "list",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\nif ($data['status']==null || $data['dias']>180){\n    // se puede elegir\n}else{    \n    $pageObject->hideItem(\"grid_checkbox\", $recordId);\n}\n"
 		}
 	],
 	"dbTableInfo": {
@@ -218,6 +223,17 @@
 				"nullable": false,
 				"autoinc": false,
 				"defaultValueSQL": "",
+				"defaultValue": ""
+			},
+			{
+				"name": "id_medidor",
+				"type": 200,
+				"size": 12,
+				"scale": 0,
+				"typeName": "varchar(12)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
 				"defaultValue": ""
 			}
 		],
@@ -1532,8 +1548,7 @@
 				},
 				"simple_grid_field5": {
 					"type": "grid_field_label",
-					"field": "cuenta",
-					"showFilter": true
+					"field": "cuenta"
 				},
 				"simple_grid_field1": {
 					"field": "cuenta",
@@ -1709,7 +1724,8 @@
 				},
 				"grid_field_label2": {
 					"type": "grid_field_label",
-					"field": "status"
+					"field": "status",
+					"showFilter": true
 				},
 				"search_panel_field5": {
 					"field": "dias",

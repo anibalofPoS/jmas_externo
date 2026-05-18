@@ -245,7 +245,7 @@
 				{}
 			],
 			"label": {
-				"Spanish": "Mapa"
+				"Spanish": "Mapa Coord. SIGA"
 			},
 			"tableName": ""
 		},
@@ -269,7 +269,7 @@
 				{}
 			],
 			"label": {
-				"Spanish": "Mapa foto"
+				"Spanish": "Mapa de foto"
 			},
 			"tableName": ""
 		},
@@ -379,9 +379,9 @@
 				{}
 			],
 			"label": {
-				"Spanish": "Nota"
+				"Spanish": "Requiere medidor?"
 			},
-			"tableName": ""
+			"tableName": "en_proceso"
 		}
 	],
 	"eventHandlers": [
@@ -561,6 +561,17 @@
 				"size": 11,
 				"scale": 8,
 				"typeName": "decimal(11,8)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "nota",
+				"type": 200,
+				"size": 50,
+				"scale": 0,
+				"typeName": "varchar(50)",
 				"nullable": true,
 				"autoinc": false,
 				"defaultValueSQL": null,
@@ -1726,12 +1737,13 @@
 				"text": {
 					"type": "text",
 					"label": {
-						"text": "Medidores en proceso de limpieza",
-						"type": 0
+						"type": 0,
+						"text": "Cuentas con caja de medidor ya limpia"
 					},
 					"editedByRte": false,
 					"bold": true,
-					"font-size": "18px"
+					"font-size": "18px",
+					"color": "#62e342"
 				},
 				"search_panel_field6": {
 					"field": "id_medidor",
@@ -1771,8 +1783,7 @@
 				},
 				"simple_grid_field10": {
 					"type": "grid_field_label",
-					"field": "tiempo",
-					"showFilter": true
+					"field": "tiempo"
 				},
 				"simple_grid_field1": {
 					"field": "limpiador",
@@ -1795,8 +1806,7 @@
 				},
 				"simple_grid_field12": {
 					"type": "grid_field_label",
-					"field": "cuenta",
-					"showFilter": true
+					"field": "cuenta"
 				},
 				"simple_grid_field6": {
 					"field": "id_medidor",
@@ -1807,8 +1817,7 @@
 				},
 				"simple_grid_field13": {
 					"type": "grid_field_label",
-					"field": "id_medidor",
-					"showFilter": true
+					"field": "id_medidor"
 				},
 				"simple_grid_field3": {
 					"field": "fecha_limpio",
@@ -1831,8 +1840,7 @@
 				},
 				"simple_grid_field15": {
 					"type": "grid_field_label",
-					"field": "hr_limpio",
-					"showFilter": true
+					"field": "hr_limpio"
 				},
 				"simple_grid_field7": {
 					"field": "fotoa",
@@ -1868,7 +1876,12 @@
 				},
 				"grid_field_label": {
 					"type": "grid_field_label",
-					"field": "mapa"
+					"field": "mapa",
+					"label": {
+						"field": "mapa",
+						"table": "en limpieza",
+						"type": 3
+					}
 				},
 				"grid_field1": {
 					"field": "mapaf",
@@ -1878,7 +1891,12 @@
 				},
 				"grid_field_label1": {
 					"type": "grid_field_label",
-					"field": "mapaf"
+					"field": "mapaf",
+					"label": {
+						"field": "mapaf",
+						"table": "en limpieza",
+						"type": 3
+					}
 				},
 				"grid_field2": {
 					"field": "nota",
@@ -1886,7 +1904,13 @@
 				},
 				"grid_field_label2": {
 					"type": "grid_field_label",
-					"field": "nota"
+					"field": "nota",
+					"label": {
+						"field": "nota",
+						"table": "en limpieza",
+						"type": 3
+					},
+					"showFilter": true
 				},
 				"search_panel_field9": {
 					"field": "nota",

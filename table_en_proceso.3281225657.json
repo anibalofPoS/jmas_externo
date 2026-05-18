@@ -358,6 +358,17 @@
 				"autoinc": false,
 				"defaultValueSQL": null,
 				"defaultValue": ""
+			},
+			{
+				"name": "nota",
+				"type": 200,
+				"size": 50,
+				"scale": 0,
+				"typeName": "varchar(50)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
 			}
 		],
 		"primaryKeys": [
@@ -1017,8 +1028,7 @@
 					"field": "cuenta",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false,
-					"showFilter": true
+					"inlineEdit": false
 				},
 				"search_panel_field": {
 					"field": "fecha",
@@ -1110,7 +1120,6 @@
 				"simple_grid_field4": {
 					"field": "tiempo",
 					"type": "simple_grid_field",
-					"showFilter": true,
 					"inlineAdd": false,
 					"inlineEdit": false
 				},
@@ -1131,8 +1140,7 @@
 					"field": "hr_limpio",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false,
-					"showFilter": true
+					"inlineEdit": false
 				},
 				"search_panel_field3": {
 					"field": "fecha_limpio",
@@ -1149,8 +1157,8 @@
 				"text": {
 					"type": "text",
 					"label": {
-						"text": "Medidores en proceso de limpieza",
-						"type": 0
+						"type": 0,
+						"text": "Cuentas con caja de medidor en proceso de limpieza"
 					},
 					"editedByRte": false,
 					"bold": true,
@@ -1160,8 +1168,7 @@
 					"field": "id_medidor",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false,
-					"showFilter": true
+					"inlineEdit": false
 				},
 				"search_panel_field6": {
 					"field": "id_medidor",

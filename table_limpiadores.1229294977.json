@@ -42,7 +42,8 @@
 				{}
 			],
 			"label": {
-				"English": "Correo"
+				"English": "Correo",
+				"Spanish": "Nombre de usuario"
 			},
 			"tableName": "limpiadores"
 		},
@@ -62,7 +63,8 @@
 				{}
 			],
 			"label": {
-				"English": "Clave"
+				"English": "Clave",
+				"Spanish": "Clave del usuario"
 			},
 			"tableName": "limpiadores"
 		},
@@ -79,7 +81,8 @@
 				{}
 			],
 			"label": {
-				"English": "Nombre"
+				"English": "Nombre",
+				"Spanish": "Nombre del limpiador"
 			},
 			"tableName": "limpiadores"
 		}
@@ -1128,22 +1131,29 @@
 					"field": "id",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false,
-					"showFilter": true
+					"inlineEdit": false
 				},
 				"simple_grid_field1": {
 					"field": "correo",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
 					"inlineEdit": false,
-					"showFilter": true
+					"label": {
+						"field": "correo",
+						"table": "limpiadores",
+						"type": 3
+					}
 				},
 				"simple_grid_field3": {
 					"field": "nombre",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
 					"inlineEdit": false,
-					"showFilter": true
+					"label": {
+						"field": "nombre",
+						"table": "limpiadores",
+						"type": 3
+					}
 				},
 				"grid_checkbox": {
 					"type": "grid_checkbox"
@@ -1259,7 +1269,11 @@
 					"type": "simple_grid_field",
 					"inlineAdd": false,
 					"inlineEdit": false,
-					"showFilter": true
+					"label": {
+						"field": "clave",
+						"table": "limpiadores",
+						"type": 3
+					}
 				},
 				"text": {
 					"type": "text",
