@@ -1,5 +1,5 @@
 {
-	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tcuenta as nombre,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status,\r\n    (select sector from pulsodelagua.padron where cuenta=padron.cuenta limit 1) as sector,\r\n    (select distrito from pulsodelagua.padron where cuenta=padron.cuenta limit 1) as distrito,\r\n    \r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status,\r\n    (select sector from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1) as sector,\r\n    (select distrito from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1) as distrito,\r\n    (select localizacion from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1) as localizacion\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
 	"connId": "conn",
 	"originalTable": "padron",
 	"name": "padron",
@@ -53,7 +53,7 @@
 		{
 			"name": "anomalia",
 			"sqlExpression": "anomalia",
-			"index": 5,
+			"index": 4,
 			"strField": "anomalia",
 			"type": 2,
 			"viewFormats": [
@@ -76,7 +76,7 @@
 		{
 			"name": "anomalia_info",
 			"sqlExpression": "anomalia_info",
-			"index": 6,
+			"index": 5,
 			"strField": "anomalia_info",
 			"type": 200,
 			"viewFormats": [
@@ -93,7 +93,7 @@
 		{
 			"name": "id_medidor",
 			"sqlExpression": "id_medidor",
-			"index": 4,
+			"index": 3,
 			"strField": "id_medidor",
 			"type": 200,
 			"viewFormats": [
@@ -110,7 +110,7 @@
 		{
 			"name": "dias",
 			"sqlExpression": "datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha)",
-			"index": 7,
+			"index": 6,
 			"strField": "dias",
 			"type": 3,
 			"viewFormats": [
@@ -127,7 +127,7 @@
 		{
 			"name": "status",
 			"sqlExpression": "(select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)",
-			"index": 8,
+			"index": 7,
 			"strField": "status",
 			"type": 200,
 			"viewFormats": [
@@ -142,32 +142,9 @@
 			"tableName": ""
 		},
 		{
-			"name": "nombre",
-			"sqlExpression": "cuenta",
-			"index": 3,
-			"strField": "cuenta",
-			"type": 3,
-			"viewFormats": [
-				{}
-			],
-			"editFormats": [
-				{
-					"format": "Lookup wizard",
-					"lookupTable": "padron",
-					"lookupTableConnection": "conn1",
-					"lookupLinkField": "cuenta",
-					"lookupDisplayField": "nombre"
-				}
-			],
-			"label": {
-				"Spanish": "Nombre"
-			},
-			"tableName": "padron"
-		},
-		{
 			"name": "sector",
-			"sqlExpression": "(select sector from pulsodelagua.padron where cuenta=padron.cuenta limit 1)",
-			"index": 9,
+			"sqlExpression": "(select sector from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1)",
+			"index": 8,
 			"strField": "sector",
 			"type": 3,
 			"viewFormats": [
@@ -183,8 +160,8 @@
 		},
 		{
 			"name": "distrito",
-			"sqlExpression": "(select distrito from pulsodelagua.padron where cuenta=padron.cuenta limit 1)",
-			"index": 10,
+			"sqlExpression": "(select distrito from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1)",
+			"index": 9,
 			"strField": "distrito",
 			"type": 3,
 			"viewFormats": [
@@ -195,6 +172,23 @@
 			],
 			"label": {
 				"Spanish": "Distrito"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "localizacion",
+			"sqlExpression": "(select localizacion from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1)",
+			"index": 10,
+			"strField": "localizacion",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Localizacion"
 			},
 			"tableName": ""
 		}
@@ -505,9 +499,9 @@
 								"export_field4",
 								"export_field5",
 								"export_field6",
-								"export_field7",
 								"export_field8",
-								"export_field9"
+								"export_field9",
+								"export_field11"
 							]
 						}
 					},
@@ -584,16 +578,16 @@
 					"field": "status",
 					"type": "export_field"
 				},
-				"export_field7": {
-					"field": "nombre",
-					"type": "export_field"
-				},
 				"export_field8": {
 					"field": "sector",
 					"type": "export_field"
 				},
 				"export_field9": {
 					"field": "distrito",
+					"type": "export_field"
+				},
+				"export_field11": {
+					"field": "localizacion",
 					"type": "export_field"
 				}
 			},
@@ -1001,9 +995,9 @@
 								"integrated_edit_field4",
 								"integrated_edit_field5",
 								"integrated_edit_field6",
-								"integrated_edit_field7",
 								"integrated_edit_field8",
-								"integrated_edit_field9"
+								"integrated_edit_field9",
+								"integrated_edit_field11"
 							]
 						}
 					},
@@ -1062,11 +1056,6 @@
 					"type": "integrated_edit_field",
 					"orientation": 0
 				},
-				"integrated_edit_field7": {
-					"field": "nombre",
-					"type": "integrated_edit_field",
-					"orientation": 0
-				},
 				"integrated_edit_field8": {
 					"field": "sector",
 					"type": "integrated_edit_field",
@@ -1074,6 +1063,11 @@
 				},
 				"integrated_edit_field9": {
 					"field": "distrito",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field11": {
+					"field": "localizacion",
 					"type": "integrated_edit_field",
 					"orientation": 0
 				}
@@ -1240,7 +1234,13 @@
 									"cell": "headcell_field1"
 								},
 								{
-									"cell": "headcell_field10"
+									"cell": "headcell_field22"
+								},
+								{
+									"cell": "headcell_field25"
+								},
+								{
+									"cell": "headcell_field19"
 								},
 								{
 									"cell": "headcell_field5"
@@ -1256,12 +1256,6 @@
 								},
 								{
 									"cell": "headcell_field8"
-								},
-								{
-									"cell": "headcell_field9"
-								},
-								{
-									"cell": "headcell_field13"
 								}
 							]
 						},
@@ -1281,7 +1275,13 @@
 									"cell": "cell_field1"
 								},
 								{
-									"cell": "headcell_field11"
+									"cell": "headcell_field23"
+								},
+								{
+									"cell": "headcell_field26"
+								},
+								{
+									"cell": "headcell_field20"
 								},
 								{
 									"cell": "headcell_field6"
@@ -1297,12 +1297,6 @@
 								},
 								{
 									"cell": "cell_field5"
-								},
-								{
-									"cell": "cell_field6"
-								},
-								{
-									"cell": "cell_field7"
 								}
 							]
 						},
@@ -1322,7 +1316,13 @@
 									"cell": "footcell_field1"
 								},
 								{
-									"cell": "headcell_field12"
+									"cell": "headcell_field24"
+								},
+								{
+									"cell": "headcell_field27"
+								},
+								{
+									"cell": "headcell_field21"
 								},
 								{
 									"cell": "headcell_field7"
@@ -1338,12 +1338,6 @@
 								},
 								{
 									"cell": "footcell_field5"
-								},
-								{
-									"cell": "footcell_field6"
-								},
-								{
-									"cell": "footcell_field7"
 								}
 							]
 						}
@@ -1539,59 +1533,53 @@
 							"items": [],
 							"field": "status"
 						},
-						"headcell_field10": {
+						"headcell_field19": {
 							"model": "headcell_field",
 							"items": [
-								"grid_field_label3"
+								"grid_field_label7"
 							]
 						},
-						"headcell_field11": {
+						"headcell_field20": {
 							"model": "cell_field",
 							"items": [
-								"grid_field3"
+								"grid_field7"
 							]
 						},
-						"headcell_field12": {
+						"headcell_field21": {
 							"model": "footcell_field",
 							"items": []
 						},
-						"headcell_field9": {
+						"headcell_field22": {
 							"model": "headcell_field",
 							"items": [
 								"grid_field_label4"
-							],
-							"field": "sector"
+							]
 						},
-						"cell_field6": {
+						"headcell_field23": {
 							"model": "cell_field",
 							"items": [
 								"grid_field4"
-							],
-							"field": "sector"
+							]
 						},
-						"footcell_field6": {
+						"headcell_field24": {
 							"model": "footcell_field",
-							"items": [],
-							"field": "sector"
+							"items": []
 						},
-						"headcell_field13": {
+						"headcell_field25": {
 							"model": "headcell_field",
 							"items": [
 								"grid_field_label5"
-							],
-							"field": "distrito"
+							]
 						},
-						"cell_field7": {
+						"headcell_field26": {
 							"model": "cell_field",
 							"items": [
 								"grid_field5"
-							],
-							"field": "distrito"
+							]
 						},
-						"footcell_field7": {
+						"headcell_field27": {
 							"model": "footcell_field",
-							"items": [],
-							"field": "distrito"
+							"items": []
 						}
 					},
 					"deferredItems": [],
@@ -1755,9 +1743,9 @@
 					"type": "search_panel",
 					"items": [
 						"search_panel_field",
+						"search_panel_field11",
 						"search_panel_field9",
 						"search_panel_field8",
-						"search_panel_field7",
 						"search_panel_field6",
 						"search_panel_field5",
 						"search_panel_field4",
@@ -1849,27 +1837,14 @@
 					"field": "status",
 					"type": "search_panel_field"
 				},
-				"grid_field3": {
-					"field": "nombre",
-					"type": "grid_field",
-					"inlineAdd": false,
-					"inlineEdit": false
-				},
-				"grid_field_label3": {
-					"type": "grid_field_label",
-					"field": "nombre"
-				},
-				"search_panel_field7": {
-					"field": "nombre",
-					"type": "search_panel_field"
-				},
 				"grid_field4": {
 					"field": "sector",
 					"type": "grid_field"
 				},
 				"grid_field_label4": {
 					"type": "grid_field_label",
-					"field": "sector"
+					"field": "sector",
+					"showFilter": true
 				},
 				"search_panel_field8": {
 					"field": "sector",
@@ -1881,10 +1856,23 @@
 				},
 				"grid_field_label5": {
 					"type": "grid_field_label",
-					"field": "distrito"
+					"field": "distrito",
+					"showFilter": true
 				},
 				"search_panel_field9": {
 					"field": "distrito",
+					"type": "search_panel_field"
+				},
+				"grid_field7": {
+					"field": "localizacion",
+					"type": "grid_field"
+				},
+				"grid_field_label7": {
+					"type": "grid_field_label",
+					"field": "localizacion"
+				},
+				"search_panel_field11": {
+					"field": "localizacion",
 					"type": "search_panel_field"
 				}
 			},
@@ -1997,9 +1985,9 @@
 								"simple_grid_field4",
 								"simple_grid_field5",
 								"simple_grid_field6",
-								"simple_grid_field7",
 								"simple_grid_field8",
-								"simple_grid_field9"
+								"simple_grid_field9",
+								"simple_grid_field11"
 							]
 						}
 					},
@@ -2045,16 +2033,16 @@
 					"field": "status",
 					"type": "simple_grid_field"
 				},
-				"simple_grid_field7": {
-					"field": "nombre",
-					"type": "simple_grid_field"
-				},
 				"simple_grid_field8": {
 					"field": "sector",
 					"type": "simple_grid_field"
 				},
 				"simple_grid_field9": {
 					"field": "distrito",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field11": {
+					"field": "localizacion",
 					"type": "simple_grid_field"
 				}
 			},
