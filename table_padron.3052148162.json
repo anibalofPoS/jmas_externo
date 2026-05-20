@@ -1,5 +1,5 @@
 {
-	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tcuenta as nombre,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status\t\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tcuenta as nombre,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status,\r\n    (select sector from pulsodelagua.padron where cuenta=padron.cuenta limit 1) as sector,\r\n    (select distrito from pulsodelagua.padron where cuenta=padron.cuenta limit 1) as distrito,\r\n    \r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
 	"connId": "conn",
 	"originalTable": "padron",
 	"name": "padron",
@@ -163,6 +163,40 @@
 				"Spanish": "Nombre"
 			},
 			"tableName": "padron"
+		},
+		{
+			"name": "sector",
+			"sqlExpression": "(select sector from pulsodelagua.padron where cuenta=padron.cuenta limit 1)",
+			"index": 9,
+			"strField": "sector",
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Sector"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "distrito",
+			"sqlExpression": "(select distrito from pulsodelagua.padron where cuenta=padron.cuenta limit 1)",
+			"index": 10,
+			"strField": "distrito",
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Distrito"
+			},
+			"tableName": ""
 		}
 	],
 	"eventHandlers": [
@@ -471,7 +505,9 @@
 								"export_field4",
 								"export_field5",
 								"export_field6",
-								"export_field7"
+								"export_field7",
+								"export_field8",
+								"export_field9"
 							]
 						}
 					},
@@ -550,6 +586,14 @@
 				},
 				"export_field7": {
 					"field": "nombre",
+					"type": "export_field"
+				},
+				"export_field8": {
+					"field": "sector",
+					"type": "export_field"
+				},
+				"export_field9": {
+					"field": "distrito",
 					"type": "export_field"
 				}
 			},
@@ -957,7 +1001,9 @@
 								"integrated_edit_field4",
 								"integrated_edit_field5",
 								"integrated_edit_field6",
-								"integrated_edit_field7"
+								"integrated_edit_field7",
+								"integrated_edit_field8",
+								"integrated_edit_field9"
 							]
 						}
 					},
@@ -1018,6 +1064,16 @@
 				},
 				"integrated_edit_field7": {
 					"field": "nombre",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field8": {
+					"field": "sector",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field9": {
+					"field": "distrito",
 					"type": "integrated_edit_field",
 					"orientation": 0
 				}
@@ -1200,6 +1256,12 @@
 								},
 								{
 									"cell": "headcell_field8"
+								},
+								{
+									"cell": "headcell_field9"
+								},
+								{
+									"cell": "headcell_field13"
 								}
 							]
 						},
@@ -1235,6 +1297,12 @@
 								},
 								{
 									"cell": "cell_field5"
+								},
+								{
+									"cell": "cell_field6"
+								},
+								{
+									"cell": "cell_field7"
 								}
 							]
 						},
@@ -1270,6 +1338,12 @@
 								},
 								{
 									"cell": "footcell_field5"
+								},
+								{
+									"cell": "footcell_field6"
+								},
+								{
+									"cell": "footcell_field7"
 								}
 							]
 						}
@@ -1480,6 +1554,44 @@
 						"headcell_field12": {
 							"model": "footcell_field",
 							"items": []
+						},
+						"headcell_field9": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label4"
+							],
+							"field": "sector"
+						},
+						"cell_field6": {
+							"model": "cell_field",
+							"items": [
+								"grid_field4"
+							],
+							"field": "sector"
+						},
+						"footcell_field6": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "sector"
+						},
+						"headcell_field13": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label5"
+							],
+							"field": "distrito"
+						},
+						"cell_field7": {
+							"model": "cell_field",
+							"items": [
+								"grid_field5"
+							],
+							"field": "distrito"
+						},
+						"footcell_field7": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "distrito"
 						}
 					},
 					"deferredItems": [],
@@ -1643,6 +1755,8 @@
 					"type": "search_panel",
 					"items": [
 						"search_panel_field",
+						"search_panel_field9",
+						"search_panel_field8",
 						"search_panel_field7",
 						"search_panel_field6",
 						"search_panel_field5",
@@ -1747,6 +1861,30 @@
 				},
 				"search_panel_field7": {
 					"field": "nombre",
+					"type": "search_panel_field"
+				},
+				"grid_field4": {
+					"field": "sector",
+					"type": "grid_field"
+				},
+				"grid_field_label4": {
+					"type": "grid_field_label",
+					"field": "sector"
+				},
+				"search_panel_field8": {
+					"field": "sector",
+					"type": "search_panel_field"
+				},
+				"grid_field5": {
+					"field": "distrito",
+					"type": "grid_field"
+				},
+				"grid_field_label5": {
+					"type": "grid_field_label",
+					"field": "distrito"
+				},
+				"search_panel_field9": {
+					"field": "distrito",
 					"type": "search_panel_field"
 				}
 			},
@@ -1859,7 +1997,9 @@
 								"simple_grid_field4",
 								"simple_grid_field5",
 								"simple_grid_field6",
-								"simple_grid_field7"
+								"simple_grid_field7",
+								"simple_grid_field8",
+								"simple_grid_field9"
 							]
 						}
 					},
@@ -1907,6 +2047,14 @@
 				},
 				"simple_grid_field7": {
 					"field": "nombre",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field8": {
+					"field": "sector",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field9": {
+					"field": "distrito",
 					"type": "simple_grid_field"
 				}
 			},
