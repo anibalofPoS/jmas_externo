@@ -1500,86 +1500,110 @@
 							"items": [
 								"grid_field_label1"
 							],
-							"field": "dias"
+							"field": "dias",
+							"columnName": "field"
 						},
 						"cell_field4": {
 							"model": "cell_field",
 							"items": [
 								"grid_field1"
 							],
-							"field": "dias"
+							"field": "dias",
+							"columnName": "field"
 						},
 						"footcell_field4": {
 							"model": "footcell_field",
 							"items": [],
-							"field": "dias"
+							"field": "dias",
+							"columnName": "field"
 						},
 						"headcell_field8": {
 							"model": "headcell_field",
 							"items": [
 								"grid_field_label2"
 							],
-							"field": "status"
+							"field": "status",
+							"columnName": "field"
 						},
 						"cell_field5": {
 							"model": "cell_field",
 							"items": [
 								"grid_field2"
 							],
-							"field": "status"
+							"field": "status",
+							"columnName": "field"
 						},
 						"footcell_field5": {
 							"model": "footcell_field",
 							"items": [],
-							"field": "status"
+							"field": "status",
+							"columnName": "field"
 						},
 						"headcell_field19": {
 							"model": "headcell_field",
 							"items": [
 								"grid_field_label7"
-							]
+							],
+							"columnName": "field",
+							"field": "localizacion"
 						},
 						"headcell_field20": {
 							"model": "cell_field",
 							"items": [
 								"grid_field7"
-							]
+							],
+							"columnName": "field",
+							"field": "localizacion"
 						},
 						"headcell_field21": {
 							"model": "footcell_field",
-							"items": []
+							"items": [],
+							"columnName": "field",
+							"field": "localizacion"
 						},
 						"headcell_field22": {
 							"model": "headcell_field",
 							"items": [
 								"grid_field_label4"
-							]
+							],
+							"columnName": "field",
+							"field": "sector"
 						},
 						"headcell_field23": {
 							"model": "cell_field",
 							"items": [
 								"grid_field4"
-							]
+							],
+							"columnName": "field",
+							"field": "sector"
 						},
 						"headcell_field24": {
 							"model": "footcell_field",
-							"items": []
+							"items": [],
+							"columnName": "field",
+							"field": "sector"
 						},
 						"headcell_field25": {
 							"model": "headcell_field",
 							"items": [
 								"grid_field_label5"
-							]
+							],
+							"columnName": "field",
+							"field": "distrito"
 						},
 						"headcell_field26": {
 							"model": "cell_field",
 							"items": [
 								"grid_field5"
-							]
+							],
+							"columnName": "field",
+							"field": "distrito"
 						},
 						"headcell_field27": {
 							"model": "footcell_field",
-							"items": []
+							"items": [],
+							"columnName": "field",
+							"field": "distrito"
 						}
 					},
 					"deferredItems": [],

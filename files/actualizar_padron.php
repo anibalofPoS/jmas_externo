@@ -45,9 +45,9 @@ flush();
 //$flec="2026-04-01";
 //$flec1=date('Y-m-d',strtotime($flec.' - 3 days'));
 $leer_ws= new ws();
-$sql="select count(*) from pulsodelagua.padron";
+$sql="select count(*) from pulsodelagua.padron where cuenta<1000000";
 $total=DBLookUp($sql);
-$sql="select cuenta from pulsodelagua.padron";
+$sql="select cuenta from pulsodelagua.padron where cuenta<1000000";
 $rs=DB::Query($sql);
 $n=1;
 while ($row=$rs->fetchAssoc()){
@@ -55,7 +55,9 @@ while ($row=$rs->fetchAssoc()){
         document.getElementById("information").innerHTML="'.$n.' Registros procesados de '.$total.' Actualizando.'.'"</script>';
    //echo $row['cuenta'].', ';
    $leer_ws->conectar($row['cuenta']);
-   
+   if ($leer_ws->cuenta==0){
+      continue; 
+   }
    $datos=array();
    $key=array();
    $key['cuenta']=$row['cuenta'];
@@ -79,7 +81,7 @@ while ($row=$rs->fetchAssoc()){
 
 
 class ws{
-   public $fecha,$lectura,$mes,$anomalia,$anomalia_info,$id_medidor;
+   public $fecha,$lectura,$mes,$anomalia,$anomalia_info,$id_medidor,$cuenta;
    
    public function __construct() {
       $this->mes=array(
@@ -103,7 +105,12 @@ class ws{
        $response=file_get_contents($url);
        $response = json_decode($response,true);
        $response = $response['DATA'];
+       $this->anomalia='';
+       $this->anomalia_info='';
+       $this->id_medidor='';
+       $this->cuenta=0;
        if (count($response)>0){
+          $this->cuenta=$response['CUENTA']; 
           $this->fecha=$response['FECHA_LECTURA'];
           $this->lectura=$response['LECTURA'];
           $anomalia=$response['ANOMALIA'];
