@@ -47,7 +47,7 @@ flush();
 $leer_ws= new ws();
 $sql="select count(*) from pulsodelagua.padron where cuenta<1000000";
 $total=DBLookUp($sql);
-$sql="select cuenta from pulsodelagua.padron where cuenta<1000000";
+$sql="select cuenta, localizacion, sector, distrito, tarifa_id, giro_id from pulsodelagua.padron where cuenta<100";
 $rs=DB::Query($sql);
 $n=1;
 while ($row=$rs->fetchAssoc()){
@@ -65,6 +65,11 @@ while ($row=$rs->fetchAssoc()){
    $datos['anomalia']=$leer_ws->anomalia;
    $datos['anomalia_info']=$leer_ws->anomalia_info;
    $datos['id_medidor']=$leer_ws->id_medidor;
+   $datos['localizacion']=$row['localizacion'];
+   $datos['tarifa']=$row['tarifa_id'];
+   $datos['giro']=$row['giro_id'];
+   $datos['sector']=$row['sector'];
+   $datos['distrito']=$row['distrito'];
    $sql="select cuenta from jmas_externo.padron where cuenta={$row['cuenta']} limit 1";
    $existe=DBLookUp($sql);
    if ($existe==$row['cuenta']){

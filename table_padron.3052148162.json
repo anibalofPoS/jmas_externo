@@ -1,5 +1,5 @@
 {
-	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status,\r\n    (select sector from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1) as sector,\r\n    (select distrito from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1) as distrito,\r\n    (select localizacion from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1) as localizacion\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status,\r\n    sector,\r\n    distrito,\r\n    localizacion,\r\n    cuenta as nombre,\r\n    tarifa,\r\n    giro,\r\n    adeudo,\r\n    periodos_adeudo,\r\n    colonia,\r\n    clase\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
 	"connId": "conn",
 	"originalTable": "padron",
 	"name": "padron",
@@ -15,6 +15,7 @@
 			"sqlExpression": "fecha",
 			"index": 1,
 			"strField": "fecha",
+			"googleLikeSearch": false,
 			"type": 7,
 			"viewFormats": [
 				{
@@ -55,6 +56,7 @@
 			"sqlExpression": "anomalia",
 			"index": 4,
 			"strField": "anomalia",
+			"googleLikeSearch": false,
 			"type": 2,
 			"viewFormats": [
 				{}
@@ -78,6 +80,7 @@
 			"sqlExpression": "anomalia_info",
 			"index": 5,
 			"strField": "anomalia_info",
+			"googleLikeSearch": false,
 			"type": 200,
 			"viewFormats": [
 				{}
@@ -95,6 +98,7 @@
 			"sqlExpression": "id_medidor",
 			"index": 3,
 			"strField": "id_medidor",
+			"googleLikeSearch": false,
 			"type": 200,
 			"viewFormats": [
 				{}
@@ -112,6 +116,7 @@
 			"sqlExpression": "datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha)",
 			"index": 6,
 			"strField": "dias",
+			"googleLikeSearch": false,
 			"type": 3,
 			"viewFormats": [
 				{}
@@ -129,6 +134,7 @@
 			"sqlExpression": "(select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)",
 			"index": 7,
 			"strField": "status",
+			"googleLikeSearch": false,
 			"type": 200,
 			"viewFormats": [
 				{}
@@ -143,10 +149,11 @@
 		},
 		{
 			"name": "sector",
-			"sqlExpression": "(select sector from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1)",
+			"sqlExpression": "sector",
 			"index": 8,
 			"strField": "sector",
-			"type": 3,
+			"googleLikeSearch": false,
+			"type": 2,
 			"viewFormats": [
 				{}
 			],
@@ -160,10 +167,11 @@
 		},
 		{
 			"name": "distrito",
-			"sqlExpression": "(select distrito from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1)",
+			"sqlExpression": "distrito",
 			"index": 9,
 			"strField": "distrito",
-			"type": 3,
+			"googleLikeSearch": false,
+			"type": 2,
 			"viewFormats": [
 				{}
 			],
@@ -177,9 +185,10 @@
 		},
 		{
 			"name": "localizacion",
-			"sqlExpression": "(select localizacion from pulsodelagua.padron where pulsodelagua.padron.cuenta=jmas_externo.padron.cuenta limit 1)",
+			"sqlExpression": "localizacion",
 			"index": 10,
 			"strField": "localizacion",
+			"googleLikeSearch": false,
 			"type": 200,
 			"viewFormats": [
 				{}
@@ -191,6 +200,139 @@
 				"Spanish": "Localizacion"
 			},
 			"tableName": ""
+		},
+		{
+			"name": "nombre",
+			"sqlExpression": "cuenta",
+			"index": 11,
+			"strField": "cuenta",
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{
+					"format": "Lookup wizard",
+					"lookupTable": "padron",
+					"lookupTableConnection": "conn1",
+					"lookupLinkField": "cuenta",
+					"lookupDisplayField": "nombre"
+				}
+			],
+			"label": {
+				"Spanish": "Nombre"
+			},
+			"tableName": "padron"
+		},
+		{
+			"name": "tarifa",
+			"sqlExpression": "tarifa",
+			"index": 12,
+			"strField": "tarifa",
+			"googleLikeSearch": false,
+			"type": 2,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Tarifa"
+			},
+			"tableName": "padron"
+		},
+		{
+			"name": "giro",
+			"sqlExpression": "giro",
+			"index": 13,
+			"strField": "giro",
+			"googleLikeSearch": false,
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Giro"
+			},
+			"tableName": "padron"
+		},
+		{
+			"name": "adeudo",
+			"sqlExpression": "adeudo",
+			"index": 14,
+			"strField": "adeudo",
+			"googleLikeSearch": false,
+			"type": 14,
+			"viewFormats": [
+				{
+					"format": "Number"
+				}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Adeudo"
+			},
+			"tableName": "padron"
+		},
+		{
+			"name": "periodos_adeudo",
+			"sqlExpression": "periodos_adeudo",
+			"index": 15,
+			"strField": "periodos_adeudo",
+			"googleLikeSearch": false,
+			"type": 2,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Periodos Adeudo"
+			},
+			"tableName": "padron"
+		},
+		{
+			"name": "colonia",
+			"sqlExpression": "colonia",
+			"index": 16,
+			"strField": "colonia",
+			"googleLikeSearch": false,
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Colonia"
+			},
+			"tableName": "padron"
+		},
+		{
+			"name": "clase",
+			"sqlExpression": "clase",
+			"index": 17,
+			"strField": "clase",
+			"googleLikeSearch": false,
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Clase"
+			},
+			"tableName": "padron"
 		}
 	],
 	"eventHandlers": [
@@ -259,6 +401,83 @@
 				"size": 12,
 				"scale": 0,
 				"typeName": "varchar(12)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "nombre",
+				"type": 200,
+				"size": 150,
+				"scale": 0,
+				"typeName": "varchar(150)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "tarifa",
+				"type": 200,
+				"size": 80,
+				"scale": 0,
+				"typeName": "varchar(80)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "giro",
+				"type": 200,
+				"size": 100,
+				"scale": 0,
+				"typeName": "varchar(100)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "adeudo",
+				"type": 14,
+				"size": 12,
+				"scale": 2,
+				"typeName": "decimal(12,2)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "periodos_adeudo",
+				"type": 2,
+				"size": 6,
+				"scale": 0,
+				"typeName": "smallint(6)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "colonia",
+				"type": 200,
+				"size": 60,
+				"scale": 0,
+				"typeName": "varchar(60)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "clase",
+				"type": 200,
+				"size": 30,
+				"scale": 0,
+				"typeName": "varchar(30)",
 				"nullable": true,
 				"autoinc": false,
 				"defaultValueSQL": null,
@@ -501,7 +720,14 @@
 								"export_field6",
 								"export_field8",
 								"export_field9",
-								"export_field11"
+								"export_field11",
+								"export_field7",
+								"export_field10",
+								"export_field12",
+								"export_field13",
+								"export_field14",
+								"export_field15",
+								"export_field16"
 							]
 						}
 					},
@@ -588,6 +814,34 @@
 				},
 				"export_field11": {
 					"field": "localizacion",
+					"type": "export_field"
+				},
+				"export_field7": {
+					"field": "nombre",
+					"type": "export_field"
+				},
+				"export_field10": {
+					"field": "tarifa",
+					"type": "export_field"
+				},
+				"export_field12": {
+					"field": "giro",
+					"type": "export_field"
+				},
+				"export_field13": {
+					"field": "adeudo",
+					"type": "export_field"
+				},
+				"export_field14": {
+					"field": "periodos_adeudo",
+					"type": "export_field"
+				},
+				"export_field15": {
+					"field": "colonia",
+					"type": "export_field"
+				},
+				"export_field16": {
+					"field": "clase",
 					"type": "export_field"
 				}
 			},
@@ -997,7 +1251,14 @@
 								"integrated_edit_field6",
 								"integrated_edit_field8",
 								"integrated_edit_field9",
-								"integrated_edit_field11"
+								"integrated_edit_field11",
+								"integrated_edit_field7",
+								"integrated_edit_field10",
+								"integrated_edit_field12",
+								"integrated_edit_field13",
+								"integrated_edit_field14",
+								"integrated_edit_field15",
+								"integrated_edit_field16"
 							]
 						}
 					},
@@ -1068,6 +1329,41 @@
 				},
 				"integrated_edit_field11": {
 					"field": "localizacion",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field7": {
+					"field": "nombre",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field10": {
+					"field": "tarifa",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field12": {
+					"field": "giro",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field13": {
+					"field": "adeudo",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field14": {
+					"field": "periodos_adeudo",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field15": {
+					"field": "colonia",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field16": {
+					"field": "clase",
 					"type": "integrated_edit_field",
 					"orientation": 0
 				}
@@ -1237,10 +1533,31 @@
 									"cell": "headcell_field22"
 								},
 								{
+									"cell": "headcell_field34"
+								},
+								{
+									"cell": "headcell_field31"
+								},
+								{
+									"cell": "headcell_field28"
+								},
+								{
 									"cell": "headcell_field25"
 								},
 								{
 									"cell": "headcell_field19"
+								},
+								{
+									"cell": "headcell_field46"
+								},
+								{
+									"cell": "headcell_field43"
+								},
+								{
+									"cell": "headcell_field40"
+								},
+								{
+									"cell": "headcell_field37"
 								},
 								{
 									"cell": "headcell_field5"
@@ -1278,10 +1595,31 @@
 									"cell": "headcell_field23"
 								},
 								{
+									"cell": "headcell_field35"
+								},
+								{
+									"cell": "headcell_field32"
+								},
+								{
+									"cell": "headcell_field29"
+								},
+								{
 									"cell": "headcell_field26"
 								},
 								{
 									"cell": "headcell_field20"
+								},
+								{
+									"cell": "headcell_field47"
+								},
+								{
+									"cell": "headcell_field44"
+								},
+								{
+									"cell": "headcell_field41"
+								},
+								{
+									"cell": "headcell_field38"
 								},
 								{
 									"cell": "headcell_field6"
@@ -1319,10 +1657,31 @@
 									"cell": "headcell_field24"
 								},
 								{
+									"cell": "headcell_field36"
+								},
+								{
+									"cell": "headcell_field33"
+								},
+								{
+									"cell": "headcell_field30"
+								},
+								{
 									"cell": "headcell_field27"
 								},
 								{
 									"cell": "headcell_field21"
+								},
+								{
+									"cell": "headcell_field48"
+								},
+								{
+									"cell": "headcell_field45"
+								},
+								{
+									"cell": "headcell_field42"
+								},
+								{
+									"cell": "headcell_field39"
 								},
 								{
 									"cell": "headcell_field7"
@@ -1564,24 +1923,24 @@
 						"headcell_field22": {
 							"model": "headcell_field",
 							"items": [
-								"grid_field_label4"
+								"grid_field_label3"
 							],
 							"columnName": "field",
-							"field": "sector"
+							"field": "nombre"
 						},
 						"headcell_field23": {
 							"model": "cell_field",
 							"items": [
-								"grid_field4"
+								"grid_field3"
 							],
 							"columnName": "field",
-							"field": "sector"
+							"field": "nombre"
 						},
 						"headcell_field24": {
 							"model": "footcell_field",
 							"items": [],
 							"columnName": "field",
-							"field": "sector"
+							"field": "nombre"
 						},
 						"headcell_field25": {
 							"model": "headcell_field",
@@ -1604,6 +1963,160 @@
 							"items": [],
 							"columnName": "field",
 							"field": "distrito"
+						},
+						"headcell_field28": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label4"
+							],
+							"columnName": "field",
+							"field": "sector"
+						},
+						"headcell_field29": {
+							"model": "cell_field",
+							"items": [
+								"grid_field4"
+							],
+							"columnName": "field",
+							"field": "sector"
+						},
+						"headcell_field30": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "sector"
+						},
+						"headcell_field31": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label8"
+							],
+							"columnName": "field",
+							"field": "giro"
+						},
+						"headcell_field32": {
+							"model": "cell_field",
+							"items": [
+								"grid_field8"
+							],
+							"columnName": "field",
+							"field": "giro"
+						},
+						"headcell_field33": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "giro"
+						},
+						"headcell_field34": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label6"
+							],
+							"columnName": "field",
+							"field": "tarifa"
+						},
+						"headcell_field35": {
+							"model": "cell_field",
+							"items": [
+								"grid_field6"
+							],
+							"columnName": "field",
+							"field": "tarifa"
+						},
+						"headcell_field36": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "tarifa"
+						},
+						"headcell_field37": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label10"
+							],
+							"columnName": "field",
+							"field": "periodos_adeudo"
+						},
+						"headcell_field38": {
+							"model": "cell_field",
+							"items": [
+								"grid_field10"
+							],
+							"columnName": "field",
+							"field": "periodos_adeudo"
+						},
+						"headcell_field39": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "periodos_adeudo"
+						},
+						"headcell_field40": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label9"
+							],
+							"columnName": "field",
+							"field": "adeudo"
+						},
+						"headcell_field41": {
+							"model": "cell_field",
+							"items": [
+								"grid_field9"
+							],
+							"columnName": "field",
+							"field": "adeudo"
+						},
+						"headcell_field42": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "adeudo"
+						},
+						"headcell_field43": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label12"
+							],
+							"columnName": "field",
+							"field": "clase"
+						},
+						"headcell_field44": {
+							"model": "cell_field",
+							"items": [
+								"grid_field12"
+							],
+							"columnName": "field",
+							"field": "clase"
+						},
+						"headcell_field45": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "clase"
+						},
+						"headcell_field46": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label11"
+							],
+							"columnName": "field",
+							"field": "colonia"
+						},
+						"headcell_field47": {
+							"model": "cell_field",
+							"items": [
+								"grid_field11"
+							],
+							"columnName": "field",
+							"field": "colonia"
+						},
+						"headcell_field48": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "colonia"
 						}
 					},
 					"deferredItems": [],
@@ -1711,21 +2224,11 @@
 				"grid_view": {
 					"type": "grid_view"
 				},
-				"search_panel_field": {
-					"field": "fecha",
-					"type": "search_panel_field"
-				},
-				"search_panel_field3": {
-					"field": "anomalia_info",
-					"type": "search_panel_field"
-				},
-				"search_panel_field2": {
-					"field": "anomalia",
-					"type": "search_panel_field"
-				},
 				"search_panel_field1": {
 					"field": "cuenta",
-					"type": "search_panel_field"
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
 				},
 				"export_selected": {
 					"type": "export_selected"
@@ -1766,16 +2269,8 @@
 				"search_panel": {
 					"type": "search_panel",
 					"items": [
-						"search_panel_field",
-						"search_panel_field11",
-						"search_panel_field9",
-						"search_panel_field8",
-						"search_panel_field6",
-						"search_panel_field5",
-						"search_panel_field4",
-						"search_panel_field3",
-						"search_panel_field2",
-						"search_panel_field1"
+						"search_panel_field1",
+						"search_panel_field"
 					],
 					"_flexiblePanel": true
 				},
@@ -1828,10 +2323,6 @@
 					"type": "grid_field_label",
 					"field": "id_medidor"
 				},
-				"search_panel_field4": {
-					"field": "id_medidor",
-					"type": "search_panel_field"
-				},
 				"grid_field1": {
 					"field": "dias",
 					"type": "grid_field",
@@ -1853,51 +2344,118 @@
 					"field": "status",
 					"showFilter": true
 				},
-				"search_panel_field5": {
-					"field": "dias",
-					"type": "search_panel_field"
-				},
-				"search_panel_field6": {
-					"field": "status",
-					"type": "search_panel_field"
-				},
 				"grid_field4": {
 					"field": "sector",
-					"type": "grid_field"
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"grid_field_label4": {
 					"type": "grid_field_label",
 					"field": "sector",
 					"showFilter": true
 				},
-				"search_panel_field8": {
-					"field": "sector",
-					"type": "search_panel_field"
-				},
 				"grid_field5": {
 					"field": "distrito",
-					"type": "grid_field"
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"grid_field_label5": {
 					"type": "grid_field_label",
 					"field": "distrito",
 					"showFilter": true
 				},
-				"search_panel_field9": {
-					"field": "distrito",
-					"type": "search_panel_field"
-				},
 				"grid_field7": {
 					"field": "localizacion",
-					"type": "grid_field"
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"grid_field_label7": {
 					"type": "grid_field_label",
 					"field": "localizacion"
 				},
-				"search_panel_field11": {
-					"field": "localizacion",
-					"type": "search_panel_field"
+				"grid_field3": {
+					"field": "nombre",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label3": {
+					"type": "grid_field_label",
+					"field": "nombre"
+				},
+				"grid_field6": {
+					"field": "tarifa",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label6": {
+					"type": "grid_field_label",
+					"field": "tarifa",
+					"showFilter": true
+				},
+				"grid_field8": {
+					"field": "giro",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label8": {
+					"type": "grid_field_label",
+					"field": "giro",
+					"showFilter": true
+				},
+				"grid_field9": {
+					"field": "adeudo",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label9": {
+					"type": "grid_field_label",
+					"field": "adeudo"
+				},
+				"grid_field10": {
+					"field": "periodos_adeudo",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label10": {
+					"type": "grid_field_label",
+					"field": "periodos_adeudo",
+					"showFilter": true
+				},
+				"grid_field11": {
+					"field": "colonia",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label11": {
+					"type": "grid_field_label",
+					"field": "colonia",
+					"showFilter": true
+				},
+				"grid_field12": {
+					"field": "clase",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label12": {
+					"type": "grid_field_label",
+					"field": "clase",
+					"showFilter": true
+				},
+				"search_panel_field": {
+					"field": "nombre",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
 				}
 			},
 			"version": 13,
@@ -2011,7 +2569,14 @@
 								"simple_grid_field6",
 								"simple_grid_field8",
 								"simple_grid_field9",
-								"simple_grid_field11"
+								"simple_grid_field11",
+								"simple_grid_field7",
+								"simple_grid_field10",
+								"simple_grid_field12",
+								"simple_grid_field13",
+								"simple_grid_field14",
+								"simple_grid_field15",
+								"simple_grid_field16"
 							]
 						}
 					},
@@ -2067,6 +2632,34 @@
 				},
 				"simple_grid_field11": {
 					"field": "localizacion",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field7": {
+					"field": "nombre",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field10": {
+					"field": "tarifa",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field12": {
+					"field": "giro",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field13": {
+					"field": "adeudo",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field14": {
+					"field": "periodos_adeudo",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field15": {
+					"field": "colonia",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field16": {
+					"field": "clase",
 					"type": "simple_grid_field"
 				}
 			},
