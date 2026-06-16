@@ -47,7 +47,7 @@ flush();
 $leer_ws= new ws();
 $sql="select count(*) from pulsodelagua.padron where cuenta<1000000";
 $total=DBLookUp($sql);
-$sql="select cuenta from pulsodelagua.padron";
+$sql="select cuenta from pulsodelagua.padron limit 100";
 $rs=DB::Query($sql);
 $n=1;
 while ($row=$rs->fetchAssoc()){
@@ -76,6 +76,7 @@ while ($row=$rs->fetchAssoc()){
    $datos['colonia']=$leer_ws->colonia;
    $datos['periodos_adeudo']=$leer_ws->periodos_adeudo;
    $datos['adeudo']=$leer_ws->adeudo;
+   $datos['nombre']=$leer_ws->nombre;
    $sql="select cuenta from jmas_externo.padron where cuenta={$row['cuenta']} limit 1";
    $existe=DBLookUp($sql);
    if ($existe==$row['cuenta']){
@@ -93,7 +94,7 @@ while ($row=$rs->fetchAssoc()){
 
 class ws{
    public $mes,$anomalia,$anomalia_info,$id_medidor,$cuenta;
-   public $sector, $distrito, $colonia, $tarifa, $giro, $periodos_adeudo, $adeudo, $clase, $localizacion;
+   public $sector, $distrito, $colonia, $tarifa, $giro, $periodos_adeudo, $adeudo, $clase, $localizacion, $nombre;
    public function __construct() {
       $this->mes=array(
         "Jan"=>"01",
@@ -135,7 +136,7 @@ class ws{
        $this->adeudo=0;
        $this->clase="";
        $this->localizacion="";       
-     
+       $this->nombre=""; 
        if (count($response)>0){
           $this->cuenta=$response['CUENTA']; 
           $anomalia=$response['ANOMALIA'];
@@ -152,7 +153,7 @@ class ws{
           $this->adeudo=$response['ADEUDO_TOTAL'];
           $this->clase=$response['CLASE'];
           $this->localizacion=$response['LOCALIZACION'];
-         
+          $this->nombre=$response['NOMBRE'];
        }
    }
 

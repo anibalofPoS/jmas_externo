@@ -1,12 +1,13 @@
 {
-	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status,\r\n    sector,\r\n    distrito,\r\n    localizacion,\r\n    cuenta as nombre,\r\n    tarifa,\r\n    giro,\r\n    adeudo,\r\n    periodos_adeudo,\r\n    colonia,\r\n    clase\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tanomalia,\r\n\tanomalia_info,\r\n    datediff((select fecha from jmas_externo.banco where banco.cuenta=padron.cuenta limit 1),fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status,\r\n    sector,\r\n    distrito,\r\n    localizacion,\r\n    nombre,\r\n    tarifa,\r\n    giro,\r\n    adeudo,\r\n    periodos_adeudo,\r\n    colonia,\r\n    clase\r\nFROM\r\n\tpadron\r\nWHERE\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) is null or\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)<>'DCR' ",
 	"connId": "conn",
 	"originalTable": "padron",
 	"name": "padron",
 	"shortTableName": "padron",
 	"dbType": 0,
 	"keyFields": [
-		"cuenta"
+		"cuenta",
+		"nombre"
 	],
 	"detailsBadgeColor": "7b68ee",
 	"fields": [
@@ -39,6 +40,7 @@
 			"sqlExpression": "cuenta",
 			"index": 2,
 			"strField": "cuenta",
+			"googleLikeSearch": false,
 			"type": 3,
 			"viewFormats": [
 				{}
@@ -163,7 +165,7 @@
 			"label": {
 				"Spanish": "Sector"
 			},
-			"tableName": ""
+			"tableName": "padron"
 		},
 		{
 			"name": "distrito",
@@ -181,7 +183,7 @@
 			"label": {
 				"Spanish": "Distrito"
 			},
-			"tableName": ""
+			"tableName": "padron"
 		},
 		{
 			"name": "localizacion",
@@ -199,20 +201,20 @@
 			"label": {
 				"Spanish": "Localizacion"
 			},
-			"tableName": ""
+			"tableName": "padron"
 		},
 		{
 			"name": "nombre",
-			"sqlExpression": "cuenta",
+			"sqlExpression": "nombre",
 			"index": 11,
-			"strField": "cuenta",
-			"type": 3,
+			"strField": "nombre",
+			"googleLikeSearch": false,
+			"type": 200,
 			"viewFormats": [
 				{}
 			],
 			"editFormats": [
 				{
-					"format": "Lookup wizard",
 					"lookupTable": "padron",
 					"lookupTableConnection": "conn1",
 					"lookupLinkField": "cuenta",
@@ -222,7 +224,7 @@
 			"label": {
 				"Spanish": "Nombre"
 			},
-			"tableName": "padron"
+			"tableName": ""
 		},
 		{
 			"name": "tarifa",
@@ -419,22 +421,11 @@
 				"defaultValue": ""
 			},
 			{
-				"name": "nombre",
-				"type": 200,
-				"size": 150,
-				"scale": 0,
-				"typeName": "varchar(150)",
-				"nullable": true,
-				"autoinc": false,
-				"defaultValueSQL": null,
-				"defaultValue": ""
-			},
-			{
 				"name": "tarifa",
-				"type": 200,
-				"size": 80,
+				"type": 16,
+				"size": 3,
 				"scale": 0,
-				"typeName": "varchar(80)",
+				"typeName": "tinyint(3)",
 				"nullable": true,
 				"autoinc": false,
 				"defaultValueSQL": null,
@@ -442,10 +433,10 @@
 			},
 			{
 				"name": "giro",
-				"type": 200,
-				"size": 100,
+				"type": 3,
+				"size": 4,
 				"scale": 0,
-				"typeName": "varchar(100)",
+				"typeName": "mediumint(4)",
 				"nullable": true,
 				"autoinc": false,
 				"defaultValueSQL": null,
@@ -490,6 +481,39 @@
 				"size": 30,
 				"scale": 0,
 				"typeName": "varchar(30)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "sector",
+				"type": 16,
+				"size": 2,
+				"scale": 0,
+				"typeName": "tinyint(2)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "distrito",
+				"type": 16,
+				"size": 1,
+				"scale": 0,
+				"typeName": "tinyint(1)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "localizacion",
+				"type": 200,
+				"size": 15,
+				"scale": 0,
+				"typeName": "varchar(15)",
 				"nullable": true,
 				"autoinc": false,
 				"defaultValueSQL": null,
@@ -2187,7 +2211,8 @@
 				"simple_grid_field4": {
 					"type": "grid_field_label",
 					"field": "fecha",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"simple_grid_field": {
 					"field": "fecha",
@@ -2197,7 +2222,8 @@
 				},
 				"simple_grid_field5": {
 					"type": "grid_field_label",
-					"field": "cuenta"
+					"field": "cuenta",
+					"clickSort": true
 				},
 				"simple_grid_field1": {
 					"field": "cuenta",
@@ -2208,7 +2234,8 @@
 				"simple_grid_field6": {
 					"type": "grid_field_label",
 					"field": "anomalia",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"simple_grid_field2": {
 					"field": "anomalia",
@@ -2219,7 +2246,8 @@
 				"simple_grid_field7": {
 					"type": "grid_field_label",
 					"field": "anomalia_info",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"simple_grid_field3": {
 					"field": "anomalia_info",
@@ -2234,7 +2262,8 @@
 					"type": "grid_checkbox"
 				},
 				"grid_view": {
-					"type": "grid_view"
+					"type": "grid_view",
+					"popup": false
 				},
 				"search_panel_field1": {
 					"field": "cuenta",
@@ -2290,6 +2319,8 @@
 					"type": "list_options",
 					"items": [
 						"export_selected",
+						"-3",
+						"advsearch_link",
 						"-1",
 						"-2",
 						"show_search_panel",
@@ -2333,7 +2364,8 @@
 				},
 				"grid_field_label": {
 					"type": "grid_field_label",
-					"field": "id_medidor"
+					"field": "id_medidor",
+					"clickSort": true
 				},
 				"grid_field1": {
 					"field": "dias",
@@ -2343,7 +2375,8 @@
 				},
 				"grid_field_label1": {
 					"type": "grid_field_label",
-					"field": "dias"
+					"field": "dias",
+					"clickSort": true
 				},
 				"grid_field2": {
 					"field": "status",
@@ -2354,7 +2387,8 @@
 				"grid_field_label2": {
 					"type": "grid_field_label",
 					"field": "status",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"grid_field4": {
 					"field": "sector",
@@ -2365,7 +2399,8 @@
 				"grid_field_label4": {
 					"type": "grid_field_label",
 					"field": "sector",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"grid_field5": {
 					"field": "distrito",
@@ -2376,7 +2411,8 @@
 				"grid_field_label5": {
 					"type": "grid_field_label",
 					"field": "distrito",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"grid_field7": {
 					"field": "localizacion",
@@ -2386,7 +2422,8 @@
 				},
 				"grid_field_label7": {
 					"type": "grid_field_label",
-					"field": "localizacion"
+					"field": "localizacion",
+					"clickSort": true
 				},
 				"grid_field3": {
 					"field": "nombre",
@@ -2396,7 +2433,8 @@
 				},
 				"grid_field_label3": {
 					"type": "grid_field_label",
-					"field": "nombre"
+					"field": "nombre",
+					"clickSort": true
 				},
 				"grid_field6": {
 					"field": "tarifa",
@@ -2407,7 +2445,8 @@
 				"grid_field_label6": {
 					"type": "grid_field_label",
 					"field": "tarifa",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"grid_field8": {
 					"field": "giro",
@@ -2418,7 +2457,8 @@
 				"grid_field_label8": {
 					"type": "grid_field_label",
 					"field": "giro",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"grid_field9": {
 					"field": "adeudo",
@@ -2428,7 +2468,8 @@
 				},
 				"grid_field_label9": {
 					"type": "grid_field_label",
-					"field": "adeudo"
+					"field": "adeudo",
+					"clickSort": true
 				},
 				"grid_field10": {
 					"field": "periodos_adeudo",
@@ -2439,7 +2480,8 @@
 				"grid_field_label10": {
 					"type": "grid_field_label",
 					"field": "periodos_adeudo",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"grid_field11": {
 					"field": "colonia",
@@ -2450,7 +2492,8 @@
 				"grid_field_label11": {
 					"type": "grid_field_label",
 					"field": "colonia",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"grid_field12": {
 					"field": "clase",
@@ -2461,16 +2504,26 @@
 				"grid_field_label12": {
 					"type": "grid_field_label",
 					"field": "clase",
-					"showFilter": true
+					"showFilter": true,
+					"clickSort": true
 				},
 				"search_panel_field": {
 					"field": "nombre",
 					"type": "search_panel_field",
 					"alwaysOnPanel": false,
 					"required": false
+				},
+				"advsearch_link": {
+					"type": "advsearch_link"
+				},
+				"-3": {
+					"type": "-"
 				}
 			},
 			"version": 13,
+			"reorderRows": false,
+			"reorderRowsField": "",
+			"addToBottom": false,
 			"imageItem": {
 				"type": "page_image"
 			},
@@ -2673,6 +2726,147 @@
 				"simple_grid_field16": {
 					"field": "clase",
 					"type": "simple_grid_field"
+				}
+			},
+			"version": 13,
+			"imageItem": {
+				"type": "page_image"
+			},
+			"imageBgColor": "#f2f2f2",
+			"controlsBgColor": "transparent",
+			"imagePosition": "right",
+			"listTotals": 1,
+			"title": {},
+			"cardStyle": {}
+		},
+		{
+			"id": "search",
+			"type": "search",
+			"layoutId": "nomenu",
+			"disabled": false,
+			"default": 0,
+			"forms": {
+				"above-grid": {
+					"modelId": "search-above-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1",
+									"colspan": 2
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": []
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"below-grid": {
+					"modelId": "search-below-grid",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"search_search",
+								"search_reset",
+								"search_back_list",
+								"search_cancel"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"top": {
+					"modelId": "search-header",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c1"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c1": {
+							"model": "c1",
+							"items": [
+								"search_header"
+							]
+						}
+					},
+					"deferredItems": [],
+					"recsPerRow": 1
+				},
+				"grid": {
+					"modelId": "simple-search",
+					"grid": [
+						{
+							"cells": [
+								{
+									"cell": "c3"
+								}
+							],
+							"section": ""
+						}
+					],
+					"cells": {
+						"c3": {
+							"model": "c3",
+							"items": [
+								"integrated_search_field",
+								"integrated_search_field1"
+							]
+						}
+					},
+					"deferredItems": [],
+					"separateLabels": false
+				}
+			},
+			"items": {
+				"search_header": {
+					"type": "search_header"
+				},
+				"search_reset": {
+					"type": "search_reset"
+				},
+				"search_back_list": {
+					"type": "search_back_list"
+				},
+				"search_search": {
+					"type": "search_search"
+				},
+				"search_cancel": {
+					"type": "search_cancel"
+				},
+				"integrated_search_field": {
+					"field": "cuenta",
+					"type": "integrated_search_field",
+					"orientation": 0
+				},
+				"integrated_search_field1": {
+					"field": "nombre",
+					"type": "integrated_search_field",
+					"orientation": 0
 				}
 			},
 			"version": 13,

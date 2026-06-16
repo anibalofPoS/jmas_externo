@@ -1086,7 +1086,8 @@
 					"label": {
 						"type": 0,
 						"text": "Agregar"
-					}
+					},
+					"popup": false
 				},
 				"delete": {
 					"type": "delete",
@@ -1129,25 +1130,29 @@
 					"field": "correo",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false
+					"inlineEdit": false,
+					"clickSort": true
 				},
 				"simple_grid_field1": {
 					"field": "clave",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false
+					"inlineEdit": false,
+					"clickSort": true
 				},
 				"simple_grid_field2": {
 					"field": "perfil",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false
+					"inlineEdit": false,
+					"clickSort": true
 				},
 				"simple_grid_field3": {
 					"field": "nombre",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false
+					"inlineEdit": false,
+					"clickSort": true
 				},
 				"grid_checkbox": {
 					"type": "grid_checkbox"
@@ -1156,10 +1161,12 @@
 					"type": "grid_checkbox_head"
 				},
 				"grid_edit": {
-					"type": "grid_edit"
+					"type": "grid_edit",
+					"popup": false
 				},
 				"grid_view": {
-					"type": "grid_view"
+					"type": "grid_view",
+					"popup": false
 				},
 				"search_panel_field": {
 					"field": "correo",
@@ -1270,6 +1277,9 @@
 				}
 			},
 			"version": 13,
+			"reorderRows": false,
+			"reorderRowsField": "",
+			"addToBottom": false,
 			"imageItem": {
 				"type": "page_image"
 			},
