@@ -33,13 +33,6 @@
 				"height": 152
 			},
 			{
-				"gid": 3052148162,
-				"y": 10,
-				"x": 989,
-				"width": 272.59375,
-				"height": 660
-			},
-			{
 				"gid": 3903546070,
 				"y": 10,
 				"x": 475,
@@ -52,6 +45,13 @@
 				"x": 155,
 				"width": 121.921875,
 				"height": 152
+			},
+			{
+				"gid": 3052148162,
+				"y": 10,
+				"x": 1000,
+				"width": 141.09375,
+				"height": 400
 			}
 		]
 	},
@@ -266,11 +266,9 @@
 							}
 						},
 						"padron": {
-							"mask": "ADESP",
+							"mask": "ADESPI",
 							"table": "padron",
-							"restrictedPages": {
-								"import": true
-							}
+							"restrictedPages": {}
 						}
 					},
 					"admin": false,
@@ -347,7 +345,7 @@
 							"itemType": 2,
 							"linkType": 0,
 							"iconType": 3,
-							"iconName": "fa-server",
+							"iconName": "fa-tachometer-alt",
 							"table": 3052148162,
 							"pageType": "list"
 						}
@@ -525,12 +523,12 @@
 						"c1": {
 							"model": "c1",
 							"items": [
-								"welcome_item6",
 								"welcome_item",
 								"welcome_item4",
 								"welcome_item2",
 								"welcome_item1",
-								"welcome_item5"
+								"welcome_item5",
+								"welcome_item3"
 							]
 						}
 					},
@@ -666,7 +664,7 @@
 						"text": "Cajas de medidores ya limpias"
 					}
 				},
-				"welcome_item6": {
+				"welcome_item3": {
 					"type": "welcome_item",
 					"linkUrl": "",
 					"linkTable": "padron",
@@ -676,10 +674,9 @@
 						"type": 6
 					},
 					"linkIcon": {
-						"fa": "server",
-						"style": 0
+						"glyph": "hand-right"
 					},
-					"background": "#7b68ee",
+					"background": "#cfae83",
 					"linkType": 0
 				}
 			},
