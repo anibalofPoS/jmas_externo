@@ -47,7 +47,7 @@ flush();
 $leer_ws= new ws();
 $sql="select count(*) from pulsodelagua.padron where cuenta<1000000";
 $total=DBLookUp($sql);
-$sql="select cuenta, localizacion, sector, distrito, tarifa_id, giro_id from pulsodelagua.padron where cuenta<100";
+$sql="select cuenta from pulsodelagua.padron";
 $rs=DB::Query($sql);
 $n=1;
 while ($row=$rs->fetchAssoc()){
@@ -56,7 +56,9 @@ while ($row=$rs->fetchAssoc()){
    //echo $row['cuenta'].', ';
    $leer_ws->conectar($row['cuenta']);
    if ($leer_ws->cuenta==0){
-      continue; 
+      $n++;       
+      continue;
+      
    }
    $datos=array();
    $key=array();
@@ -65,11 +67,15 @@ while ($row=$rs->fetchAssoc()){
    $datos['anomalia']=$leer_ws->anomalia;
    $datos['anomalia_info']=$leer_ws->anomalia_info;
    $datos['id_medidor']=$leer_ws->id_medidor;
-   $datos['localizacion']=$row['localizacion'];
-   $datos['tarifa']=$row['tarifa_id'];
-   $datos['giro']=$row['giro_id'];
-   $datos['sector']=$row['sector'];
-   $datos['distrito']=$row['distrito'];
+   $datos['localizacion']=$leer_ws->localizacion;
+   $datos['tarifa']=$leer_ws->tarifa;
+   $datos['giro']=$leer_ws->giro;
+   $datos['sector']=$leer_ws->sector;
+   $datos['distrito']=$leer_ws->distrito;
+   $datos['clase']=$leer_ws->clase;
+   $datos['colonia']=$leer_ws->colonia;
+   $datos['periodos_adeudo']=$leer_ws->periodos_adeudo;
+   $datos['adeudo']=$leer_ws->adeudo;
    $sql="select cuenta from jmas_externo.padron where cuenta={$row['cuenta']} limit 1";
    $existe=DBLookUp($sql);
    if ($existe==$row['cuenta']){
@@ -86,8 +92,8 @@ while ($row=$rs->fetchAssoc()){
 
 
 class ws{
-   public $fecha,$lectura,$mes,$anomalia,$anomalia_info,$id_medidor,$cuenta;
-   
+   public $mes,$anomalia,$anomalia_info,$id_medidor,$cuenta;
+   public $sector, $distrito, $colonia, $tarifa, $giro, $periodos_adeudo, $adeudo, $clase, $localizacion;
    public function __construct() {
       $this->mes=array(
         "Jan"=>"01",
@@ -104,7 +110,13 @@ class ws{
 	    "Dec"=>"12"
 	    );
    }
-  
+ 
+   public $cdistrito=array("DISTRITO 1"=>1,
+                           "DISTRITO 2"=>2,
+                           "DISTRITO 3"=>3,
+                           "DISTRITO 4"=>4,
+                           "DISTRITO 5"=>5);
+                        
    public function conectar($cuenta) {
        $url="http://172.16.70.21/jlm/apis/ora_jmas/api/get-corte-reconexion/".$cuenta;
        $response=file_get_contents($url);
@@ -114,14 +126,33 @@ class ws{
        $this->anomalia_info='';
        $this->id_medidor='';
        $this->cuenta=0;
+       $this->colonia="";
+       $this->distrito=0;
+       $this->sector=0;
+       $this->tarifa=0;
+       $this->giro=0;
+       $this->periodos_adeudo=0;
+       $this->adeudo=0;
+       $this->clase="";
+       $this->localizacion="";       
+     
        if (count($response)>0){
           $this->cuenta=$response['CUENTA']; 
-          $this->fecha=$response['FECHA_LECTURA'];
-          $this->lectura=$response['LECTURA'];
           $anomalia=$response['ANOMALIA'];
           $this->anomalia=$this->anomalia($anomalia);
           $this->anomalia_info=$response['ANOMALIA_INFO'];
           $this->id_medidor=$response['SERIE_MEDIDOR'];
+          $this->distrito=$this->cdistrito[$response['DISTRITO']];
+          $acolonia=explode("Col.", $response["DIRECCION"]);
+          $this->colonia=$acolonia[1];
+          $this->sector=$response["SECTOR"];
+          $this->tarifa=$response['ID_TARIFA'];
+          $this->giro=$response['ID_GIRO'];
+          $this->periodos_adeudo=$response['PERIODOS_ADEUDO'];
+          $this->adeudo=$response['ADEUDO_TOTAL'];
+          $this->clase=$response['CLASE'];
+          $this->localizacion=$response['LOCALIZACION'];
+         
        }
    }
 

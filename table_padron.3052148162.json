@@ -235,7 +235,13 @@
 				{}
 			],
 			"editFormats": [
-				{}
+				{
+					"format": "Lookup wizard",
+					"lookupTable": "tarifa_ids",
+					"lookupTableConnection": "conn1",
+					"lookupLinkField": "tarifa_id",
+					"lookupDisplayField": "tarifa"
+				}
 			],
 			"label": {
 				"Spanish": "Tarifa"
@@ -253,7 +259,13 @@
 				{}
 			],
 			"editFormats": [
-				{}
+				{
+					"format": "Lookup wizard",
+					"lookupTable": "giros",
+					"lookupTableConnection": "conn1",
+					"lookupLinkField": "giro_id",
+					"lookupDisplayField": "descripcion"
+				}
 			],
 			"label": {
 				"Spanish": "Giro"
@@ -1554,10 +1566,10 @@
 									"cell": "headcell_field43"
 								},
 								{
-									"cell": "headcell_field40"
+									"cell": "headcell_field49"
 								},
 								{
-									"cell": "headcell_field37"
+									"cell": "headcell_field40"
 								},
 								{
 									"cell": "headcell_field5"
@@ -1616,10 +1628,10 @@
 									"cell": "headcell_field44"
 								},
 								{
-									"cell": "headcell_field41"
+									"cell": "headcell_field50"
 								},
 								{
-									"cell": "headcell_field38"
+									"cell": "headcell_field41"
 								},
 								{
 									"cell": "headcell_field6"
@@ -1678,10 +1690,10 @@
 									"cell": "headcell_field45"
 								},
 								{
-									"cell": "headcell_field42"
+									"cell": "headcell_field51"
 								},
 								{
-									"cell": "headcell_field39"
+									"cell": "headcell_field42"
 								},
 								{
 									"cell": "headcell_field7"
@@ -2030,28 +2042,6 @@
 							"columnName": "field",
 							"field": "tarifa"
 						},
-						"headcell_field37": {
-							"model": "headcell_field",
-							"items": [
-								"grid_field_label10"
-							],
-							"columnName": "field",
-							"field": "periodos_adeudo"
-						},
-						"headcell_field38": {
-							"model": "cell_field",
-							"items": [
-								"grid_field10"
-							],
-							"columnName": "field",
-							"field": "periodos_adeudo"
-						},
-						"headcell_field39": {
-							"model": "footcell_field",
-							"items": [],
-							"columnName": "field",
-							"field": "periodos_adeudo"
-						},
 						"headcell_field40": {
 							"model": "headcell_field",
 							"items": [
@@ -2117,6 +2107,28 @@
 							"items": [],
 							"columnName": "field",
 							"field": "colonia"
+						},
+						"headcell_field49": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label10"
+							],
+							"columnName": "field",
+							"field": "periodos_adeudo"
+						},
+						"headcell_field50": {
+							"model": "cell_field",
+							"items": [
+								"grid_field10"
+							],
+							"columnName": "field",
+							"field": "periodos_adeudo"
+						},
+						"headcell_field51": {
+							"model": "footcell_field",
+							"items": [],
+							"columnName": "field",
+							"field": "periodos_adeudo"
 						}
 					},
 					"deferredItems": [],
