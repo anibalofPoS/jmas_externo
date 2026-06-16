@@ -33,6 +33,13 @@
 				"height": 152
 			},
 			{
+				"gid": 3052148162,
+				"y": 10,
+				"x": 1000,
+				"width": 141.09375,
+				"height": 400
+			},
+			{
 				"gid": 3903546070,
 				"y": 10,
 				"x": 475,
@@ -45,13 +52,6 @@
 				"x": 155,
 				"width": 121.921875,
 				"height": 152
-			},
-			{
-				"gid": 3052148162,
-				"y": 10,
-				"x": 1000,
-				"width": 141.09375,
-				"height": 400
 			}
 		]
 	},
@@ -213,6 +213,13 @@
 							"restrictedPages": {
 								"list": false
 							}
+						},
+						"en limpieza": {
+							"mask": "S",
+							"table": "",
+							"restrictedPages": {
+								"list": false
+							}
 						}
 					}
 				},
@@ -266,9 +273,11 @@
 							}
 						},
 						"padron": {
-							"mask": "ADESPI",
+							"mask": "ADESP",
 							"table": "padron",
-							"restrictedPages": {}
+							"restrictedPages": {
+								"import": true
+							}
 						}
 					},
 					"admin": false,
