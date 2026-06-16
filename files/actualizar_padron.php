@@ -47,7 +47,7 @@ flush();
 $leer_ws= new ws();
 $sql="select count(*) from pulsodelagua.padron where cuenta<1000000";
 $total=DBLookUp($sql);
-$sql="select cuenta from pulsodelagua.padron limit 100";
+$sql="select cuenta from pulsodelagua.padron where cuenta<1000000";
 $rs=DB::Query($sql);
 $n=1;
 while ($row=$rs->fetchAssoc()){

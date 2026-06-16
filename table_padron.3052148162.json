@@ -214,17 +214,12 @@
 				{}
 			],
 			"editFormats": [
-				{
-					"lookupTable": "padron",
-					"lookupTableConnection": "conn1",
-					"lookupLinkField": "cuenta",
-					"lookupDisplayField": "nombre"
-				}
+				{}
 			],
 			"label": {
 				"Spanish": "Nombre"
 			},
-			"tableName": ""
+			"tableName": "padron"
 		},
 		{
 			"name": "tarifa",
@@ -383,6 +378,17 @@
 				"scale": 0,
 				"typeName": "mediumint(6)",
 				"nullable": false,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "nombre",
+				"type": 200,
+				"size": 80,
+				"scale": 0,
+				"typeName": "varchar(80)",
+				"nullable": true,
 				"autoinc": false,
 				"defaultValueSQL": null,
 				"defaultValue": ""
@@ -2265,23 +2271,11 @@
 					"type": "grid_view",
 					"popup": false
 				},
-				"search_panel_field1": {
-					"field": "cuenta",
-					"type": "search_panel_field",
-					"alwaysOnPanel": false,
-					"required": false
-				},
 				"export_selected": {
 					"type": "export_selected"
 				},
 				"-1": {
 					"type": "-"
-				},
-				"show_search_panel": {
-					"type": "show_search_panel"
-				},
-				"hide_search_panel": {
-					"type": "hide_search_panel"
 				},
 				"-": {
 					"type": "-"
@@ -2307,25 +2301,15 @@
 				"simple_search": {
 					"type": "simple_search"
 				},
-				"search_panel": {
-					"type": "search_panel",
-					"items": [
-						"search_panel_field1",
-						"search_panel_field"
-					],
-					"_flexiblePanel": true
-				},
 				"list_options": {
 					"type": "list_options",
 					"items": [
 						"export_selected",
 						"-3",
 						"advsearch_link",
-						"-1",
-						"-2",
 						"show_search_panel",
 						"hide_search_panel",
-						"-",
+						"-1",
 						"export"
 					]
 				},
@@ -2507,17 +2491,37 @@
 					"showFilter": true,
 					"clickSort": true
 				},
-				"search_panel_field": {
-					"field": "nombre",
-					"type": "search_panel_field",
-					"alwaysOnPanel": false,
-					"required": false
-				},
 				"advsearch_link": {
 					"type": "advsearch_link"
 				},
 				"-3": {
 					"type": "-"
+				},
+				"search_panel": {
+					"type": "search_panel",
+					"items": [
+						"search_panel_field",
+						"search_panel_field1"
+					],
+					"_flexiblePanel": true
+				},
+				"show_search_panel": {
+					"type": "show_search_panel"
+				},
+				"hide_search_panel": {
+					"type": "hide_search_panel"
+				},
+				"search_panel_field": {
+					"field": "cuenta",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
+				},
+				"search_panel_field1": {
+					"field": "nombre",
+					"type": "search_panel_field",
+					"alwaysOnPanel": false,
+					"required": false
 				}
 			},
 			"version": 13,
