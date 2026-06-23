@@ -1977,7 +1977,8 @@
 				},
 				"grid_field_label1": {
 					"type": "grid_field_label",
-					"field": "direccion"
+					"field": "direccion",
+					"showFilter": true
 				},
 				"search_panel_field3": {
 					"field": "direccion",
