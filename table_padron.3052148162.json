@@ -13,6 +13,7 @@
 		{
 			"name": "fecha",
 			"sqlExpression": "fecha",
+			"index": 1,
 			"strField": "fecha",
 			"type": 7,
 			"viewFormats": [
@@ -34,6 +35,7 @@
 		{
 			"name": "cuenta",
 			"sqlExpression": "cuenta",
+			"index": 2,
 			"strField": "cuenta",
 			"type": 3,
 			"viewFormats": [
@@ -50,6 +52,7 @@
 		{
 			"name": "nombre",
 			"sqlExpression": "nombre",
+			"index": 3,
 			"strField": "nombre",
 			"type": 200,
 			"viewFormats": [
@@ -66,8 +69,9 @@
 		{
 			"name": "anomalia",
 			"sqlExpression": "anomalia",
+			"index": 4,
 			"strField": "anomalia",
-			"type": 16,
+			"type": 2,
 			"viewFormats": [
 				{}
 			],
@@ -88,6 +92,7 @@
 		{
 			"name": "anomalia_info",
 			"sqlExpression": "anomalia_info",
+			"index": 5,
 			"strField": "anomalia_info",
 			"type": 200,
 			"viewFormats": [
@@ -104,6 +109,7 @@
 		{
 			"name": "id_medidor",
 			"sqlExpression": "id_medidor",
+			"index": 6,
 			"strField": "id_medidor",
 			"type": 200,
 			"viewFormats": [
@@ -120,8 +126,9 @@
 		{
 			"name": "tarifa",
 			"sqlExpression": "tarifa",
+			"index": 7,
 			"strField": "tarifa",
-			"type": 16,
+			"type": 2,
 			"viewFormats": [
 				{}
 			],
@@ -142,6 +149,7 @@
 		{
 			"name": "giro",
 			"sqlExpression": "giro",
+			"index": 8,
 			"strField": "giro",
 			"type": 3,
 			"viewFormats": [
@@ -164,6 +172,7 @@
 		{
 			"name": "adeudo",
 			"sqlExpression": "adeudo",
+			"index": 9,
 			"strField": "adeudo",
 			"type": 14,
 			"viewFormats": [
@@ -182,6 +191,7 @@
 		{
 			"name": "periodos_adeudo",
 			"sqlExpression": "periodos_adeudo",
+			"index": 10,
 			"strField": "periodos_adeudo",
 			"type": 2,
 			"viewFormats": [
@@ -198,6 +208,7 @@
 		{
 			"name": "colonia",
 			"sqlExpression": "colonia",
+			"index": 11,
 			"strField": "colonia",
 			"type": 200,
 			"viewFormats": [
@@ -214,6 +225,7 @@
 		{
 			"name": "clase",
 			"sqlExpression": "clase",
+			"index": 12,
 			"strField": "clase",
 			"type": 200,
 			"viewFormats": [
@@ -230,8 +242,9 @@
 		{
 			"name": "sector",
 			"sqlExpression": "sector",
+			"index": 13,
 			"strField": "sector",
-			"type": 16,
+			"type": 2,
 			"viewFormats": [
 				{}
 			],
@@ -246,8 +259,9 @@
 		{
 			"name": "distrito",
 			"sqlExpression": "distrito",
+			"index": 14,
 			"strField": "distrito",
-			"type": 16,
+			"type": 2,
 			"viewFormats": [
 				{}
 			],
@@ -262,6 +276,7 @@
 		{
 			"name": "localizacion",
 			"sqlExpression": "localizacion",
+			"index": 15,
 			"strField": "localizacion",
 			"type": 200,
 			"viewFormats": [

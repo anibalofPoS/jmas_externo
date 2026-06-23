@@ -17,19 +17,14 @@ flush();
 $acuentas=explode(',',$_GET['cuentas']);
 foreach ($acuentas as $cuenta){
     echo $cuenta.'<br>';
-    $sql="select *,SUBSTRING_INDEX(direccion,'Col.',1) as calle, SUBSTRING_INDEX(direccion,'Col.',-1) as colonia,
-         (select id_medidor from jmas_externo.padron where cuenta={$cuenta} limit 1) as id_medidor 
-         from pulsodelagua.padron where cuenta={$cuenta} limit 1";
-    $rs=DB::Query($sql);
-    $row=$rs->fetchAssoc();
-    $sql="select * from banco where cuenta={$cuenta} limit 1";
+    $sql="select * from padron where cuenta={$cuenta} limit 1";
     $rs=DB::Query($sql);
     $ban=$rs->fetchAssoc();
     if ($ban['cuenta']==$cuenta){
        // ya se limpio alguna vez
-       agregar(2,$row);
+       agregar(2,$ban);
     }else{
-       agregar(1,$row);    
+       agregar(1,$ban);    
     } 
     echo str_repeat(' ', 1024);
     ob_flush();
