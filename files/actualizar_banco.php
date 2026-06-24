@@ -17,14 +17,19 @@ flush();
 $acuentas=explode(',',$_GET['cuentas']);
 foreach ($acuentas as $cuenta){
     echo $cuenta.'<br>';
-    $sql="select * from padron where cuenta={$cuenta} limit 1";
+    $sql="select *,SUBSTRING_INDEX(direccion,'Col.',1) as calle, SUBSTRING_INDEX(direccion,'Col.',-1) as colonia,
+         (select id_medidor from jmas_externo.padron where cuenta={$cuenta} limit 1) as id_medidor 
+         from pulsodelagua.padron where cuenta={$cuenta} limit 1";
+    $rs=DB::Query($sql);
+    $row=$rs->fetchAssoc();
+    $sql="select * from banco where cuenta={$cuenta} limit 1";
     $rs=DB::Query($sql);
     $ban=$rs->fetchAssoc();
     if ($ban['cuenta']==$cuenta){
        // ya se limpio alguna vez
-       agregar(2,$ban);
+       agregar(2,$row);
     }else{
-       agregar(1,$ban);    
+       agregar(1,$row);    
     } 
     echo str_repeat(' ', 1024);
     ob_flush();
@@ -44,9 +49,6 @@ function agregar($agrega,$res){
     $datos['lat']=$res['geolat'];
     $datos['lon']=$res['geolon'];
     $datos['status']='DCR';
-    foreach ($datos as $key=>$valor){
-        echo $key.' '.valor.'<br>';
-    }
     if ($agrega==1){
         $datos['fecha']=date('Y-m-d');
         DB::Insert("banco",$datos);
