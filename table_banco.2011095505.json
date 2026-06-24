@@ -1,13 +1,13 @@
 {
 	"orderInfo": [
 		{
-			"index": 7,
-			"field": "nombre",
+			"index": 6,
+			"field": "lon",
 			"expr": "localizacion",
 			"asc": true
 		}
 	],
-	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tnombre,\r\n\tdireccion,\r\n\tcolonia,\r\n\tlocalizacion,\r\n\tstatus,\r\n\tlimpiador,\r\n\tlat,\r\n\tlon\r\nFROM\r\n\tbanco\r\nWHERE\r\n    status='DCR'\r\nORDER BY\r\n    localizacion",
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tdireccion,\r\n\tcolonia,\r\n\tlocalizacion,\r\n\tstatus,\r\n\tlimpiador,\r\n\tlat,\r\n\tlon\r\nFROM\r\n\tbanco\r\nWHERE\r\n    status='DCR'\r\nORDER BY\r\n    localizacion",
 	"connId": "conn",
 	"originalTable": "banco",
 	"name": "banco",
@@ -75,7 +75,7 @@
 		{
 			"name": "status",
 			"sqlExpression": "status",
-			"index": 8,
+			"index": 7,
 			"strField": "status",
 			"googleLikeSearch": false,
 			"type": 200,
@@ -93,7 +93,7 @@
 		{
 			"name": "limpiador",
 			"sqlExpression": "limpiador",
-			"index": 9,
+			"index": 8,
 			"strField": "limpiador",
 			"googleLikeSearch": false,
 			"type": 2,
@@ -118,7 +118,7 @@
 		{
 			"name": "lat",
 			"sqlExpression": "lat",
-			"index": 10,
+			"index": 9,
 			"strField": "lat",
 			"googleLikeSearch": false,
 			"type": 14,
@@ -139,7 +139,7 @@
 		{
 			"name": "lon",
 			"sqlExpression": "lon",
-			"index": 11,
+			"index": 10,
 			"strField": "lon",
 			"googleLikeSearch": false,
 			"type": 14,
@@ -158,26 +158,9 @@
 			"tableName": "banco"
 		},
 		{
-			"name": "nombre",
-			"sqlExpression": "nombre",
-			"index": 4,
-			"strField": "nombre",
-			"type": 200,
-			"viewFormats": [
-				{}
-			],
-			"editFormats": [
-				{}
-			],
-			"label": {
-				"Spanish": "Nombre de la cuenta"
-			},
-			"tableName": "banco"
-		},
-		{
 			"name": "colonia",
 			"sqlExpression": "colonia",
-			"index": 6,
+			"index": 5,
 			"strField": "colonia",
 			"googleLikeSearch": false,
 			"type": 200,
@@ -195,7 +178,7 @@
 		{
 			"name": "localizacion",
 			"sqlExpression": "localizacion",
-			"index": 7,
+			"index": 6,
 			"strField": "localizacion",
 			"googleLikeSearch": false,
 			"type": 200,
@@ -230,7 +213,7 @@
 		{
 			"name": "direccion",
 			"sqlExpression": "direccion",
-			"index": 5,
+			"index": 4,
 			"strField": "direccion",
 			"type": 200,
 			"viewFormats": [
@@ -631,7 +614,6 @@
 								"export_field2",
 								"export_field3",
 								"export_field5",
-								"export_field6",
 								"export_field7",
 								"export_field8",
 								"export_field4",
@@ -702,10 +684,6 @@
 				},
 				"export_field5": {
 					"field": "lon",
-					"type": "export_field"
-				},
-				"export_field6": {
-					"field": "nombre",
 					"type": "export_field"
 				},
 				"export_field7": {
@@ -1116,7 +1094,6 @@
 								"integrated_edit_field2",
 								"integrated_edit_field3",
 								"integrated_edit_field5",
-								"integrated_edit_field6",
 								"integrated_edit_field7",
 								"integrated_edit_field8",
 								"integrated_edit_field4",
@@ -1177,11 +1154,6 @@
 				},
 				"integrated_edit_field5": {
 					"field": "lon",
-					"type": "integrated_edit_field",
-					"orientation": 1
-				},
-				"integrated_edit_field6": {
-					"field": "nombre",
 					"type": "integrated_edit_field",
 					"orientation": 1
 				},
@@ -1384,9 +1356,6 @@
 									"cell": "headcell_field8"
 								},
 								{
-									"cell": "headcell_field2"
-								},
-								{
 									"cell": "headcell_field11"
 								},
 								{
@@ -1422,9 +1391,6 @@
 									"cell": "headcell_field9"
 								},
 								{
-									"cell": "cell_field2"
-								},
-								{
 									"cell": "headcell_field12"
 								},
 								{
@@ -1458,9 +1424,6 @@
 								},
 								{
 									"cell": "headcell_field10"
-								},
-								{
-									"cell": "footcell_field2"
 								},
 								{
 									"cell": "headcell_field13"
@@ -1523,28 +1486,6 @@
 							"model": "footcell_field",
 							"items": [],
 							"field": "cuenta",
-							"columnName": "field"
-						},
-						"headcell_field2": {
-							"model": "headcell_field",
-							"items": [
-								"simple_grid_field9"
-							],
-							"field": "nombre",
-							"columnName": "field"
-						},
-						"cell_field2": {
-							"model": "cell_field",
-							"items": [
-								"simple_grid_field6"
-							],
-							"field": "nombre",
-							"columnName": "field"
-						},
-						"footcell_field2": {
-							"model": "footcell_field",
-							"items": [],
-							"field": "nombre",
 							"columnName": "field"
 						},
 						"headcell_field3": {
@@ -1809,7 +1750,6 @@
 						"search_panel_field3",
 						"search_panel_field2",
 						"search_panel_field7",
-						"search_panel_field6",
 						"search_panel_field1"
 					],
 					"_flexiblePanel": true
@@ -1836,12 +1776,6 @@
 				"loginform_login": {
 					"type": "loginform_login",
 					"popup": false
-				},
-				"search_panel_field6": {
-					"field": "nombre",
-					"type": "search_panel_field",
-					"alwaysOnPanel": false,
-					"required": false
 				},
 				"search_panel_field7": {
 					"field": "colonia",
@@ -1874,22 +1808,6 @@
 				"simple_grid_field4": {
 					"type": "grid_field_label",
 					"field": "cuenta"
-				},
-				"simple_grid_field6": {
-					"field": "nombre",
-					"type": "grid_field",
-					"inlineAdd": false,
-					"inlineEdit": false,
-					"showFilter": true
-				},
-				"simple_grid_field9": {
-					"type": "grid_field_label",
-					"field": "nombre",
-					"label": {
-						"field": "nombre",
-						"table": "banco",
-						"type": 3
-					}
 				},
 				"simple_grid_field7": {
 					"field": "colonia",
@@ -2105,7 +2023,6 @@
 								"simple_grid_field2",
 								"simple_grid_field3",
 								"simple_grid_field5",
-								"simple_grid_field6",
 								"simple_grid_field7",
 								"simple_grid_field8",
 								"simple_grid_field4",
@@ -2145,10 +2062,6 @@
 				},
 				"simple_grid_field5": {
 					"field": "lon",
-					"type": "simple_grid_field"
-				},
-				"simple_grid_field6": {
-					"field": "nombre",
 					"type": "simple_grid_field"
 				},
 				"simple_grid_field7": {

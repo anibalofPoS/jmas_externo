@@ -167,11 +167,14 @@
 							"restrictedPages": {}
 						},
 						"banco": {
-							"mask": "ESP",
+							"mask": "PSE",
 							"table": "",
 							"restrictedPages": {
 								"import": true,
-								"add": true
+								"add": true,
+								"list": false,
+								"view": false,
+								"edit": false
 							}
 						},
 						"limpiadores": {
