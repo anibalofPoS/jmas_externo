@@ -44,6 +44,9 @@ function agregar($agrega,$res){
     $datos['lat']=$res['geolat'];
     $datos['lon']=$res['geolon'];
     $datos['status']='DCR';
+    foreach ($datos as $key=>$valor){
+        echo $key.' '.valor.'<br>';
+    }
     if ($agrega==1){
         $datos['fecha']=date('Y-m-d');
         DB::Insert("banco",$datos);
