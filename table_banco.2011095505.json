@@ -259,6 +259,10 @@
 			"eventId": "EVENT_AFTERDELETE",
 			"pageType": "list",
 			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n"
+		},
+		{
+			"eventId": "EVENT_INIT_TABLE",
+			"code": "if (isset($_GET['pagesize'])){\n   $_SESSION['pagesize']=$_GET['pagesize'];\n}\n\n"
 		}
 	],
 	"strOrderBy": "ORDER BY\r\n    localizacion",
@@ -1223,7 +1227,7 @@
 							"model": "c2",
 							"items": [
 								"details_found",
-								"page_size",
+								"snippet",
 								"print_panel"
 							]
 						}
@@ -1672,9 +1676,6 @@
 				"details_found": {
 					"type": "details_found"
 				},
-				"page_size": {
-					"type": "page_size"
-				},
 				"print_panel": {
 					"type": "print_panel",
 					"items": [
@@ -1914,6 +1915,10 @@
 				"search_panel_field3": {
 					"field": "direccion",
 					"type": "search_panel_field"
+				},
+				"snippet": {
+					"type": "snippet",
+					"eventGid": 3950423311
 				}
 			},
 			"version": 13,

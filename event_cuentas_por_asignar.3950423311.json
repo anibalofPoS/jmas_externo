@@ -1,0 +1,4 @@
+{
+	"name": "cuentas_por_asignar",
+	"serverCode": "if (isset($_SESSION['pagesize'])){\n   $pagesize=$_SESSION['pagesize'];\n}else{\n   $pagesize=10; \n}\necho \"<div class='center'>\";\necho '<form action=\"row_x_page.php\" enctype=\"multipart/form-data\" method=\"POST\">';\necho '<p>';\necho 'Reglones por hoja: ';\necho '<input type=\"text\" name=\"renglones\" size=\"5\" value=\"'.$pagesize.'\" /> ';\necho '<input type=\"submit\" name=\"submit\" id=\"submit\" value=\"Ver\"> ';\necho '</form>';\necho '</p>';\necho \"</div>\";"
+}
