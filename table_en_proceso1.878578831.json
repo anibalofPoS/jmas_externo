@@ -7,7 +7,7 @@
 			"asc": false
 		}
 	],
-	"sql": "SELECT\r\n\tfecha,\r\n\tdate_format(fecha,'%H:%i') as tiempo,\r\n\tlimpiador,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tfecha_limpio,\r\n\tdate_format(fecha_limpio,'%H:%i') as hr_limpio,\r\n\tstatus,\r\n\tconcat(\"lym/\",fotoa,\".jpeg\") as fotoa,\r\n\tconcat(\"lym/\",fotod,\".jpeg\") as fotod,\r\n\tlat,\r\n\tlon,\r\n\tlatf,\r\n\tlonf,\r\n    '' as mapa,\r\n    '' as mapaf,\r\n    direccion,\r\n    nota\r\nFROM\r\n\ten_proceso\r\nWHERE\r\n    status='Limpio'\r\nORDER BY\r\n    fecha\r\nDESC",
+	"sql": "SELECT\r\n\tfecha,\r\n\tdate_format(fecha,'%H:%i') as tiempo,\r\n\tlimpiador,\r\n\tcuenta,\r\n\tid_medidor,\r\n\tfecha_limpio,\r\n\tdate_format(fecha_limpio,'%H:%i') as hr_limpio,\r\n\tstatus,\r\n\tconcat(\"lym/\",fotoa,\".jpeg\") as fotoa,\r\n\tconcat(\"lym/\",fotod,\".jpeg\") as fotod,\r\n\tlat,\r\n\tlon,\r\n\tlatf,\r\n\tlonf,\r\n    '' as mapa,\r\n    '' as mapaf,\r\n    direccion,\r\n    nota,\r\n    comentario\r\nFROM\r\n\ten_proceso\r\nWHERE\r\n    status='Limpio'\r\nORDER BY\r\n    fecha\r\nDESC",
 	"type": 1,
 	"connId": "conn",
 	"originalTable": "en_proceso",
@@ -382,6 +382,25 @@
 				"Spanish": "Requiere medidor?"
 			},
 			"tableName": "en_proceso"
+		},
+		{
+			"name": "comentario",
+			"sqlExpression": "comentario",
+			"index": 19,
+			"strField": "comentario",
+			"type": 201,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{
+					"format": "Text area"
+				}
+			],
+			"label": {
+				"Spanish": "Comentario"
+			},
+			"tableName": ""
 		}
 	],
 	"eventHandlers": [
@@ -822,7 +841,8 @@
 								"export_field7",
 								"export_field8",
 								"export_field9",
-								"export_field10"
+								"export_field10",
+								"export_field11"
 							]
 						}
 					},
@@ -913,6 +933,10 @@
 				},
 				"export_field10": {
 					"field": "nota",
+					"type": "export_field"
+				},
+				"export_field11": {
+					"field": "comentario",
 					"type": "export_field"
 				}
 			},
@@ -1215,6 +1239,9 @@
 								},
 								{
 									"cell": "headcell_field11"
+								},
+								{
+									"cell": "headcell_field12"
 								}
 							]
 						},
@@ -1259,6 +1286,9 @@
 								},
 								{
 									"cell": "cell_field11"
+								},
+								{
+									"cell": "cell_field12"
 								}
 							]
 						},
@@ -1303,6 +1333,9 @@
 								},
 								{
 									"cell": "footcell_field11"
+								},
+								{
+									"cell": "footcell_field12"
 								}
 							]
 						}
@@ -1595,6 +1628,25 @@
 							"items": [],
 							"field": "nota",
 							"columnName": "field"
+						},
+						"headcell_field12": {
+							"model": "headcell_field",
+							"items": [
+								"grid_field_label3"
+							],
+							"field": "comentario"
+						},
+						"cell_field12": {
+							"model": "cell_field",
+							"items": [
+								"grid_field3"
+							],
+							"field": "comentario"
+						},
+						"footcell_field12": {
+							"model": "footcell_field",
+							"items": [],
+							"field": "comentario"
 						}
 					},
 					"deferredItems": [],
@@ -1900,7 +1952,9 @@
 				},
 				"grid_field2": {
 					"field": "nota",
-					"type": "grid_field"
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"grid_field_label2": {
 					"type": "grid_field_label",
@@ -1915,6 +1969,17 @@
 				"search_panel_field9": {
 					"field": "nota",
 					"type": "search_panel_field"
+				},
+				"grid_field3": {
+					"field": "comentario",
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
+				},
+				"grid_field_label3": {
+					"type": "grid_field_label",
+					"field": "comentario",
+					"showFilter": true
 				}
 			},
 			"version": 13,
@@ -2029,7 +2094,8 @@
 								"simple_grid_field7",
 								"simple_grid_field8",
 								"simple_grid_field9",
-								"simple_grid_field10"
+								"simple_grid_field10",
+								"simple_grid_field11"
 							]
 						}
 					},
@@ -2089,6 +2155,10 @@
 				},
 				"simple_grid_field10": {
 					"field": "nota",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field11": {
+					"field": "comentario",
 					"type": "simple_grid_field"
 				}
 			},
