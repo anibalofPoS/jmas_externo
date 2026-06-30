@@ -400,7 +400,7 @@
 			"label": {
 				"Spanish": "Comentario"
 			},
-			"tableName": ""
+			"tableName": "en_proceso"
 		}
 	],
 	"eventHandlers": [
@@ -588,9 +588,20 @@
 			{
 				"name": "nota",
 				"type": 200,
-				"size": 50,
+				"size": 2,
 				"scale": 0,
-				"typeName": "varchar(50)",
+				"typeName": "char(2)",
+				"nullable": true,
+				"autoinc": false,
+				"defaultValueSQL": null,
+				"defaultValue": ""
+			},
+			{
+				"name": "comentario",
+				"type": 201,
+				"size": 0,
+				"scale": 0,
+				"typeName": "tinytext",
 				"nullable": true,
 				"autoinc": false,
 				"defaultValueSQL": null,

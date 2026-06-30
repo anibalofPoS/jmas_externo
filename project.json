@@ -33,6 +33,13 @@
 				"height": 152
 			},
 			{
+				"gid": 2522309283,
+				"y": 10,
+				"x": 1170,
+				"width": 193.515625,
+				"height": 264
+			},
+			{
 				"gid": 3052148162,
 				"y": 10,
 				"x": 1000,
@@ -281,6 +288,14 @@
 							"restrictedPages": {
 								"import": true
 							}
+						},
+						"limpieza_x_plomero": {
+							"mask": "SP",
+							"table": "limpieza_x_plomero",
+							"restrictedPages": {
+								"add": true,
+								"import": true
+							}
 						}
 					},
 					"admin": false,
@@ -404,6 +419,21 @@
 							"iconType": 3,
 							"iconName": "fa-brush",
 							"table": 878578831,
+							"pageType": "list"
+						}
+					},
+					{
+						"id": "10",
+						"data": {
+							"name": {
+								"text": "Sumario por plomero",
+								"type": 0
+							},
+							"itemType": 2,
+							"linkType": 0,
+							"iconType": 3,
+							"iconName": "fa-tools",
+							"table": 2522309283,
 							"pageType": "list"
 						}
 					},
@@ -540,7 +570,8 @@
 								"welcome_item2",
 								"welcome_item1",
 								"welcome_item5",
-								"welcome_item3"
+								"welcome_item3",
+								"welcome_item6"
 							]
 						}
 					},
@@ -690,6 +721,22 @@
 					},
 					"background": "#cfae83",
 					"linkType": 0
+				},
+				"welcome_item6": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "limpieza_x_plomero",
+					"linkPage": "list",
+					"linkIcon": {
+						"fa": "tools",
+						"style": 0
+					},
+					"background": "#e07878",
+					"linkType": 0,
+					"linkText": {
+						"type": 0,
+						"text": "Sumario por plomero"
+					}
 				}
 			},
 			"version": 13,
