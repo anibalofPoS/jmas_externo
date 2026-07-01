@@ -949,12 +949,12 @@
 				"text": {
 					"type": "text",
 					"label": {
-						"text": "Cajas de medidores limpios por plomero",
+						"text": "Cajas de medidores limpiadas por los plomeros del Contratista",
 						"type": 0
 					},
 					"editedByRte": false,
 					"bold": true,
-					"font-size": "18px"
+					"font-size": "20px"
 				},
 				"delete": {
 					"type": "delete",
