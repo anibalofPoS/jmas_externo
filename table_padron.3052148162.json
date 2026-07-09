@@ -1,5 +1,5 @@
 {
-	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tnombre,\r\n\tanomalia,\r\n\tanomalia_info,\r\n\tid_medidor,\r\n\ttarifa,\r\n\tgiro,\r\n\tadeudo,\r\n\tperiodos_adeudo,\r\n\tcolonia,\r\n\tclase,\r\n\tsector,\r\n\tdistrito,\r\n\tlocalizacion\r\nFROM\r\n\tpadron",
+	"sql": "SELECT\r\n\tfecha,\r\n\tcuenta,\r\n\tnombre,\r\n\tanomalia,\r\n\tanomalia_info,\r\n\tid_medidor,\r\n\ttarifa,\r\n\tgiro,\r\n\tadeudo,\r\n\tperiodos_adeudo,\r\n\tcolonia,\r\n\tclase,\r\n\tsector,\r\n\tdistrito,\r\n\tlocalizacion,\r\n\tdatediff((select fecha_limpio from jmas_externo.en_proceso where jmas_externo.en_proceso.cuenta=padron.cuenta order by fecha_limpio desc limit 1), fecha) as dias,\r\n    (select status from jmas_externo.banco where cuenta=padron.cuenta limit 1) as status\r\nFROM\r\n\tpadron",
 	"connId": "conn",
 	"originalTable": "padron",
 	"name": "padron",
@@ -289,6 +289,47 @@
 				"Spanish": "Localizacion"
 			},
 			"tableName": "padron"
+		},
+		{
+			"name": "dias",
+			"sqlExpression": "datediff((select fecha_limpio from jmas_externo.en_proceso where jmas_externo.en_proceso.cuenta=padron.cuenta order by fecha_limpio desc limit 1), fecha)",
+			"index": 16,
+			"strField": "dias",
+			"type": 3,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Dias"
+			},
+			"tableName": ""
+		},
+		{
+			"name": "status",
+			"sqlExpression": "(select status from jmas_externo.banco where cuenta=padron.cuenta limit 1)",
+			"index": 17,
+			"strField": "status",
+			"type": 200,
+			"viewFormats": [
+				{}
+			],
+			"editFormats": [
+				{}
+			],
+			"label": {
+				"Spanish": "Status"
+			},
+			"tableName": ""
+		}
+	],
+	"eventHandlers": [
+		{
+			"eventId": "EVENT_BEFOREMOVENEXT_LIST",
+			"pageType": "list",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\nif ($data['status']==\"DCR\" || $data['status']==\"En proceso\"){\n    $pageObject->hideItem(\"grid_checkbox\", $recordId);\n}\nif ($data['status']==null || $data['dias']>180){\n    // se puede elegir\n}else{    \n    $pageObject->hideItem(\"grid_checkbox\", $recordId);\n}\nreturn true;\n"
 		}
 	],
 	"dbTableInfo": {
@@ -768,7 +809,9 @@
 								"export_field11",
 								"export_field12",
 								"export_field13",
-								"export_field14"
+								"export_field14",
+								"export_field15",
+								"export_field16"
 							]
 						}
 					},
@@ -875,6 +918,14 @@
 				},
 				"export_field14": {
 					"field": "localizacion",
+					"type": "export_field"
+				},
+				"export_field15": {
+					"field": "dias",
+					"type": "export_field"
+				},
+				"export_field16": {
+					"field": "status",
 					"type": "export_field"
 				}
 			},
@@ -1410,7 +1461,9 @@
 								"integrated_edit_field11",
 								"integrated_edit_field12",
 								"integrated_edit_field13",
-								"integrated_edit_field14"
+								"integrated_edit_field14",
+								"integrated_edit_field15",
+								"integrated_edit_field16"
 							]
 						}
 					},
@@ -1508,6 +1561,16 @@
 				"hamburger": {
 					"type": "hamburger",
 					"items": []
+				},
+				"integrated_edit_field15": {
+					"field": "dias",
+					"type": "integrated_edit_field",
+					"orientation": 0
+				},
+				"integrated_edit_field16": {
+					"field": "status",
+					"type": "integrated_edit_field",
+					"orientation": 0
 				}
 			},
 			"version": 13,
@@ -1683,7 +1746,9 @@
 								"simple_grid_field8",
 								"simple_grid_field5",
 								"simple_grid_field3",
-								"simple_grid_field4"
+								"simple_grid_field4",
+								"simple_grid_field15",
+								"simple_grid_field16"
 							]
 						}
 					},
@@ -1726,7 +1791,8 @@
 					"field": "fecha",
 					"type": "simple_grid_field",
 					"inlineAdd": false,
-					"inlineEdit": false
+					"inlineEdit": false,
+					"showFilter": true
 				},
 				"simple_grid_field1": {
 					"field": "cuenta",
@@ -1877,6 +1943,8 @@
 					"type": "search_panel",
 					"items": [
 						"search_panel_field2",
+						"search_panel_field3",
+						"search_panel_field",
 						"search_panel_field1"
 					],
 					"_flexiblePanel": true
@@ -1935,12 +2003,30 @@
 				"text": {
 					"type": "text",
 					"label": {
-						"text": "Cuentas Padron",
+						"text": "Cuentas Padron que se pueden asignar",
 						"type": 0
 					},
 					"editedByRte": false,
 					"bold": true,
 					"font-size": "18px"
+				},
+				"simple_grid_field15": {
+					"field": "dias",
+					"type": "simple_grid_field",
+					"showFilter": true
+				},
+				"simple_grid_field16": {
+					"field": "status",
+					"type": "simple_grid_field",
+					"showFilter": true
+				},
+				"search_panel_field": {
+					"field": "dias",
+					"type": "search_panel_field"
+				},
+				"search_panel_field3": {
+					"field": "status",
+					"type": "search_panel_field"
 				}
 			},
 			"version": 13,
@@ -2059,7 +2145,9 @@
 								"simple_grid_field11",
 								"simple_grid_field12",
 								"simple_grid_field13",
-								"simple_grid_field14"
+								"simple_grid_field14",
+								"simple_grid_field15",
+								"simple_grid_field16"
 							]
 						}
 					},
@@ -2135,6 +2223,14 @@
 				},
 				"simple_grid_field14": {
 					"field": "localizacion",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field15": {
+					"field": "dias",
+					"type": "simple_grid_field"
+				},
+				"simple_grid_field16": {
+					"field": "status",
 					"type": "simple_grid_field"
 				}
 			},
