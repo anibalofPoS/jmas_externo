@@ -1281,8 +1281,8 @@
 				"text": {
 					"type": "text",
 					"label": {
-						"text": "Usuarios de la plataforma",
-						"type": 0
+						"type": 0,
+						"text": "**** Usuarios de la plataforma"
 					},
 					"editedByRte": false,
 					"bold": true,
