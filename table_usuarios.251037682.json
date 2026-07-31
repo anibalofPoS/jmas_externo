@@ -1282,7 +1282,7 @@
 					"type": "text",
 					"label": {
 						"type": 0,
-						"text": "**** Usuarios de la plataforma"
+						"text": "Usuarios de la plataforma"
 					},
 					"editedByRte": false,
 					"bold": true,
