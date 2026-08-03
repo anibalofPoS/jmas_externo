@@ -87,7 +87,7 @@
 		},
 		{
 			"eventId": "EVENT_INIT_TABLE",
-			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$fecha1=$_GET['fecha1'];\n$fecha2=$_GET['fecha2'];\n\n$query->addWhere( \"fecha_limpio between \".$fecha1.\" and \".$fecha2 );\n"
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$fecha1=$_GET['fecha1'];\n$fecha2=$_GET['fecha2'];\nif (isset($fecha1) && isset($fecha2)){\n   $query->addWhere( \"date_format(fecha_limpio,'%Y-%m-%d') between '\".$fecha1.\"' and '\".$fecha2.\"'\" );\n}\n"
 		}
 	],
 	"dbTableInfo": {

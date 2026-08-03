@@ -238,8 +238,8 @@
 				"typeName": "tinyint(1)",
 				"nullable": true,
 				"autoinc": false,
-				"defaultValueSQL": null,
-				"defaultValue": ""
+				"defaultValueSQL": "0",
+				"defaultValue": "0"
 			}
 		],
 		"primaryKeys": [
