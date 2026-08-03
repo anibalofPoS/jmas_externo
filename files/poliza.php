@@ -14,8 +14,9 @@ class PDF extends FPDF
       global $fecha; 
       $this->SetLeftMargin(3);   
       $fecha=utf8_decode(strftime("%d-%b-%Y", strtotime($fecha)));   
-      $inicio=strftime("%a %d-%b-%Y", strtotime($_GET['fecha1']));
-      $termina=strftime("%a %d-%b-%Y", strtotime($_GET['fecha2']));      
+      $firma=utf8_decode(strftime("%d-%b-%Y", strtotime($_GET['firma'])));       
+      $inicio=utf8_decode(strftime("%d-%b-%Y", strtotime($_GET['fecha1'])));
+      $termina=utf8_decode(strftime("%d-%b-%Y", strtotime($_GET['fecha2'])));      
       // Logo
       $this->SetFillColor(223,223,223);
       $this->Image('../rezagos/images/poliza1.png',10,10,40);
@@ -34,8 +35,12 @@ class PDF extends FPDF
 	  $this->ln(12);	  
       $this->SetFont('Arial','B',11);
       $this->SetLeftMargin(20);
-	  $this->Cell(0,4,$inicio.' al '.$termina,0,0,'C');      
-	  $this->ln(4);	  	  
+      $this->Cell(0,4,"Contrato: ".$_GET['contrato'],0,0,'C');
+	  $this->ln(4);
+      $this->Cell(0,4,"Fecha de la firma del Contrato: ".$firma,0,0,'C');
+	  $this->ln(4);      	  
+	  $this->Cell(0,4,"Periodo: Del ".$inicio.' al '.$termina,0,0,'C');      
+	  $this->Ln(8);	  	  
 	  $this->Cell(0,4,utf8_decode("Póliza para el pago limpieza de las cajas de los medidores"),0,0,'C');	  
       $this->SetFont('Arial','B',8);	  
 	  $this->ln(8);
@@ -88,8 +93,10 @@ while ($row=$rs->fetchAssoc()){
       $pdf->SetFillColor(180, 196, 231);         
    }    
    $pdf->Cell(10,3,$n,'LT',0,'R',$sombra);
-   $pdf->Cell(25,3,$row['fecha'],'LT',0,'C',$sombra);
-   $pdf->Cell(25,3,$row['fecha_limpio'],'LT',0,'C',$sombra);
+   $fa=strftime("%a %d-%b-%Y", strtotime($row['fecha']));
+   $fl=strftime("%a %d-%b-%Y", strtotime($row['fecha_limpio']));   
+   $pdf->Cell(25,3,$fa,'LT',0,'C',$sombra);
+   $pdf->Cell(25,3,$fl,'LT',0,'C',$sombra);
    $pdf->Cell(18,3,$row['cajas'],'LTR',0,'R',$sombra);   
    $total+=$row['cajas'];
    $pdf->Ln();
@@ -104,6 +111,12 @@ if ( $n % 2 ){
 }
 $pdf->Cell(60,3,'Tota...',1,0,'R',$sombra);
 $pdf->Cell(18,3,$total,1,0,'R',$sombra);
+$sql="SELECT * FROM firmas";
+$rs=DB::Query($sql);
+$afirmas=array();
+while ($row=$rs->fetchAssoc()){
+    $afirmas[$row['id']]=array($row['nombre'],$row['puesto'],$row[firma]);
+}
 $pdf->Ln(20);
 $pdf->SetLeftMargin(36);
 $pdf->ln(0);
@@ -111,15 +124,19 @@ $pdf->Cell(70,5,str_pad("_",40,'_',STR_PAD_BOTH),0,0,'C');
 $pdf->Cell(9,5,"",0,0,"C");
 $pdf->Cell(70,5,str_pad("_",40,'_',STR_PAD_BOTH),0,0,'C');
 $pdf->ln(4);
-$pdf->Cell(70,5,"Elaborado por:",0,0,"C");
-$pdf->Cell(9,5,"",0,0,"C");      
-$pdf->Cell(70,5,"Autorizado por:",0,0,"C");
+// elaborado 1 index 1-2
+$pdf->Cell(70,5,$afirmas[1][2],0,0,"C");
+$pdf->Cell(9,5,"",0,0,"C"); 
+// direccion comercial 1 index 2-2
+$pdf->Cell(70,5,$afirmas[2][2],0,0,"C");
 $pdf->ln(3);
-$pdf->Cell(70,5,"Jefe de Departamento",0,0,"C");
+// elaborado 2 index 1-0
+$pdf->Cell(70,5,$afirmas[1][0],0,0,"C");
 $pdf->Cell(9,5,"",0,0,"C");      
 $pdf->Cell(70,5,utf8_decode("Encargada despacho Dir. Comercial"),0,0,"C");
 $pdf->Ln(3);
-$pdf->Cell(70,5,utf8_decode(""),0,0,"C");
+// elaborado 3 index 1-1
+$pdf->Cell(70,5,utf8_decode($afirmas[1][1]),0,0,"C");
 $pdf->Cell(9,5,"",0,0,"C");
 $pdf->Cell(70,5,utf8_decode(''),0,0,"C");
 $pdf->ln(16);

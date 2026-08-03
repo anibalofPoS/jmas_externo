@@ -40,6 +40,13 @@
 				"height": 180
 			},
 			{
+				"gid": 3483243228,
+				"y": 10,
+				"x": 665,
+				"width": 107.125,
+				"height": 124
+			},
+			{
 				"gid": 1229294977,
 				"y": 10,
 				"x": 305,
@@ -324,6 +331,13 @@
 							"restrictedPages": {
 								"import": true
 							}
+						},
+						"firmas": {
+							"mask": "ADESP",
+							"table": "firmas",
+							"restrictedPages": {
+								"import": true
+							}
 						}
 					},
 					"admin": false,
@@ -501,6 +515,22 @@
 								}
 							},
 							{
+								"id": "12",
+								"parent": "8",
+								"data": {
+									"name": {
+										"text": "Firmas Póliza",
+										"type": 0
+									},
+									"itemType": 2,
+									"linkType": 0,
+									"iconType": 3,
+									"iconName": "fa-signature",
+									"table": 3483243228,
+									"pageType": "list"
+								}
+							},
+							{
 								"id": "2",
 								"parent": "8",
 								"data": {
@@ -524,19 +554,6 @@
 							},
 							"iconType": 3,
 							"iconName": "fa-database"
-						}
-					},
-					{
-						"id": "12",
-						"data": {
-							"name": {
-								"table": "detalle_poliza",
-								"type": 6
-							},
-							"itemType": 2,
-							"linkType": 0,
-							"table": 348772351,
-							"pageType": "list"
 						}
 					}
 				]
@@ -807,7 +824,8 @@
 						"type": 6
 					},
 					"linkIcon": {
-						"glyph": "heart-empty"
+						"fa": "dollar",
+						"style": 3
 					},
 					"background": "#e07878",
 					"linkType": 0
@@ -815,13 +833,13 @@
 				"welcome_item8": {
 					"type": "welcome_item",
 					"linkUrl": "",
-					"linkTable": "detalle_poliza",
+					"linkTable": "firmas",
 					"linkPage": "list",
 					"linkText": {
-						"table": "detalle_poliza",
+						"table": "firmas",
 						"type": 6
 					},
-					"background": "#e07878",
+					"background": "#2f4f4f",
 					"linkType": 0
 				}
 			},
