@@ -90,11 +90,6 @@
 			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\nsetlocale(LC_ALL, \"es_ES\", 'es_MX.utf8');\ndate_default_timezone_set(\"America/Denver\");\n"
 		},
 		{
-			"eventId": "EVENT_AFTERDELETE",
-			"pageType": "list",
-			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$sql=\"update banco set status='DCR' where cuenta={$deleted_values['cuenta']}\";\nDB::Exec($sql);\n"
-		},
-		{
 			"eventId": "EVENT_INIT_TABLE",
 			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$fecha1=$_GET['fecha1'];\n$fecha2=$_GET['fecha2'];\nif (isset($fecha1) && isset($fecha2)){\n   $query->addWhere( \"date_format(fecha_limpio,'%Y-%m-%d') between '\".$fecha1.\"' and '\".$fecha2.\"'\" );\n}\n"
 		}
