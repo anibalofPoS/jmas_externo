@@ -319,9 +319,11 @@
 							}
 						},
 						"detalle_poliza": {
-							"mask": "ADESPI",
+							"mask": "AESP",
 							"table": "detalle_poliza",
-							"restrictedPages": {}
+							"restrictedPages": {
+								"import": true
+							}
 						}
 					},
 					"admin": false,

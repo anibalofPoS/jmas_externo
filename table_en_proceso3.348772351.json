@@ -1,5 +1,13 @@
 {
-	"sql": "SELECT\r\n\tdate_format(fecha,'%Y-%m-%d') as fecha,\r\n\tdate_format(fecha_limpio,'%Y-%m-%d') as fecha_limpio,\r\n\tcount(*) as cajas\r\nFROM\r\n\ten_proceso\r\nWHERE\r\n    status='Limpio'\r\nGROUP BY\r\n    date_format(fecha,'%Y-%m-%d'),date_format(fecha_limpio,'%Y-%m-%d')\r\n",
+	"orderInfo": [
+		{
+			"index": 2,
+			"field": "fecha_limpio",
+			"expr": "date_format(fecha_limpio, '%Y-%m-%d')",
+			"asc": true
+		}
+	],
+	"sql": "SELECT\r\n\tdate_format(fecha,'%Y-%m-%d') as fecha,\r\n\tdate_format(fecha_limpio,'%Y-%m-%d') as fecha_limpio,\r\n\tcount(*) as cajas\r\nFROM\r\n\ten_proceso\r\nWHERE\r\n    status='Limpio'\r\nGROUP BY\r\n    date_format(fecha,'%Y-%m-%d'),date_format(fecha_limpio,'%Y-%m-%d')\r\nORDER BY\r\n    fecha_limpio",
 	"type": 1,
 	"connId": "conn",
 	"originalTable": "en_proceso",
@@ -30,7 +38,7 @@
 				}
 			],
 			"label": {
-				"Spanish": "Fecha"
+				"Spanish": "Fecha de asignación"
 			},
 			"tableName": ""
 		},
@@ -42,7 +50,8 @@
 			"type": 200,
 			"viewFormats": [
 				{
-					"format": "Short Date"
+					"format": "Custom",
+					"customExpression": "if ($value==null){\r\n   $value='';\r\n}else{ \r\n   $value=utf8_encode(strftime(\"%a %d-%b-%Y\", strtotime($value)));\r\n}"
 				}
 			],
 			"editFormats": [
@@ -90,6 +99,7 @@
 			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$fecha1=$_GET['fecha1'];\n$fecha2=$_GET['fecha2'];\nif (isset($fecha1) && isset($fecha2)){\n   $query->addWhere( \"date_format(fecha_limpio,'%Y-%m-%d') between '\".$fecha1.\"' and '\".$fecha2.\"'\" );\n}\n"
 		}
 	],
+	"strOrderBy": "ORDER BY\r\n    fecha_limpio",
 	"dbTableInfo": {
 		"type": 0,
 		"foreignKeys": [],
@@ -758,6 +768,7 @@
 						"c2": {
 							"model": "c2",
 							"items": [
+								"list_options",
 								"loginform_login"
 							]
 						}
@@ -780,7 +791,9 @@
 					"cells": {
 						"c1": {
 							"model": "c1",
-							"items": []
+							"items": [
+								"search_panel"
+							]
 						}
 					},
 					"deferredItems": [],
@@ -845,59 +858,68 @@
 							"items": [
 								"simple_grid_field2"
 							],
-							"field": "fecha"
+							"field": "fecha",
+							"columnName": "field"
 						},
 						"cell_field": {
 							"model": "cell_field",
 							"items": [
 								"simple_grid_field"
 							],
-							"field": "fecha"
+							"field": "fecha",
+							"columnName": "field"
 						},
 						"footcell_field": {
 							"model": "footcell_field",
 							"items": [],
-							"field": "fecha"
+							"field": "fecha",
+							"columnName": "field"
 						},
 						"headcell_field1": {
 							"model": "headcell_field",
 							"items": [
 								"simple_grid_field4"
 							],
-							"field": "fecha_limpio"
+							"field": "fecha_limpio",
+							"columnName": "field"
 						},
 						"cell_field1": {
 							"model": "cell_field",
 							"items": [
 								"simple_grid_field3"
 							],
-							"field": "fecha_limpio"
+							"field": "fecha_limpio",
+							"columnName": "field"
 						},
 						"footcell_field1": {
 							"model": "footcell_field",
 							"items": [],
-							"field": "fecha_limpio"
+							"field": "fecha_limpio",
+							"columnName": "field"
 						},
 						"headcell_field2": {
 							"model": "headcell_field",
 							"items": [
 								"simple_grid_field5"
 							],
-							"field": "cajas"
+							"field": "cajas",
+							"columnName": "field"
 						},
 						"cell_field2": {
 							"model": "cell_field",
 							"items": [
 								"simple_grid_field1"
 							],
-							"field": "cajas"
+							"field": "cajas",
+							"columnName": "field"
 						},
 						"footcell_field2": {
 							"model": "footcell_field",
 							"items": [
 								"grid_field_totals"
 							],
-							"field": "cajas"
+							"field": "cajas",
+							"columnName": "field"
 						}
 					},
 					"deferredItems": [],
@@ -936,8 +958,8 @@
 				"simple_grid_field": {
 					"field": "fecha",
 					"type": "grid_field",
-					"inlineAdd": false,
-					"inlineEdit": false,
+					"inlineAdd": true,
+					"inlineEdit": true,
 					"showFilter": true
 				},
 				"simple_grid_field2": {
@@ -959,7 +981,9 @@
 				},
 				"simple_grid_field1": {
 					"field": "cajas",
-					"type": "grid_field"
+					"type": "grid_field",
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"simple_grid_field5": {
 					"type": "grid_field_label",
@@ -969,6 +993,29 @@
 					"type": "grid_field_totals",
 					"field": "cajas",
 					"totals": "TOTAL"
+				},
+				"search_panel": {
+					"type": "search_panel",
+					"items": [
+						"search_panel_field"
+					]
+				},
+				"list_options": {
+					"type": "list_options",
+					"items": [
+						"show_search_panel",
+						"hide_search_panel"
+					]
+				},
+				"show_search_panel": {
+					"type": "show_search_panel"
+				},
+				"hide_search_panel": {
+					"type": "hide_search_panel"
+				},
+				"search_panel_field": {
+					"field": "fecha",
+					"type": "search_panel_field"
 				}
 			},
 			"version": 13,

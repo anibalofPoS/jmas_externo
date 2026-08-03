@@ -1095,7 +1095,8 @@
 							"model": "c1",
 							"items": [
 								"add",
-								"delete"
+								"delete",
+								"text2"
 							]
 						},
 						"c2": {
@@ -1547,7 +1548,9 @@
 						},
 						"cell_field11": {
 							"model": "cell_field",
-							"items": [],
+							"items": [
+								"custom_button1"
+							],
 							"columnName": "",
 							"field": ""
 						},
@@ -1830,6 +1833,27 @@
 					},
 					"icon": {
 						"fa": "search",
+						"style": 0
+					}
+				},
+				"text2": {
+					"type": "text",
+					"label": {
+						"text": "Fechas y contratos para pólizas",
+						"type": 0
+					},
+					"editedByRte": false,
+					"bold": true,
+					"font-size": "18px"
+				},
+				"custom_button1": {
+					"type": "custom_button",
+					"eventGid": 2805026993,
+					"label": {
+						"text": "Póliza",
+						"type": 0
+					},
+					"icon": {
 						"style": 0
 					}
 				}
