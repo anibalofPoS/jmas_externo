@@ -2013,12 +2013,16 @@
 				"simple_grid_field15": {
 					"field": "dias",
 					"type": "simple_grid_field",
-					"showFilter": true
+					"showFilter": true,
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"simple_grid_field16": {
 					"field": "status",
 					"type": "simple_grid_field",
-					"showFilter": true
+					"showFilter": true,
+					"inlineAdd": false,
+					"inlineEdit": false
 				},
 				"search_panel_field": {
 					"field": "dias",

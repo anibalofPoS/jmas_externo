@@ -12,6 +12,20 @@
 				"height": 760
 			},
 			{
+				"gid": 686749931,
+				"y": 485,
+				"x": 350,
+				"width": 177.96875,
+				"height": 208
+			},
+			{
+				"gid": 348772351,
+				"y": 483,
+				"x": 758,
+				"width": 154.625,
+				"height": 264
+			},
+			{
 				"gid": 878578831,
 				"y": 10,
 				"x": 835,
@@ -20,8 +34,8 @@
 			},
 			{
 				"gid": 3281225657,
-				"y": 10,
-				"x": 665,
+				"y": 486,
+				"x": 573,
 				"width": 142.171875,
 				"height": 180
 			},
@@ -296,6 +310,18 @@
 								"add": true,
 								"import": true
 							}
+						},
+						"calendario_poliza": {
+							"mask": "ADESP",
+							"table": "calendario_poliza",
+							"restrictedPages": {
+								"import": true
+							}
+						},
+						"detalle_poliza": {
+							"mask": "ADESPI",
+							"table": "detalle_poliza",
+							"restrictedPages": {}
 						}
 					},
 					"admin": false,
@@ -438,6 +464,22 @@
 						}
 					},
 					{
+						"id": "11",
+						"data": {
+							"name": {
+								"table": "calendario_poliza",
+								"type": 6
+							},
+							"itemType": 2,
+							"linkType": 0,
+							"iconType": 2,
+							"iconName": "glyphicon-heart-empty",
+							"showIconType": 2,
+							"table": 686749931,
+							"pageType": "list"
+						}
+					},
+					{
 						"id": "8",
 						"children": [
 							{
@@ -480,6 +522,19 @@
 							},
 							"iconType": 3,
 							"iconName": "fa-database"
+						}
+					},
+					{
+						"id": "12",
+						"data": {
+							"name": {
+								"table": "detalle_poliza",
+								"type": 6
+							},
+							"itemType": 2,
+							"linkType": 0,
+							"table": 348772351,
+							"pageType": "list"
 						}
 					}
 				]
@@ -571,7 +626,9 @@
 								"welcome_item1",
 								"welcome_item5",
 								"welcome_item3",
-								"welcome_item6"
+								"welcome_item6",
+								"welcome_item7",
+								"welcome_item8"
 							]
 						}
 					},
@@ -737,6 +794,33 @@
 						"type": 0,
 						"text": "Sumario por plomero"
 					}
+				},
+				"welcome_item7": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "calendario_poliza",
+					"linkPage": "list",
+					"linkText": {
+						"table": "calendario_poliza",
+						"type": 6
+					},
+					"linkIcon": {
+						"glyph": "heart-empty"
+					},
+					"background": "#e07878",
+					"linkType": 0
+				},
+				"welcome_item8": {
+					"type": "welcome_item",
+					"linkUrl": "",
+					"linkTable": "detalle_poliza",
+					"linkPage": "list",
+					"linkText": {
+						"table": "detalle_poliza",
+						"type": 6
+					},
+					"background": "#e07878",
+					"linkType": 0
 				}
 			},
 			"version": 13,

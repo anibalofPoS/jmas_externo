@@ -1,0 +1,7 @@
+{
+	"type": "EVENT_BUTTON",
+	"name": "revisar_poliza",
+	"serverCode": "// Put your code here.\n\n\n",
+	"beforeJsCode": "// Put your code here.\nvar fecha1=row.getFieldValue('del');\nvar fecha2=row.getFieldValue('al');\n\nif( !fecha1 || !fecha2 )\n{\najax.setMessage(\"Deben existir ambas fechas.\");\nreturn false;\n}\n\nvar popup = Runner.displayPopup( {\n      url: \"en_proceso3_list.php?fecha1=\"+fecha1+\"&fecha2=\"+fecha2,\n    width: \"80%\",\n   height: \"80%\",\n   header: 'Revisar datos de la poliza'\n})\n // Uncomment the following line to prevent execution of \"Server\" and \"Client After\" events.\nreturn false;",
+	"afterJsCode": "// Put your code here.\n\n"
+}
