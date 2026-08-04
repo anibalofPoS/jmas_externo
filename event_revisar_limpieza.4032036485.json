@@ -1,0 +1,7 @@
+{
+	"type": "EVENT_AJAX",
+	"name": "revisar_limpieza",
+	"serverCode": "// Put your code here.\n\n",
+	"beforeJsCode": "// Put your code here.\nvar fecha2=row.getFieldValue( 'fecha_limpio' );\nvar fecha1=row.getFieldValue( 'fecha' );\nif( !fecha1 || !fecha2 )\n{\najax.setMessage(\"Deben existir ambas fechas.\");\nreturn false;\n}\nwindow.open(\"en_proceso1_list.php?fecha1=\"+fecha1+\"&fecha2=\"+fecha2);\n // Uncomment the following line to prevent execution of \"Server\" and \"Client After\" events.\n // return false;",
+	"afterJsCode": "// Put your code here.\n\n\n"
+}

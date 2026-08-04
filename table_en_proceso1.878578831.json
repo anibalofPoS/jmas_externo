@@ -413,6 +413,10 @@
 			"eventId": "EVENT_AFTERDELETE",
 			"pageType": "list",
 			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$sql=\"update banco set status='DCR' where cuenta={$deleted_values['cuenta']}\";\nDB::Exec($sql);\n"
+		},
+		{
+			"eventId": "EVENT_INIT_TABLE",
+			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\nif (isset($_GET['fecha1']) && isset($_GET['fecha2'])){\n   $query->addWhere( \"date_format(fecha,'%Y-%m-%d') = '\".$_GET['fecha1'].\"' and \".\"date_format(fecha_limpio,'%Y-%m-%d') = '\".$_GET['fecha2'].\"'\" );  \n}\n"
 		}
 	],
 	"strOrderBy": "ORDER BY\r\n    fecha\r\nDESC",

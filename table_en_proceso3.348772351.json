@@ -1,19 +1,72 @@
 {
 	"orderInfo": [
 		{
-			"index": 2,
-			"field": "fecha_limpio",
-			"expr": "date_format(fecha_limpio, '%Y-%m-%d')",
+			"index": 1,
+			"field": "fecha",
+			"expr": "date_format(fecha, '%Y-%m-%d')",
 			"asc": true
 		}
 	],
-	"sql": "SELECT\r\n\tdate_format(fecha,'%Y-%m-%d') as fecha,\r\n\tdate_format(fecha_limpio,'%Y-%m-%d') as fecha_limpio,\r\n\tcount(*) as cajas\r\nFROM\r\n\ten_proceso\r\nWHERE\r\n    status='Limpio'\r\nGROUP BY\r\n    date_format(fecha,'%Y-%m-%d'),date_format(fecha_limpio,'%Y-%m-%d')\r\nORDER BY\r\n    fecha_limpio",
+	"sql": "SELECT\r\n\tdate_format(fecha,'%Y-%m-%d') as fecha,\r\n\tdate_format(fecha_limpio,'%Y-%m-%d') as fecha_limpio,\r\n\tcount(*) as cajas\r\nFROM\r\n\ten_proceso\r\nWHERE\r\n    status='Limpio'\r\nGROUP BY\r\n    date_format(fecha,'%Y-%m-%d'),date_format(fecha_limpio,'%Y-%m-%d')\r\nORDER BY\r\n    fecha",
 	"type": 1,
 	"connId": "conn",
 	"originalTable": "en_proceso",
 	"name": "detalle_poliza",
 	"shortTableName": "en_proceso3",
 	"dbType": 0,
+	"clickActions": {
+		"row": {
+			"openData": {
+				"how": "goto",
+				"page": "url"
+			},
+			"gridData": {
+				"action": "checkbox"
+			},
+			"codeData": {
+				"snippet": null
+			}
+		},
+		"fields": {
+			"fecha": {
+				"openData": {
+					"how": "goto",
+					"page": "url"
+				},
+				"gridData": {
+					"action": "checkbox"
+				},
+				"codeData": {
+					"snippet": null
+				}
+			},
+			"fecha_limpio": {
+				"openData": {
+					"how": "goto",
+					"page": "url"
+				},
+				"gridData": {
+					"action": "checkbox"
+				},
+				"codeData": {
+					"snippet": 4032036485
+				}
+			},
+			"cajas": {
+				"action": "code",
+				"openData": {
+					"how": "goto",
+					"page": "url"
+				},
+				"gridData": {
+					"action": "checkbox"
+				},
+				"codeData": {
+					"snippet": 4032036485
+				}
+			}
+		}
+	},
 	"keyFields": [
 		"fecha"
 	],
@@ -72,7 +125,10 @@
 			"strField": "cajas",
 			"type": 3,
 			"viewFormats": [
-				{}
+				{
+					"format": "Custom",
+					"customExpression": "$value=\"<b><span style='color: #ffffff; background-color: #000000; padding: 5px; border-radius: 5px; border: 1px solid black;'>\".\r\n$value.'</span></b>';"
+				}
 			],
 			"editFormats": [
 				{}
@@ -94,7 +150,7 @@
 			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\n$fecha1=$_GET['fecha1'];\n$fecha2=$_GET['fecha2'];\nif (isset($fecha1) && isset($fecha2)){\n   $query->addWhere( \"date_format(fecha_limpio,'%Y-%m-%d') between '\".$fecha1.\"' and '\".$fecha2.\"'\" );\n}\n"
 		}
 	],
-	"strOrderBy": "ORDER BY\r\n    fecha_limpio",
+	"strOrderBy": "ORDER BY\r\n    fecha",
 	"dbTableInfo": {
 		"type": 0,
 		"foreignKeys": [],
@@ -995,6 +1051,10 @@
 						"search_panel_field"
 					]
 				},
+				"search_panel_field": {
+					"field": "fecha",
+					"type": "search_panel_field"
+				},
 				"list_options": {
 					"type": "list_options",
 					"items": [
@@ -1007,10 +1067,6 @@
 				},
 				"hide_search_panel": {
 					"type": "hide_search_panel"
-				},
-				"search_panel_field": {
-					"field": "fecha",
-					"type": "search_panel_field"
 				}
 			},
 			"version": 13,

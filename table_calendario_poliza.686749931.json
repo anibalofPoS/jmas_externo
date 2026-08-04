@@ -1,5 +1,13 @@
 {
-	"sql": "SELECT\r\n\tid,\r\n\tcontrato,\r\n\tDescripcion,\r\n\tfirma,\r\n\tdel,\r\n\tal,\r\n\timpresa\r\nFROM\r\n\tcalendario_poliza",
+	"orderInfo": [
+		{
+			"index": 5,
+			"field": "del",
+			"expr": "del",
+			"asc": false
+		}
+	],
+	"sql": "SELECT\r\n\tid,\r\n\tcontrato,\r\n\tDescripcion,\r\n\tfirma,\r\n\tdel,\r\n\tal,\r\n\timpresa\r\nFROM\r\n\tcalendario_poliza\r\nORDER BY\r\n    del DESC",
 	"connId": "conn",
 	"originalTable": "calendario_poliza",
 	"name": "calendario_poliza",
@@ -169,6 +177,7 @@
 			"code": "// Place event code here.\n// Use \"Add Action\" button to add code snippets.\nsetlocale(LC_ALL, \"es_ES\", 'es_MX.utf8');\ndate_default_timezone_set(\"America/Denver\");\n"
 		}
 	],
+	"strOrderBy": "ORDER BY\r\n    del DESC",
 	"dbTableInfo": {
 		"type": 0,
 		"foreignKeys": [],
@@ -1838,12 +1847,13 @@
 					"eventGid": 2379602687,
 					"label": {
 						"type": 0,
-						"text": "Revisar"
+						"text": " Revisar"
 					},
 					"icon": {
 						"fa": "search",
 						"style": 0
-					}
+					},
+					"buttonStyle": "info"
 				},
 				"text2": {
 					"type": "text",
@@ -1859,11 +1869,12 @@
 					"type": "custom_button",
 					"eventGid": 2805026993,
 					"label": {
-						"text": "Póliza",
-						"type": 0
+						"type": 0,
+						"text": " Póliza"
 					},
 					"icon": {
-						"style": 0
+						"fa": "newspaper-o",
+						"style": 3
 					}
 				}
 			},
