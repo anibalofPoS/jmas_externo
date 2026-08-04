@@ -38,7 +38,9 @@
 				{}
 			],
 			"editFormats": [
-				{}
+				{
+					"required": true
+				}
 			],
 			"label": {
 				"Spanish": "Número de Contrato"
@@ -55,7 +57,9 @@
 				{}
 			],
 			"editFormats": [
-				{}
+				{
+					"required": true
+				}
 			],
 			"label": {
 				"Spanish": "Descripción"
@@ -77,6 +81,7 @@
 			"editFormats": [
 				{
 					"format": "Date",
+					"required": true,
 					"dateEditType": 11
 				}
 			],
@@ -100,6 +105,8 @@
 			"editFormats": [
 				{
 					"format": "Date",
+					"required": true,
+					"denyDuplicate": true,
 					"dateEditType": 11
 				}
 			],
@@ -123,6 +130,8 @@
 			"editFormats": [
 				{
 					"format": "Date",
+					"required": true,
+					"denyDuplicate": true,
 					"dateEditType": 11
 				}
 			],

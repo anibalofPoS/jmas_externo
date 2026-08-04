@@ -124,36 +124,67 @@ $pdf->Cell(70,5,str_pad("_",40,'_',STR_PAD_BOTH),0,0,'C');
 $pdf->Cell(9,5,"",0,0,"C");
 $pdf->Cell(70,5,str_pad("_",40,'_',STR_PAD_BOTH),0,0,'C');
 $pdf->ln(4);
-// elaborado 1 index 1-2
+// elaborado administrador contrato 1 index 1-2
 $pdf->Cell(70,5,$afirmas[1][2],0,0,"C");
 $pdf->Cell(9,5,"",0,0,"C"); 
-// direccion comercial 1 index 2-2
+// medicion 1 index 2-2
 $pdf->Cell(70,5,$afirmas[2][2],0,0,"C");
 $pdf->ln(3);
-// elaborado 2 index 1-0
+// elaborado administrador contrato 2 index 1-0
 $pdf->Cell(70,5,$afirmas[1][0],0,0,"C");
-$pdf->Cell(9,5,"",0,0,"C");      
-$pdf->Cell(70,5,utf8_decode("Encargada despacho Dir. Comercial"),0,0,"C");
+$pdf->Cell(9,5,"",0,0,"C");
+// medicion 2 index 2-0
+$pdf->Cell(70,5,utf8_decode($afirmas[2][0]),0,0,"C");
 $pdf->Ln(3);
-// elaborado 3 index 1-1
+// elaborado administrador contrato 3 index 1-1
 $pdf->Cell(70,5,utf8_decode($afirmas[1][1]),0,0,"C");
 $pdf->Cell(9,5,"",0,0,"C");
-$pdf->Cell(70,5,utf8_decode(''),0,0,"C");
+// medicion 2 index 1-1
+$pdf->Cell(70,5,utf8_decode($afirmas[2][1]),0,0,"C");
 $pdf->ln(16);
 $pdf->Cell(70,5,str_pad("_",40,'_',STR_PAD_BOTH),0,0,'C');
 $pdf->Cell(9,5,"",0,0,"C");
 $pdf->Cell(70,5,str_pad("_",40,'_',STR_PAD_BOTH),0,0,'C');
 $pdf->ln(4);      
-$pdf->Cell(70,5,"Autorizado por:",0,0,"C");
-$pdf->Cell(9,5,"",0,0,"C");      
-$pdf->Cell(70,5,"Autorizado por:",0,0,"C");
-$pdf->ln(3);
-$pdf->Cell(70,5,utf8_decode("Dirección Financiera"),0,0,"C");
-$pdf->Cell(9,5,"",0,0,"C");      
-$pdf->Cell(70,5,"Jefa de Recursos Humanos",0,0,"C");
-$pdf->Ln(3);
-$pdf->Cell(70,5,utf8_decode(''),0,0,"C");
+// drieccion financiera 1 index 3-2
+$pdf->Cell(70,5,$afirmas[3][2],0,0,"C");
 $pdf->Cell(9,5,"",0,0,"C");
-$pdf->Cell(70,5,utf8_decode(''),0,0,"C");
+// direccion comercial 1 index 4-2
+$pdf->Cell(70,5,$afirmas[4][2],0,0,"C");
+$pdf->ln(3);
+// direccion financiera 2 index 3-0
+$pdf->Cell(70,5,utf8_decode($afirmas[3][0]),0,0,"C");
+$pdf->Cell(9,5,"",0,0,"C");      
+// direccion comercial 2 index 4-0
+$pdf->Cell(70,5,$afirmas[4][0],0,0,"C");
+$pdf->Ln(3);
+// direccion financiera 3 index 3-1
+$pdf->Cell(70,5,utf8_decode($afirmas[3][1]),0,0,"C");
+$pdf->Cell(9,5,"",0,0,"C");
+// direccion comercial 3 index 4-1
+$pdf->Cell(70,5,utf8_decode($afirmas[4][1]),0,0,"C");
+$pdf->ln(16);
+$pdf->Cell(70,5,str_pad("_",40,'_',STR_PAD_BOTH),0,0,'C');
+$pdf->Cell(9,5,"",0,0,"C");
+//$pdf->Cell(70,5,str_pad("_",40,'_',STR_PAD_BOTH),0,0,'C');
+$pdf->ln(4);      
+// responsable externo 1 index 5-2
+$pdf->Cell(70,5,$afirmas[5][2],0,0,"C");
+$pdf->Cell(9,5,"",0,0,"C");
+//  1 index 6-2
+//$pdf->Cell(70,5,$afirmas[4][2],0,0,"C");
+$pdf->ln(3);
+// responsable externo 2 index 5-0
+$pdf->Cell(70,5,utf8_decode($afirmas[5][0]),0,0,"C");
+$pdf->Cell(9,5,"",0,0,"C");      
+//  2 index 6-0
+//$pdf->Cell(70,5,$afirmas[4][0],0,0,"C");
+$pdf->Ln(3);
+// responsable externo 3 index 5-1
+$pdf->Cell(70,5,utf8_decode($afirmas[5][1]),0,0,"C");
+$pdf->Cell(9,5,"",0,0,"C");
+// 3 index 6-1
+//$pdf->Cell(70,5,utf8_decode($afirmas[4][1]),0,0,"C");
+
 $pdf->Output();
 ?>
