@@ -938,7 +938,6 @@
 							"model": "c1",
 							"items": [
 								"add",
-								"delete",
 								"text"
 							]
 						},
@@ -1102,17 +1101,6 @@
 					},
 					"popup": false
 				},
-				"delete": {
-					"type": "delete",
-					"icon": {
-						"glyph": "trash",
-						"style": 0
-					},
-					"label": {
-						"type": 0,
-						"text": "Borrar"
-					}
-				},
 				"details_found": {
 					"type": "details_found"
 				},
@@ -1200,9 +1188,6 @@
 				"export_selected": {
 					"type": "export_selected"
 				},
-				"delete_selected": {
-					"type": "delete_selected"
-				},
 				"-1": {
 					"type": "-"
 				},
@@ -1253,7 +1238,6 @@
 					"type": "list_options",
 					"items": [
 						"export_selected",
-						"delete_selected",
 						"-1",
 						"show_search_panel",
 						"hide_search_panel",
