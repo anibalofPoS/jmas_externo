@@ -1219,6 +1219,7 @@
 						"c1": {
 							"model": "c1",
 							"items": [
+								"delete",
 								"update_selected",
 								"text"
 							]
@@ -1759,6 +1760,7 @@
 					"type": "list_options",
 					"items": [
 						"export_selected",
+						"delete_selected",
 						"-1",
 						"show_search_panel",
 						"hide_search_panel",
@@ -1919,6 +1921,20 @@
 				"snippet": {
 					"type": "snippet",
 					"eventGid": 3950423311
+				},
+				"delete": {
+					"type": "delete",
+					"icon": {
+						"glyph": "trash",
+						"style": 0
+					},
+					"label": {
+						"type": 0,
+						"text": "Borrar"
+					}
+				},
+				"delete_selected": {
+					"type": "delete_selected"
 				}
 			},
 			"version": 13,
